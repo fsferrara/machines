@@ -1,0 +1,6 @@
+[includeIf "gitdir:~/github/"]
+  path = .gitconfig-personal
+
+[user]
+  name = Saverio Ferrara
+  email = fsferrara@users.noreply.github.com

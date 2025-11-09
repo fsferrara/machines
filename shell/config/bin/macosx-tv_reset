@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+killall TV
+
+rm -rf ~/Library/Caches/com.apple.TV
+rm -rf ~/Library/Preferences/ByHost/com.apple.TV.*
+rm -rf ~/Library/Preferences/com.apple.TV.*
+rm -rf ~/Library/Saved Application State/com.apple.TV.*
+rm -rf ~/Movies/TV
+

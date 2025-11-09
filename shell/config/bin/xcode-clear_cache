@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+echo -e "[${0}] Clearing ~/Library/Developer/Xcode/DerivedData ...";
+rm -rf ~/Library/Developer/Xcode/DerivedData
+
+echo -e "[${0}] Clearing ~/Library/Caches/org.swift.swiftpm ... "
+rm -rf ~/Library/Caches/org.swift.swiftpm
+
+echo -e "[${0}] Clearing non-configuration files ~/Library/org.swift.swiftpm ..."
+find ~/Library/org.swift.swiftpm -mindepth 1 -not -path '*/configuration*' -exec rm -rf {} +
+

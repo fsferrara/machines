@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# ###############################################################
+# Help
+usage() {
+   echo -e "\nusage: $0 [-h] [-d <dependency name>]\n";
+}
+
+# ###############################################################
+# Retrieve options
+DEPENDENCY="";
+while getopts :d:h opt; do
+   case $opt in
+      d)
+         DEPENDENCY=${OPTARG};
+         ;;
+      h)
+         usage;
+         exit 0;
+         ;;
+      \?)
+         usage;
+         exit 1;
+         ;;
+   esac
+done
+
+
+# ###############################################################
+# Global variables
+XCODE_PRJ_EXTENSION='*.pbxproj'
+DEPENDENCY_NAME="${DEPENDENCY}"
+SESSION_DATA="etId=3456&adxReport=true&androidId=11&idfa=3333&bundleId=234&platform=AND"
+COOKIES_TEMP_FILE="ss_cookies_tmp7163915639452"
+CURL_HEADERS="-H 'Accept: application/json' -H 'Content-Language: en_GB' -H 'User-Agent: Dalvik/2.1.0 (Linux; U; Android 7.0; HUAWEI VNS-L31 Build/HUAWEIVNS-L31)'"
+
+find . -iname "${XCODE_PRJ_EXTENSION}" | xargs -I %file% grep -HE -A3 "repository.*${DEPENDENCY_NAME}" %file%

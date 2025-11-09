@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+VM_SHARE="${HOME}/vm/share"
+sudo umount ${VM_SHARE}

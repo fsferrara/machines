@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Please, consider using the `npx` command instead of this script.
+
+# When executables are installed via npm packages, `npm` links to them:
+# - In local installs, they are linked to from a `node_modules/.bin/` directory.
+# - In global installs, they are linked to from a global bin/ directory (e.g. `/usr/local/bin`).
+
+# The command `npm bin` lets you find out where the closest executables are.
+
+# With this script, we are including the closest executables folder in the `PATH`.
+PATH="$(npm bin):$PATH";
+eval $@
+

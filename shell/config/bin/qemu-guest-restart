@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo -e "sudo shutdown -r now\n"
+ssh ${USER}@"${GUEST_IP}" 'sudo shutdown -r now'

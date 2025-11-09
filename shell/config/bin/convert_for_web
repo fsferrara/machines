@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+for i in **/*;
+do
+   if [ -f "$i" ]
+   then
+      convert "$i" -density 72 -resize 1024x768 "$i"_web.jpg;
+   fi
+done;
+

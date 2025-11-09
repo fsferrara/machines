@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# Input parameters
+usage() {
+   echo -e "usage $0 <response-text-file> [<port>]"
+}
+
+if [ $# -eq 0 ]; then
+   usage $0;
+   exit 1;
+elif [ ! -f $1 ]; then
+   usage $0;
+   exit 1;
+fi
+
+RESPONSE_FILE=$1
+
+# Port management
+PORT=80
+re='^[0-9]+$'
+if [[ $2 =~ $re ]]; then
+   PORT=$2;
+fi
+
+# Data
+HTTP_HEADER="HTTP/1.0 200 OK\r\nServer: Application-Server\r\nCache-Control: no-cache,no-store,must-revalidate,max-age=0\r\nContent-Type: application/json;charset=UTF-8\r\n";
+HTTP_BODY=`cat ${RESPONSE_FILE}`
+HTTP_RESPONSE="${HTTP_HEADER}\r\n${HTTP_BODY}"
+
+# Start
+echo -ne "[START] http://localhost:${PORT}/";
+while true; do
+   echo -ne "${HTTP_RESPONSE}" | nc -l -p ${PORT}
+done
+
+# Done
+exit 0;
+

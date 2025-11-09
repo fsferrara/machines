@@ -1,0 +1,7 @@
+Add `code.cmd` to the path.
+VSCode is installed in your home folder (i.e. %USERPROFILE%).
+
+- This pc -> properties
+- Search "path" -> modify system variables -> environment variables
+- add to Path:
+    - %USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\bin

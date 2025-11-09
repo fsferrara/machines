@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Requirements:
+# - ffmpeg
+# - jpeg-xl
+
+process_file() {
+	f="$1"
+   #ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 2 newfiles/"${f%.m4a}.mp3";
+   ffmpeg -i "$f" -acodec copy "${f%.m4a}.aac"
+
+}
+
+find . -type f \( -name "*.m4a" -o -name "*.M4A" \) -print0 |
+while IFS= read -r -d '' file; do
+	process_file "$file"
+done

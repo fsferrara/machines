@@ -1,0 +1,3 @@
+pane	0	0	:	1	:*	0	:/Users/fsferrara/github/fsferrara	1	zsh	:
+window	0	0	1	:*	b3dd,212x23,0,0,0
+state	0	

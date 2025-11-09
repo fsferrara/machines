@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Reads the current value
+current_flag=`defaults read com.apple.finder AppleShowAllFiles`
+
+# Flip it
+new_flag=true
+if [ "$current_flag" = true ] ; then
+    new_flag=false
+fi
+
+# Write the new conf and restart
+defaults write com.apple.finder AppleShowAllFiles $new_flag
+killall Finder

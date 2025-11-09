@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sudo defaults write com.apple.LaunchServices LSQuarantine -bool NO
+sudo spctl --master-disable
+echo -e "Please reboot your machine..."

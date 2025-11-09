@@ -1,0 +1,3 @@
+#!/usr/bin/env bash -x
+
+/Applications/Xcode15.2/Xcode.app/Contents/MacOS/Xcode

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Docker Desktop for Mac does not bind to TCP intentionally for security reasons.
+# To expose the Docker Daemon su tcp://0.0.0.0:2375, you can use socat.
+# It reroutes the Unix socket to a TCP port (binding on localhost only).
+#
+# To install socat: `brew install socat`.
+
+echo -e "[DOCKER-SOCAT] Binding daemon to tcp://0.0.0.0:2375\n";
+socat TCP-LISTEN:2375,fork UNIX-CONNECT:/var/run/docker.sock
+echo -e "[DOCKER-SOCAT] Goodbye!";

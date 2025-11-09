@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+
+
+
+# Input parameters
+usage() {
+   echo -e "\nusage: $0\n";
+   echo -e "Other options:";
+   echo -e "\t -b \t default-branch";
+   echo -e "\t -h \t help";
+}
+
+# Default parameters
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+# Retrieving options
+while getopts :b:h opt; do
+   case $opt in
+      b)
+         DEFAULT_BRANCH=${OPTARG}
+         ;;
+      h)
+         usage;
+         exit 0;
+         ;;
+      \?)
+         usage;
+         exit 1;
+         ;;
+   esac
+done
+
+# Informative output
+echo "Default branch: ${DEFAULT_BRANCH}"
+
+read -rp "List code-review files? (y/N)" answer
+if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+  git diff --name-status ${DEFAULT_BRANCH}...HEAD
+fi
+
+read -rp "List code-review diff? (y/N)" answer
+if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+    read -rp "...with difftool? (y/N)" answer
+    if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+        git difftool ${DEFAULT_BRANCH}...HEAD
+    else
+        git diff ${DEFAULT_BRANCH}...HEAD
+    fi
+fi
+

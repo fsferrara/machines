@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+folder_path() {
+    echo "$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+}
+FOLDER_PATH=$(folder_path)
+
+ls -1 ${FOLDER_PATH}

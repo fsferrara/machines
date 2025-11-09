@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+ALL_DOMAINS='*'
+
+NETWORK_SERVICE_NAME=$(networksetup -listallnetworkservices | grep Wi-Fi | head -1)
+
+CURRENTLY_BYPASSING_ALL_DOMAINS=$(networksetup -getproxybypassdomains $NETWORK_SERVICE_NAME | grep "$ALL_DOMAINS")
+
+# Check if $CURRENTLY_BYPASSING_ALL_DOMAINS is empty
+if [ -z "$CURRENTLY_BYPASSING_ALL_DOMAINS" ]; then
+  echo -e "[${NETWORK_SERVICE_NAME}] Adding a rule to bypass ${ALL_DOMAINS} domains..."
+  sudo networksetup -setproxybypassdomains $NETWORK_SERVICE_NAME "$ALL_DOMAINS"
+else
+  echo -e "[${NETWORK_SERVICE_NAME}] already bypassing all domains."
+fi
+
+echo -e "[${NETWORK_SERVICE_NAME}] bypass domains:"
+networksetup -getproxybypassdomains $NETWORK_SERVICE_NAME
+
+
+sudo networksetup -setwebproxystate $NETWORK_SERVICE_NAME off
+sudo networksetup -setsecurewebproxystate $NETWORK_SERVICE_NAME off
+
+networksetup -getwebproxy $NETWORK_SERVICE_NAME
+networksetup -getsecurewebproxy $NETWORK_SERVICE_NAME

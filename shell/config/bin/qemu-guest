@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo -e "ssh ${USER}@${GUEST_IP}\n"
+ssh ${USER}@${GUEST_IP}

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+docker image rm -f $(docker images -q)
+

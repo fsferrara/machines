@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# usage:
+#   ./ms-macosx-app-cleaner.sh Insomnia
+
+
+APPS="/Applications"
+LIBRARY="${HOME}/Library"
+RECEIPTS="/var/db/receipts"
+
+for item in "$@" ; do
+    find ${APPS} -maxdepth 1 -iname "*$item*" 2> /dev/null | xargs -I %res% echo "rm -rf \"%res%\"";
+    find ${LIBRARY} -maxdepth 2 -iname "*$item*" 2> /dev/null | xargs -I %res% echo "rm -rf \"%res%\"";
+    find ${RECEIPTS} -maxdepth 2 -iname "*$item*" 2> /dev/null | xargs -I %res% echo "rm -rf \"%res%\"";
+done
+
+echo -e "\nPlease, run the above commands at your own risk ;-)";

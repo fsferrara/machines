@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+git_update_single_folder() {
+    cd "$1"
+    if [ -d ".git" ]; then # is a git repository
+        echo -e "📁 Processing $1"
+        git fetch
+        git pull --rebase --autostash
+    fi
+    cd ..
+}
+
+FOLDERS=$(ls -d */)
+for folder in $FOLDERS; do
+    git_update_single_folder $folder
+done
+
+exit 0

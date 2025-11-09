@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# github: https://howtowhale.github.io/dvm/
+# repo: https://github.com/howtowhale/dvm
+
+function __dvm-install-script-generic() {
+  curl -sL https://howtowhale.github.io/dvm/downloads/latest/install.sh | sh
+}
+
+function __dvm-infect-osx() {
+   # Install dvm with: brew install dvm
+   # To create the 'default' alias issue this command:
+   #     dvm alias default 1.9.1
+   # dvm use default
+   if which brew > /dev/null; then
+      if [ "${RUNNING_SHELL}" != "BASH" ]; then
+        echo -e "[dvm-infect] Unfortunately, it only works with BASH and you are using ${RUNNING_SHELL}";
+      else
+        echo -e "[dvm-infect] Using the 'default' docker version";
+        if [ -f $(brew --prefix dvm)/dvm.sh ]; then
+          source $(brew --prefix dvm)/dvm.sh
+          [[ -s "$(brew --prefix dvm)/bash_completion" ]] && source "$(brew --prefix dvm)/bash_completion"
+        fi
+      fi
+   fi
+}
+
+function __dvm-infect-generic() {
+   echo -e "[dvm-infect] dvm-infect-generic..."
+   export DVM_DIR="${HOME}/.dvm"
+   if [ ! -d ${DVM_DIR} ]; then
+      __dvm-install-script-generic
+   fi
+   if [ -f ${DVM_DIR}/dvm.sh ]; then
+      source ${DVM_DIR}/dvm.sh
+   fi
+}
+
+function ms-dvm-infect() {
+   case ${RUNNING_ENV} in
+     "OSX")
+       __dvm-infect-osx
+       ;;
+     "LINUX")
+       __dvm-infect-generic
+       ;;
+     "")
+       echo -e "[dvm-infect] This script requires the RUNNING_ENV environment variable."
+       __dvm-infect-generic
+       ;;
+     "unknown")
+       __dvm-infect-generic
+       ;;
+      *)
+       __dvm-infect-generic
+       ;;
+   esac
+}
+
+ms-dvm-infect

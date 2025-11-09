@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+git_name="John Doe"
+git_email="johndoe@example.com"
+
+echo "First-Time setup for a local clone";
+
+read -p ">> Enter your name [$git_name]: " input_name;
+if [ -n "${input_name}" ]; then
+  git_name=$input_name;
+fi
+
+read -p ">> Enter your email [$git_email]: " input_email;
+if [ -n "${input_email}" ]; then
+  git_email=$input_email;
+fi
+
+while true; do
+    read -p "Do you confirm ${git_name} ${git_email} (y/n)? " yn
+    case $yn in
+        [Yy]* )
+            git config user.name "${git_name}"
+            git config user.email ${git_email}
+            break;;
+        [Nn]* )
+            exit;;
+        * )
+            echo "Please answer yes or no.";;
+    esac
+done
+
+# Print the new/current configuration
+git config --list | grep user
+
+exit 0;

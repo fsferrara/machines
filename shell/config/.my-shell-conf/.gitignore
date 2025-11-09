@@ -1,0 +1,8 @@
+################################################################################
+# IGNORED FILES.
+# The `host-specific` folder is ignored and can be used for your
+# specific host files.
+################################################################################
+
+host-specific/*
+!host-specific/readme.sh

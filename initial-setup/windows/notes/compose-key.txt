@@ -1,0 +1,10 @@
+NO SOLUTION
+
+On a US QWERTY layout in Windows, there isn't a dedicated "Compose key" like there is in some other operating systems. 
+You can use United states-International keyboard layout, You can type accented characters easily without any special software.
+
+` + a = à
+' + c = ç
+" + o = ö
+
+As a programmer, dead keys are not practical since with such I have to type ` + space to get the ` character, etc. I think a compose key is better. To write something like a book, though, this is good.
