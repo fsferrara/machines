@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 killall Music
 
@@ -12,4 +15,3 @@ rm -rf ~/Library/Caches/com.apple.iTunes*
 rm -rf ~/Library/Preferences/ByHost/com.apple.iTunes*
 rm -rf ~/Library/Preferences/com.apple.iTunes*
 rm -rf ~/Library/Saved Application State/com.apple.iTunes*
-

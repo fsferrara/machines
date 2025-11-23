@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-
-
-
+set -e
+set -u
+set -o pipefail
 
 # Input parameters
 usage() {
@@ -48,4 +48,3 @@ if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
         git diff ${DEFAULT_BRANCH}...HEAD
     fi
 fi
-

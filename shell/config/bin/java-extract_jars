@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 ## Recursively extract all the jars in a folder
 #
 # Trigger this script in a folder containing one or more JARs files.
 # It will unzip all the JARs and, recursively, analyze the `-unzipped` folders
 # to extraxt the contet from other JARs that may be included in it.
-
-
 function analyzeDirectory() {
 
     # List all the JARs in the current directory

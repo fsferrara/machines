@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+declare -A DICTIONARY=(
+  [a]="Alfa" [b]="Bravo" [c]="Charlie" [d]="Delta" [e]="Echo"
+  [f]="Foxtrot" [g]="Golf" [h]="Hotel" [i]="India" [j]="Juliett"
+  [k]="Kilo" [l]="Lima" [m]="Mike" [n]="November" [o]="Oscar"
+  [p]="Papa" [q]="Quebec" [r]="Romeo" [s]="Sierra" [t]="Tango"
+  [u]="Uniform" [v]="Victor" [w]="Whiskey" [x]="X-ray" [y]="Yankee" [z]="Zulu"
+  [1]="One" [2]="Two" [3]="Three" [4]="Four" [5]="Five"
+  [6]="Six" [7]="Seven" [8]="Eight" [9]="Nine" [0]="Zero"
+)
+
+# If no arguments provided, print the full alphabet (A-Z) in NATO words.
+if [ "$#" -eq 0 ]; then
+  for c in {a..z}; do
+    printf '%s ' "${DICTIONARY[$c]}"
+  done
+  printf '\n'
+  exit 0
+fi
+
+# Mirror Ruby's behavior: join ARGV with spaces and split on spaces.
+# This ensures quoted args with spaces are still split into words.
+IFS=' ' read -r -a words <<< "$*"
+
+for word in "${words[@]}"; do
+  # lowercase the input word
+  lowered=$(printf '%s' "$word" | tr '[:upper:]' '[:lower:]')
+
+  # iterate characters in the word
+  for ((i=0; i<${#lowered}; i++)); do
+    c=${lowered:i:1}
+    if [[ ${DICTIONARY[$c]+_} ]]; then
+      printf '%s ' "${DICTIONARY[$c]}"
+    else
+      printf '%s ' "$c"
+    fi
+  done
+
+  printf '\n'
+done

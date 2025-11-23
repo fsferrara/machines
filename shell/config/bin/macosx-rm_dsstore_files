@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 echo "Recursively removing .DS_Store files from current directory";
 find . -type f -name '.DS_Store' | xargs -I %item% rm "%item%"
-

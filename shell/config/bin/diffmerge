@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
-## A little script to make it easier to launch DiffMerge from the command line.
-## Install this script into a folder in your path, such as /usr/bin or /usr/local/bin.
-##
-## Version 4.2.1.1013
-## Copyright (C) 2003-2015 SourceGear LLC. All Rights Reserved.
-##############################################################################
-
-## Change DIFFMERGE_PATH to point to where you installed DiffMerge
+set -e
+set -u
+set -o pipefail
 
 DIFFMERGE_PATH=/Applications/DiffMerge.app
 
@@ -19,6 +14,3 @@ DIFFMERGE_EXE=${DIFFMERGE_PATH}/Contents/MacOS/DiffMerge
 ## shell script.
 
 exec ${DIFFMERGE_EXE} --nosplash "$@"
-
-
-

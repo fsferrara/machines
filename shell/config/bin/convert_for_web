@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 for i in **/*;
 do
@@ -7,4 +10,3 @@ do
       convert "$i" -density 72 -resize 1024x768 "$i"_web.jpg;
    fi
 done;
-

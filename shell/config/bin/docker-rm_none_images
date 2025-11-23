@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 docker images | grep none | awk '{print $3}' | xargs -I %id% docker rmi %id%
-

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 # Reads the current value
 current_create_desktop=`defaults read com.apple.finder CreateDesktop`
@@ -12,4 +15,3 @@ fi
 # Write the new conf and restart
 defaults write com.apple.finder CreateDesktop $new_create_desktop
 killall Finder
-

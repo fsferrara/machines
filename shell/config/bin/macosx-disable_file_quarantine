@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 sudo defaults write com.apple.LaunchServices LSQuarantine -bool NO
 sudo spctl --master-disable
