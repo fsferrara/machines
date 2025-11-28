@@ -20,6 +20,7 @@ ${CMD_UPDATE}
 ###########
 echo -e "\n\n🚀 Installing...\n";
 ${CMD_INSTALL} git
+${CMD_INSTALL} git-lfs
 
 
 ########
