@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 ##########
 # CONFIG #
@@ -19,7 +22,7 @@ ${CMD_UPDATE}
 ###########
 echo -e "\n\n🚀 Installing...\n";
 
-${CMD_INSTALL} neofetch
+${CMD_INSTALL} fastfetch
 ${CMD_INSTALL} cowsay
 ${CMD_INSTALL} fortunes
 

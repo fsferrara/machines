@@ -1,6 +1,6 @@
-# GNOME notes
+# GNOME
 
-
+Notes
 
 ## Utilities
 
@@ -20,6 +20,10 @@ sudo apt install gnome-shell-extension-manager
         - Workspaces on Primary Display Only
     - Dock
         - Show Dock on Display: Primary Display
+
+- Mouse & Touchpad
+    - Mouse
+        - Scroll direction: Natural
 
 
 ## Gnome Extensions

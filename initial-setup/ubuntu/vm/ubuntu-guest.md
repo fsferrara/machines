@@ -1,4 +1,4 @@
-# QEMU Ubuntu Server Development
+# Ubuntu Guest
 
 This is a guide to create a local development server.
 
@@ -41,7 +41,7 @@ Then log as `root` and swap directories/permissions of `/home/fsferrara` and `/h
 
 ### Custom hostname
 
-`sudo hostnamectl set-hostname EXPC02D60XTMD6V`
+`sudo hostnamectl set-hostname VUBUNTU`
 
 ## Environment variables
 

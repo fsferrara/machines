@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 
 ##########
@@ -101,10 +104,8 @@ ${CMD_INSTALL} yamllint
 ${CMD_INSTALL} glib
 ${CMD_INSTALL} automake
 ${CMD_INSTALL} bat
-# Personal Command Line Tools #run when needed
 ${CMD_INSTALL} ffmpeg
-${CMD_INSTALL} yt-dlp # replaces youtube-dl
-
+${CMD_INSTALL} yt-dlp
 
 
 ########
