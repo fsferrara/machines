@@ -28,9 +28,4 @@ Execute:
 
 - `./common/default-directories.sh`
 - `./common/passwordless-sudo.sh`
-
-
-
-
-
-sudo snap install --classic code
+- `./ubuntu/install_tools_and_tech.sh`

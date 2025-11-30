@@ -21,7 +21,6 @@ ${CMD_INSTALL} module-assistant
 ${CMD_INSTALL} autoconf automake cmake
 ${CMD_INSTALL} coreutils
 ${CMD_INSTALL} git
-${CMD_INSTALL} glib
 ${CMD_INSTALL} patchutils
 ${CMD_INSTALL} jq
 ${CMD_INSTALL} yamllint
@@ -47,7 +46,6 @@ ${CMD_INSTALL_PACK} sublime-text
 ${CMD_INSTALL_PACK} sublime-merge
 ${CMD_INSTALL_PACK} rpi-imager
 ${CMD_INSTALL_PACK} swach
-${CMD_INSTALL_PACK} rpi-imager
 ${CMD_INSTALL_PACK} remmina
 ${CMD_INSTALL} 7zip
 ${CMD_INSTALL} filezilla
@@ -59,7 +57,7 @@ ${CMD_INSTALL_PACK} zaproxy
 ${CMD_INSTALL_PACK} freelens
 ${CMD_INSTALL} links
 ${CMD_INSTALL} nmap
-${CMD_INSTALL} netcat
+${CMD_INSTALL} netcat-traditional
 ${CMD_INSTALL} sshuttle
 ${CMD_INSTALL} net-tools
 ${CMD_INSTALL} ssh
