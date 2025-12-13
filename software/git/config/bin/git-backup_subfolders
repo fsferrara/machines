@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+
+git_backup_single_folder() {
+    cd "$1"
+    if [ -d ".git" ]; then # is a git repository
+        echo -e "📁 Processing $1"
+        git add .
+        git commit -m "updates on `date`"
+        git pull
+        git push
+    fi
+    cd ..
+}
+
+FOLDERS=$(ls -d */)
+for folder in $FOLDERS; do
+    git_backup_single_folder $folder
+done
+
+exit 0

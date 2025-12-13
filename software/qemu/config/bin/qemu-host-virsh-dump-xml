@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -u
+set -o pipefail
+
+# Check if a VM name argument is provided
+if [ -z "${1:-}" ]; then
+    echo -e "\n❌ Please provide the name of the virtual machine as an argument.\n"
+    exit 1
+fi
+
+virsh dumpxml "$1"
+
+if [ $? -ne 0 ]; then
+    echo -e "\n❌ Failed to dump XML for the virtual machine: $1\n"
+    exit 1
+fi
+
+exit 0

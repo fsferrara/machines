@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+
+DEFAULT_BRANCH=`git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`
+
+git for-each-ref --format '%(refname:short)' refs/heads | grep -v $DEFAULT_BRANCH | xargs -I %BRANCH% echo "git branch -D %BRANCH%"
+echo "git fetch --prune origin"

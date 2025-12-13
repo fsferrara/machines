@@ -25,14 +25,14 @@ echo -e "\n\n🚀 Installing qemu...\n";
 
 # qemu-kvm: the main backend that provides KVM hardware acceleration through QEMU.
 # qemu-img: a command-line tool for creating, converting, and modifying disk images used by QEMU.
-${CMD_INSTALL} qemu-kvm
+${CMD_INSTALL} qemu-system qemu-kvm
 
 # libvirt-daemon-system: the libvirtd daemon that manages KVM and QEMU instances. It is the main interface for KVM.
 # libvirt-clients: contains client tools (such as virsh) to interact with libvirtd.
-${CMD_INSTALL} libvirt-daemon-system libvirt-clients
+${CMD_INSTALL} libvirt-daemon-system libvirt-clients libguestfs-tools
 
-# bridge-utils: utilities for configuring bridge networking, useful for integrating VMs into the physical network.
-${CMD_INSTALL} bridge-utils
+# utilities for configuring bridge networking and other.
+${CMD_INSTALL} bridge-utils uml-utilities
 
 # virtinst: command-line tools for quickly creating virtual machines.
 ${CMD_INSTALL} virtinst
@@ -41,7 +41,8 @@ ${CMD_INSTALL} virtinst
 ${CMD_INSTALL} virt-manager
 
 # Install QEMU related packages
-${CMD_INSTALL} git wget p7zip make dmg2img genisoimage vim net-tools screen cpu-checker
+${CMD_INSTALL} git wget p7zip p7zip-full make dmg2img genisoimage tesseract-ocr tesseract-ocr-eng vim net-tools screen cpu-checker
+
 
 # Install quickemu
 ${CMD_INSTALL} quickemu

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+echo "${DEFAULT_BRANCH}"
