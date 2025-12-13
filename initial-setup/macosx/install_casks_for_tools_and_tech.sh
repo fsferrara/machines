@@ -40,14 +40,6 @@ install_casks_for_tools_and_tech() {
 	# brew install --cask background-music # allow quicktime to record screen and audio
 	echo -e "[NOT a Cask] Please install Sleep Control Center from the app store"
 
-	# [CASK] QEMU Virtualization
-	brew install --cask utm
-	brew install qemu
-	brew install libvirt
-	brew install virt-manager
-	# Virtualization utilities
-	# brew install --cask macfuse #after this install osxfuse/sshfs
-
 	# [CASK] Networking
 	#brew install --cask microsoft-remote-desktop #use self service
 	brew install --cask vnc-viewer
