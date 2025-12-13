@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -u
+set -o pipefail
+
+sudo usermod -a -G libvirt $(whoami)
+sudo usermod -a -G kvm $(whoami)
+
+echo -e "\n✅ You have been added to the libvirt and kvm groups. Please log out and log back in for the changes to take effect.\n"
+
+exit 0

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -u
+set -o pipefail
+
+lscpu | grep Virtualization
+if [ $? -eq 0 ]; then
+    echo -e "\n✅ Your host supports virtualization extensions!\n"
+    exit 0
+else
+    echo -e "\n❌ Your host does NOT support virtualization extensions!\n"
+    exit 1
+fi
