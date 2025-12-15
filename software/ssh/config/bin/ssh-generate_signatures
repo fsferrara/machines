@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -u
+set -o pipefail
+
+echo "Generating signatures for all public keys in the current directory"
+for file in *.pub; do
+    echo "Generating signature for $file"
+    ssh-keygen -lf $file -E sha256
+done
+
+exit 0
