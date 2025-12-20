@@ -37,6 +37,7 @@ sudo apt install gnome-shell-extension-manager
 - [Emoji Selector](https://extensions.gnome.org/extension/1162/emoji-selector/)
 - [Desktop Icons NG](https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/) - already installed in Pop!OS
 - [Clipboard Indicator](https://extensions.gnome.org/extension/779/clipboard-indicator/)
+- [Vitals](https://github.com/corecoding/Vitals)
 
 ```shell
 ZSH@LINUX ➜  ~ gnome-extensions list

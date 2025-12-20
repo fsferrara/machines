@@ -2,6 +2,13 @@
 set -u
 set -o pipefail
 
+echo -e "\n\n🛸 Checking QEMU installation...\n";
+qemu-system-x86_64 --version
+
+echo -e "\n\n🛸 Checking CPU virtualization support...\n";
+egrep -c '(vmx|svm)' /proc/cpuinfo
+
+
 lscpu | grep Virtualization
 if [ $? -eq 0 ]; then
     echo -e "\n✅ Your host supports virtualization extensions!\n"
