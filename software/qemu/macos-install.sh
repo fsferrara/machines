@@ -20,8 +20,10 @@ ${CMD_UPDATE}
 ###########
 echo -e "\n\n🚀 Installing...\n";
 
-${CMD_INSTALL} --cask utm
+# ${CMD_INSTALL} --cask utm
 ${CMD_INSTALL} qemu libvirt virt-manager
+
+${CMD_INSTALL} git wget p7zip make dmg2img tesseract vim screen cpu_features
 
 # Virtualization utilities
 # ${CMD_INSTALL} --cask macfuse #after this install osxfuse/sshfs
