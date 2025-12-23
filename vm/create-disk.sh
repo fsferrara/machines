@@ -1,0 +1,32 @@
+#! /usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  echo "Usage: $0 [FILENAME] [SIZE]"
+  echo ""
+  echo "Creates a QEMU disk image."
+  echo ""
+  echo "Arguments:"
+  echo "  FILENAME  Name of the disk image file (default: empty.qcow2)"
+  echo "  SIZE      Size of the disk image (default: 20G)"
+  echo ""
+  echo "Options:"
+  echo "  -h, --help  Show this help message and exit"
+  exit 0
+fi
+
+FILENAME="${1:-empty.qcow2}"
+SIZE="${2:-20G}"
+
+# Create the disk image
+qemu-img create -f qcow2 "${FILENAME}" "${SIZE}"
+
+# Display information about the created disk image
+qemu-img info "${FILENAME}"
+
+echo "Disk image '${FILENAME}' of size '${SIZE}' created successfully."
+
+exit 0

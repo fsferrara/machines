@@ -1,0 +1,34 @@
+# Do not track ISO files
+*.iso
+# Do not track VM disk images
+*.vdi
+*.vmdk
+*.vhd
+*.qcow2
+# Do not track VM state files
+*.save
+*.vmem
+*.vmss
+*.vmsn
+# Do not track log files
+*.log
+# Virtfs map files
+.virtfs*
+# Do not track lock files
+*.lock
+# Do not track snapshot files
+*.snapshot
+*.snaphot
+# Do not track configuration backups
+*.bak
+*.backup
+# Do not track core dumps
+core.*
+core
+# Do not track virtual machine metadata
+*.vmx
+*.ovf
+*.mf
+*.nvram
+# Do not track shared folders
+share/*
