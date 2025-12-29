@@ -1,4 +1,9 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
 
 VM_SHARE="${HOME}/vm/share"
 sudo umount ${VM_SHARE}
