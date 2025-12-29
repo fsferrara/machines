@@ -19,6 +19,5 @@ source "$SCRIPT_DIR/qemu-common_config"
 # Execution
 # =============================================================================
 
-# shutdown the guest via SSH
-echo -e "\n\n🔌  Shutting down ${GUEST_USER}@${GUEST_IP}...\n";
-ssh ${GUEST_USER}@"${GUEST_IP}" 'sudo shutdown -h now'
+echo -e "\n\n🔌 Connecting to ${GUEST_USER}@${GUEST_IP} via SSH...\n";
+ssh ${GUEST_USER}@${GUEST_IP} -p ${GUEST_SSH_PORT}

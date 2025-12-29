@@ -43,18 +43,13 @@ qemu_args=(
 )
 
 echo ""
-echo "Starting QEMU VM with the following shared folders: share, shell, software"
+echo "-----------------------------------"
+echo "VM Setup Instructions"
 echo ""
-echo "To mount shared folder in the guest VM, use:"
-echo "sudo mkdir -p /mnt/share"
-echo "sudo mount -v -t 9p -o trans=virtio,version=9p2000.L,dfltuid=\$(id -u),dfltgid=\$(id -g) share /mnt/share"
-echo "sudo chown \$(id -u):\$(id -g) /mnt/share"
+echo "1. To enable passwordless sudo, run the following command:"
+echo -e 'echo -e "ALL\tALL = (ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/passwordless'
 echo ""
-echo "To make it permanent, add this line to /etc/fstab:"
-echo "share  /mnt/share  9p trans=virtio,version=9p2000.L,rw,_netdev,nofail,users  0  0"
-echo ""
+echo "-----------------------------------"
 
 # Start the VM
 qemu-system-aarch64 "${qemu_args[@]}"
-
-

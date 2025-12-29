@@ -1,0 +1,24 @@
+#! /usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+
+# =============================================================================
+# Configuration
+# =============================================================================
+
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Source common variables and functions
+source "$SCRIPT_DIR/qemu-common_config"
+
+
+# =============================================================================
+# Execution
+# =============================================================================
+
+
+VM_SHARE="${HOME}/vm/share"
+sudo umount ${VM_SHARE}

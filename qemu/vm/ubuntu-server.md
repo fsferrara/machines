@@ -1,14 +1,13 @@
-# Ubuntu Guest
+# Ubuntu Server
 
 This is a guide to create a local development server.
 
 ## Install the guest
 
-Download the `ubuntu-22.04.2-live-server-amd64.iso` image and install it in a VM.
-
+Download the ISO image and install it in a VM.
 Check the option to install the ssh server. In alternative, install it `sudo apt-get install openssh-server`.
-
 User access with `user/password` and the user has sudo access.
+
 
 ### Additional user
 

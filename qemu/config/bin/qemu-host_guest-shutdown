@@ -1,0 +1,23 @@
+#! /usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+
+# =============================================================================
+# Configuration
+# =============================================================================
+
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Source common variables and functions
+source "$SCRIPT_DIR/qemu-common_config"
+
+
+# =============================================================================
+# Execution
+# =============================================================================
+
+echo -e "\n\n🔌  Shutting down ${GUEST_USER}@${GUEST_IP}...\n";
+ssh ${GUEST_USER}@"${GUEST_IP}" -p ${GUEST_SSH_PORT} 'sudo shutdown -h now'

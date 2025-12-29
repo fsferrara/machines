@@ -1,0 +1,28 @@
+#! /usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+
+# =============================================================================
+# Configuration
+# =============================================================================
+
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Source common variables and functions
+source "$SCRIPT_DIR/qemu-common_config"
+
+
+# =============================================================================
+# Execution
+# =============================================================================
+
+
+PATH=/usr/bin
+desktopuser=$(/bin/ps -ef  | /bin/grep -oP '^\w+ (?=.*vdagent( |$))') || exit 0
+export DISPLAY=:0
+export XAUTHORITY=$(eval echo "~$desktopuser")/.Xauthority
+xrandr --output $(xrandr | awk '/ connected/{print $1; exit; }') --auto
+

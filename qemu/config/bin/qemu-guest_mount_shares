@@ -1,0 +1,47 @@
+#! /usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+
+# =============================================================================
+# Configuration
+# =============================================================================
+
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Source common variables and functions
+source "$SCRIPT_DIR/qemu-common_config"
+
+
+# =============================================================================
+# Execution
+# =============================================================================
+
+MY_UID=$(id -u)
+MY_GID=$(id -g)
+
+## Define a list of shared folders to mount
+VM_SHARES=(
+  "share"
+  "software"
+  "shell"
+)
+
+# Process each shared folder
+for VM_SHARE in "${VM_SHARES[@]}"; do
+    VM_SHARE_PATH="${HOME}/${VM_SHARE}"
+    sudo umount ${VM_SHARE_PATH}
+    mkdir -p ${VM_SHARE_PATH}
+
+    sudo mount -v -t 9p -o trans=virtio,version=9p2000.L,dfltuid=${MY_UID},dfltgid=${MY_GID} ${VM_SHARE} ${VM_SHARE_PATH}
+    sudo chown -R ${MY_UID}:${MY_GID} ${VM_SHARE_PATH}
+done
+
+
+echo ""
+echo "To make it permanent, add this line to /etc/fstab:"
+echo "share  /mnt/share  9p trans=virtio,version=9p2000.L,rw,_netdev,nofail,users  0  0"
+echo ""
+

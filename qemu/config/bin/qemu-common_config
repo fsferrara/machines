@@ -1,12 +1,37 @@
 echo -e "\n--------------------------------------------------------------------------------"
 
+# =============================================================================
+# Configuration
+# =============================================================================
+
 PRNT_PREFIX="🔧 >"
 PRNT_SEP=" \t\t>\t"
 
-export GUEST_USER="fsferrara"
+
+# =============================================================================
+# Environment Variables
+# =============================================================================
+
+# GUEST_USER
+if [ -z "${GUEST_USER:-}" ]; then
+    echo -e "${PRNT_PREFIX} [ENV] GUEST_USER not set. Using default value."
+    export GUEST_USER="fsferrara"
+fi
 echo -e "${PRNT_PREFIX} [ENV] GUEST_USER ${PRNT_SEP} ${GUEST_USER}"
 
-export GUEST_IP="10.0.0.1"
+# GUEST_IP
+if [ -z "${GUEST_IP:-}" ]; then
+    echo -e "${PRNT_PREFIX} [ENV] GUEST_IP not set. Using default value."
+    export GUEST_IP="localhost"
+fi
 echo -e "${PRNT_PREFIX} [ENV] GUEST_IP ${PRNT_SEP} ${GUEST_IP}"
+
+# GUEST_SSH_PORT
+if [ -z "${GUEST_SSH_PORT:-}" ]; then
+    echo -e "${PRNT_PREFIX} [ENV] GUEST_SSH_PORT not set. Using default value."
+    export GUEST_SSH_PORT="2222"
+fi
+echo -e "${PRNT_PREFIX} [ENV] GUEST_SSH_PORT ${PRNT_SEP} ${GUEST_SSH_PORT}"
+
 
 echo -e "--------------------------------------------------------------------------------"
