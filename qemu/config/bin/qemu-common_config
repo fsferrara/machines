@@ -1,0 +1,12 @@
+echo -e "\n--------------------------------------------------------------------------------"
+
+PRNT_PREFIX="🔧 >"
+PRNT_SEP=" \t\t>\t"
+
+export GUEST_USER="fsferrara"
+echo -e "${PRNT_PREFIX} [ENV] GUEST_USER ${PRNT_SEP} ${GUEST_USER}"
+
+export GUEST_IP="10.0.0.1"
+echo -e "${PRNT_PREFIX} [ENV] GUEST_IP ${PRNT_SEP} ${GUEST_IP}"
+
+echo -e "--------------------------------------------------------------------------------"

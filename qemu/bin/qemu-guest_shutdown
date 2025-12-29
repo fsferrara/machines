@@ -1,9 +1,0 @@
-#! /usr/bin/env bash
-
-set -e
-set -u
-set -o pipefail
-
-
-echo -e "sudo shutdown -h now\n"
-ssh ${USER}@"${GUEST_IP}" 'sudo shutdown -h now'
