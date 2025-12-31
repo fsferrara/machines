@@ -12,14 +12,6 @@ CMD_APPLY="rsync -av"
 
 
 #########
-# CLEAN #
-#########
-sudo usermod -aG kvm $(whoami)
-sudo usermod -aG libvirt $(whoami)
-sudo usermod -aG input $(whoami)
-
-
-#########
 # APPLY #
 #########
 echo -e "\n\n🔌 Configuring...\n";
