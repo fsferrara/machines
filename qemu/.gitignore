@@ -31,4 +31,7 @@ core
 *.mf
 *.nvram
 # Do not track shared folders
+share/.virtfs*
 share/*
+!share/config
+!share/configure.sh

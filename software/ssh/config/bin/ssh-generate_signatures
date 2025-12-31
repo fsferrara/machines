@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
+
+set -e
 set -u
 set -o pipefail
+
 
 echo "Generating signatures for all public keys in the current directory"
 for file in *.pub; do

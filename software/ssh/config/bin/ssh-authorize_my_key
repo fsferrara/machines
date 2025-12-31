@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+
+cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
+chmod 640 ~/.ssh/authorized_keys
