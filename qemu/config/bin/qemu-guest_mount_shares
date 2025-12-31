@@ -42,6 +42,6 @@ done
 
 echo ""
 echo "To make it permanent, add this line to /etc/fstab:"
-echo "share  /mnt/share  9p trans=virtio,version=9p2000.L,rw,_netdev,nofail,users  0  0"
+echo "share  /mnt/share  9p trans=virtio,version=9p2000.L,defaults,_netdev,nofail  0  0"
 echo ""
 
