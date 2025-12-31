@@ -83,6 +83,7 @@ ${CMD_INSTALL_PACK} dbeaver-ce
 
 
 echo -e "\n\n🔌 Command Line...\n";
+${CMD_INSTALL} ncal
 ${CMD_INSTALL} colordiff
 ${CMD_INSTALL} rsync
 ${CMD_INSTALL} tmux
