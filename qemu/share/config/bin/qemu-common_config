@@ -15,7 +15,7 @@ PRNT_SEP=" \t>\t"
 # GUEST_USER
 if [ -z "${GUEST_USER:-}" ]; then
     echo -e "${PRNT_PREFIX} [ENV] GUEST_USER not set. Using default value."
-    export GUEST_USER="fsferrara"
+    export GUEST_USER="user"
 fi
 echo -e "${PRNT_PREFIX} [ENV] GUEST_USER \t${PRNT_SEP} ${GUEST_USER}"
 
