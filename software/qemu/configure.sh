@@ -17,6 +17,8 @@ CMD_APPLY="rsync -av"
 echo -e "\n\n🔌 Configuring...\n";
 ${CMD_APPLY} config/ ~
 
+echo -e "\n\n🖥️ Remember to override the default env variables if needed...\n";
+./config/bin/qemu-common_config
 
 ########
 # DONE #
