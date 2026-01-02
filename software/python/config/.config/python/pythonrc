@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+
+import atexit
+import os
+import readline
+import rlcompleter  # nopep8
+import sys  # nopep8
+import re  # nopep8
+
+cache_dir = os.getenv('XDG_CACHE_HOME')
+history_path = os.path.join(cache_dir, 'python_repl_history')
+
+readline.parse_and_bind('tab: complete')
+atexit.register(readline.write_history_file, history_path)

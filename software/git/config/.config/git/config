@@ -1,0 +1,52 @@
+[core]
+  # You would use autocrlf=true on Windows
+  autocrlf = input
+  editor = vim
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.gitignore_global
+[user]
+  name = Saverio Ferrara
+  email = fsferrara@users.noreply.github.com
+[color]
+  ui = true
+[color "branch"]
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[color "status"]
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
+[diff]
+  tool = vimdiff
+[branch]
+  autosetuprebase = always
+[push]
+  default = simple
+[merge]
+  tool = vimdiff
+[credential]
+  helper = store
+[gitflow "prefix"]
+  feature = feature-
+  release = release-
+  hotfix = hotfix-
+  support = support-
+  versiontag = v
+[alias]
+  log-graph = log --graph --oneline --decorate
+  log-graph-all = log --graph --oneline --decorate --all
+  up = pull --rebase --autostash
+[init]
+  defaultBranch = main
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
