@@ -14,8 +14,8 @@
 *.log
 # Virtfs map files
 .virtfs*
-# Do not track lock files
-*.lock
+# Do not firmware VARS files
+*.fd
 # Do not track snapshot files
 *.snapshot
 *.snaphot
