@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-set -x
+set -e
 set -u
 set -o pipefail
 
@@ -47,10 +47,10 @@ qemu_args=(
   -drive if=virtio,format=qcow2,file=ubuntu-server.qcow2
   # Slot 1 - Virtio GPU
   -device pcie-root-port,id=rp1,slot=0x10,bus=pcie.0,addr=0x10
-  -device virtio-gpu-pci,bus=rp1,addr=0x0
+  -device virtio-net-pci,netdev=net0,bus=rp1,addr=0x0
   # Slot 2 - network card
   -device pcie-root-port,id=rp2,slot=0x11,bus=pcie.0,addr=0x11
-  -device virtio-net-pci,netdev=net0,bus=rp2,addr=0x0
+  -device virtio-gpu-pci,bus=rp2,addr=0x0
   # Slot 3 - USB card
   -device pcie-root-port,id=rp3,slot=0x12,bus=pcie.0,addr=0x12
   -device qemu-xhci,bus=rp3,addr=0x0
