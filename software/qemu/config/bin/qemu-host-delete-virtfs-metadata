@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+echo -e "\n🔄 Deleting all .virtfs_metadata directories...\n"
+find . -type d -name ".virtfs_metadata" -exec rm -rf {} +
+echo -e "\n✅ All .virtfs_metadata directories have been deleted.\n"
+
+exit 0
