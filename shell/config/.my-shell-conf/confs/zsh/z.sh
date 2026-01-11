@@ -1,6 +1,6 @@
 ################################################################################
-# enable username and hostname in the default theme prompt.
+# LOOK 'N FEEL.
+# Close prompt string.
 ################################################################################
 
-PROMPT="${RUNNING_SHELL}@${RUNNING_ENV} ${PROMPT}"
-
+PS1=$PS1' > '
