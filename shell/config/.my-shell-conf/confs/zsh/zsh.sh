@@ -9,7 +9,6 @@ fi
 
 # Define variables used in prompt
 export RUNNING_SHELL="ZSH"
-: ${RUNNING_ENV:="LOCAL"}
 
 ################################################################################
 # PROFILE VARIABLES.
@@ -62,14 +61,20 @@ autoload -U colors && colors
 
 PROMPT="%F{magenta}${RUNNING_SHELL}%f%B%F{blue}@%f%b%F{yellow}${RUNNING_ENV}%f %B%F{green}%1~%f%b"
 
-# enable color support of ls and also add handy aliases
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    export CLICOLOR=1
-    alias ls='ls -G'
-else
-    alias ls='ls --color=auto'
-fi
+# Git branch in prompt
 
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+function parse_git_branch() {
+    git branch --show-current 2> /dev/null | sed -n -e 's/^\(.*\)/[git:\1]/p'
+}
+
+COLOR_DEF=$'%f'
+COLOR_GIT=$'%F{39}'
+setopt PROMPT_SUBST
+PROMPT_CWD='${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}'
+export PROMPT="${PROMPT}${PROMPT_CWD}"
+
+# Close prompt string
+
+PS1=$PS1' > '
+
+################################################################################

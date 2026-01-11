@@ -1,5 +1,5 @@
 ################################################################################
-# Speed up the ZSH shell
+# Speed up Oh-my-zsh shell
 ################################################################################
 
 # Uncomment the following line if you want to disable marking untracked files
