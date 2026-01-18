@@ -16,4 +16,3 @@ alias git-graph='git log --graph --oneline --decorate --all'
 # Listing
 alias ll='ls -lh'
 alias la='ls -lha'
-alias lsd='ls -lh --group-directories-first'
