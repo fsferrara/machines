@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+#
+# Change a user's UID and GID to match the host system.
+# This is useful for QEMU 9p shares with security_model=none.
+#
+# Must be run as root.
+#
+set -e
+set -u
+set -o pipefail
+
+# Defaults
+TARGET_UID="${1:-1000}"
+TARGET_GID="${2:-1000}"
+USERNAME="${3:-user}"
+
+# Verify running as root
+if [[ $EUID -ne 0 ]]; then
+    echo "Error: This script must be run as root" >&2
+    exit 1
+fi
+
+# Verify user exists
+if ! id "$USERNAME" &>/dev/null; then
+    echo "Error: User '$USERNAME' does not exist" >&2
+    exit 1
+fi
+
+# Get current UID/GID
+CURRENT_UID=$(id -u "$USERNAME")
+CURRENT_GID=$(id -g "$USERNAME")
+
+echo "Changing $USERNAME from UID:GID $CURRENT_UID:$CURRENT_GID to $TARGET_UID:$TARGET_GID"
+
+# Check if target UID is already taken by another user
+EXISTING_USER=$(getent passwd "$TARGET_UID" | cut -d: -f1 || true)
+if [[ -n "$EXISTING_USER" && "$EXISTING_USER" != "$USERNAME" ]]; then
+    echo "Error: UID $TARGET_UID is already taken by user '$EXISTING_USER'" >&2
+    exit 1
+fi
+
+# Check if target GID exists
+EXISTING_GROUP=$(getent group "$TARGET_GID" | cut -d: -f1 || true)
+if [[ -n "$EXISTING_GROUP" ]]; then
+    echo "Using existing group '$EXISTING_GROUP' (GID $TARGET_GID)"
+    TARGET_GROUP="$EXISTING_GROUP"
+else
+    # Change the user's current primary group GID
+    CURRENT_GROUP=$(id -gn "$USERNAME")
+    echo "Changing group '$CURRENT_GROUP' GID to $TARGET_GID"
+    groupmod -g "$TARGET_GID" "$CURRENT_GROUP"
+    TARGET_GROUP="$CURRENT_GROUP"
+fi
+
+# Change user UID and primary group
+echo "Changing user '$USERNAME' UID to $TARGET_UID and primary group to '$TARGET_GROUP'"
+usermod -u "$TARGET_UID" -g "$TARGET_GID" "$USERNAME"
+
+# Fix ownership of home directory
+HOME_DIR=$(getent passwd "$USERNAME" | cut -d: -f6)
+if [[ -d "$HOME_DIR" ]]; then
+    echo "Fixing ownership of $HOME_DIR"
+    chown -R "$TARGET_UID:$TARGET_GID" "$HOME_DIR"
+fi
+
+echo "Done. User '$USERNAME' is now UID:GID $TARGET_UID:$TARGET_GID"
+echo "Please log out and back in for changes to take effect."

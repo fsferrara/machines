@@ -19,9 +19,6 @@ source "$SCRIPT_DIR/qemu-common_config"
 # Execution
 # =============================================================================
 
-MY_UID=$(id -u)
-MY_GID=$(id -g)
-
 ## Define a list of shared folders to mount
 VM_SHARES=(
   "share"
@@ -32,16 +29,17 @@ VM_SHARES=(
 # Process each shared folder
 for VM_SHARE in "${VM_SHARES[@]}"; do
     VM_SHARE_PATH="${HOME}/${VM_SHARE}"
-    sudo umount ${VM_SHARE_PATH}
+    sudo umount ${VM_SHARE_PATH} 2>/dev/null || true
     mkdir -p ${VM_SHARE_PATH}
 
-    sudo mount -v -t 9p -o trans=virtio,version=9p2000.L,dfltuid=${MY_UID},dfltgid=${MY_GID} ${VM_SHARE} ${VM_SHARE_PATH}
-    sudo chown -R ${MY_UID}:${MY_GID} ${VM_SHARE_PATH}
+    sudo mount -v -t 9p -o trans=virtio,version=9p2000.L ${VM_SHARE} ${VM_SHARE_PATH}
 done
 
 
 echo ""
-echo "To make it permanent, add this line to /etc/fstab:"
-echo "share  /mnt/share  9p trans=virtio,version=9p2000.L,defaults,_netdev,nofail  0  0"
+echo "To make it permanent, add these lines to /etc/fstab:"
+for VM_SHARE in "${VM_SHARES[@]}"; do
+    echo "${VM_SHARE}  ${HOME}/${VM_SHARE}  9p trans=virtio,version=9p2000.L,defaults  0  0"
+done
 echo ""
 

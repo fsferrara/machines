@@ -63,9 +63,9 @@ qemu_args=(
   # Network with SSH port forwarding (Host 2222 -> Guest 22)
   -netdev user,id=net0,hostfwd=tcp::2222-:22
   # Shared Folder
-  -virtfs local,path=../../share,mount_tag=share,security_model=mapped-file,id=share,readonly=off
-  -virtfs local,path=../../../shell,mount_tag=shell,security_model=mapped-file,id=shell,readonly=off
-  -virtfs local,path=../../../software,mount_tag=software,security_model=mapped-file,id=software,readonly=off
+  -virtfs local,path=../../share,mount_tag=share,security_model=none,id=share,readonly=off
+  -virtfs local,path=../../../shell,mount_tag=shell,security_model=none,id=shell,readonly=off
+  -virtfs local,path=../../../software,mount_tag=software,security_model=none,id=software,readonly=off
   # Installation ISO
   -cdrom ubuntu-24.04.3-live-server-amd64.iso
 )
