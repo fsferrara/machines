@@ -12,8 +12,6 @@ setopt auto_cd
 setopt share_history
 # Extended globbing features: ** for recursive matching, etc.
 setopt extended_glob
-# Treat unset variables as an error when substituting
-setopt nounset
 # Make glob patterns match dotfiles (hidden files starting with .)
 setopt glob_dots
 # Disable the beep sound on errors
