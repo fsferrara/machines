@@ -14,8 +14,6 @@ setopt share_history
 setopt extended_glob
 # Treat unset variables as an error when substituting
 setopt nounset
-# Enable recursive globbing with **
-setopt globstar
 # Make glob patterns match dotfiles (hidden files starting with .)
 setopt glob_dots
 # Disable the beep sound on errors
