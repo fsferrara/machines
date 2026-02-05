@@ -67,6 +67,7 @@ install_casks_for_tools_and_tech() {
   #brew install --cask sdformatter
   #brew install --cask balenaetcher
   #brew install --cask raspberry-pi-imager
+  brew install mac-cleanup-py
   brew install --cask android-file-transfer
   brew install --cask the-unarchiver
 
