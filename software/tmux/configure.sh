@@ -17,6 +17,8 @@ CMD_APPLY="rsync -av"
 echo -e "\n\n🔌 Configuring...\n";
 ${CMD_APPLY} config/ ~
 
+# tic
+tic config/.tmux/terminfo/screen-256color.terminfo
 
 ########
 # DONE #
