@@ -18,7 +18,7 @@ echo -e "\n\n🔌 Configuring...\n";
 ${CMD_APPLY} config/ ~
 
 # tic
-tic config/.tmux/terminfo/screen-256color.terminfo
+tic config/bin/terminfo/screen-256color.terminfo
 
 ########
 # DONE #
