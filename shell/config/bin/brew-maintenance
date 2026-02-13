@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+
+# Prune Cache
+brew cleanup --prune=all
+
+# Manual Full Cache Removal
+rm -rf "$(brew --cache)"
+
+brew update 
+
+brew doctor
+brew missing
