@@ -1,11 +1,11 @@
 ################################################################################
 # INFO FETCH AT STARTUP
 ################################################################################
-if command -v neofetch &> /dev/null; then
+if command -v neofetch >/dev/null 2>&1; then
    neofetch
-elif command -v fastfetch &> /dev/null; then
+elif command -v fastfetch >/dev/null 2>&1; then
    fastfetch
-elif command -v screenfetch &> /dev/null; then
+elif command -v screenfetch >/dev/null 2>&1; then
    screenfetch
 else
    # Print hostname and OS details in one concise line

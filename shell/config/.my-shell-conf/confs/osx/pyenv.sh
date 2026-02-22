@@ -26,7 +26,7 @@ if [ "$LAZY_LOAD_PYENV" = true ] ; then
   then
     # The following function overrides temporarily the comand.
     pyenv2() {
-      if ! command -v pyenv &> /dev/null
+      if ! command -v pyenv >/dev/null 2>&1
       then
         echo -e "[ms] pyenv not found - I am trying to load it";
         ms-pyenv-load

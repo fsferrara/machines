@@ -15,7 +15,7 @@ if [ "$LAZY_LOAD_NVM" = true ] ; then
 
   # The following function overrides temporarily the node command in order to load nvm before using the actual node.
   node() {
-    if ! command -v nvm &> /dev/null
+    if ! command -v nvm >/dev/null 2>&1
     then
       echo -e "[ms] nvm not found - I am trying to load it";
       ms-nvm-load
