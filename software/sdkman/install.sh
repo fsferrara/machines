@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
 install_sdk_man(){
 	curl -s "https://get.sdkman.io" | bash

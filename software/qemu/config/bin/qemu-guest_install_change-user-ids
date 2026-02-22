@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 #
 # Change a user's UID and GID to match the host system.
 # This is useful for QEMU 9p shares with security_model=none.

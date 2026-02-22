@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
 # delete all pom.xml.versionsBackup  
 find . -name 'pom.xml.versionsBackup' | xargs -I %backup_pom% rm -f %backup_pom%

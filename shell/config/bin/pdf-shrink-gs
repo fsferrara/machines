@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
 gs	-q -dNOPAUSE -dBATCH -dSAFER \
 	-sDEVICE=pdfwrite \

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
 # delete all .svn directories
 echo "Recursively removing .svn folders from current directory";

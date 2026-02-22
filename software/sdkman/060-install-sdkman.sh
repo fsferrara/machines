@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
 LOG_TAG=${0}
 printf '[%s] executing...\n' "$LOG_TAG"

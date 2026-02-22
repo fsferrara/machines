@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
 # The following flag can be used to load pyenv just before you run it.
 LAZY_LOAD_PYENV=true
