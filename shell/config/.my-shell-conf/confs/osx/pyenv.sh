@@ -13,7 +13,7 @@ function ms-pyenv-load() {
          export PATH="$PYENV_ROOT/bin:$PATH"
       fi
 
-      if command -v pyenv &> /dev/null
+      if command -v pyenv >/dev/null 2>&1
       then
          # echo -e "[ms] initializing pyenv...";
          eval "$(pyenv init --path)"
