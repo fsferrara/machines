@@ -2,7 +2,6 @@
 
 set -e
 set -u
-set -o pipefail
 
 sudo usermod -a -G libvirt $(whoami)
 sudo usermod -a -G kvm $(whoami)

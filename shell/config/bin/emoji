@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 set -u
-set -o pipefail
 
 emoji="😀 grinning cheerful cheery face grin grinning face happy laugh nice smile smiling teeth
 😃 smiley awesome face grin happy mouth open smile smiling smiling face with open mouth teeth yay

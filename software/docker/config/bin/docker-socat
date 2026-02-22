@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 set -u
-set -o pipefail
 
 # Docker Desktop for Mac does not bind to TCP intentionally for security reasons.
 # To expose the Docker Daemon su tcp://0.0.0.0:2375, you can use socat.

@@ -2,7 +2,6 @@
 
 set -e
 set -u
-set -o pipefail
 
 
 chmod 700 ~/.ssh

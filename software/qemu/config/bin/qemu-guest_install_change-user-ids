@@ -7,7 +7,6 @@
 #
 set -e
 set -u
-set -o pipefail
 
 # Defaults
 TARGET_UID="${1:-1000}"

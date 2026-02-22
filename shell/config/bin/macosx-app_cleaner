@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 set -u
-set -o pipefail
 
 # usage:
 #   ./ms-macosx-app-cleaner.sh Insomnia

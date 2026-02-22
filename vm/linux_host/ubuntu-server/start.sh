@@ -2,7 +2,6 @@
 
 set -e
 set -u
-set -o pipefail
 
 # Locate OVMF firmware on the host and prepare a local writable VARS file
 # Common locations: /usr/share/OVMF/OVMF_CODE.fd or OVMF_CODE_4M.fd

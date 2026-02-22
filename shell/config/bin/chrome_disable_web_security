@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 set -u
-set -o pipefail
 
 open /Applications/Google\ Chrome.app/ --args --allow-file-access-from-files --disable-web-security
 

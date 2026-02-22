@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 set -u
-set -o pipefail
 
 xattr -dr com.apple.quarantine .
 xattr -dr com.apple.macl .

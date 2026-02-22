@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 set -u
-set -o pipefail
 
 LOG_TAG=${0}
 echo -e "[${LOG_TAG}] executing...";

@@ -1,0 +1,7 @@
+
+{
+    "id": "debug",
+    "version": "0.0.1",
+    "name": "Debug",
+    "description": "Prints debug messages to the console"
+}

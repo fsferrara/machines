@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 set -u
-set -o pipefail
 
 
 # Script to create CLAUDE.md symlinks to AGENTS.md files

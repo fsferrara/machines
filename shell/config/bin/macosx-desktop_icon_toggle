@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 set -u
-set -o pipefail
 
 # Reads the current value
 current_create_desktop=`defaults read com.apple.finder CreateDesktop`
