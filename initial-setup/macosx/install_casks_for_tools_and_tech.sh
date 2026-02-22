@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 install_casks_for_tools_and_tech() {
 
@@ -104,7 +104,8 @@ install_casks_for_tools_and_tech() {
   brew install ffmpeg
   brew install yt-dlp # replaces youtube-dl
 
-  . ~/.zshrc
+  # shellcheck source=/dev/null
+  . "$HOME/.zshrc"
 }
 
 install_casks_for_tools_and_tech
