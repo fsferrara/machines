@@ -11,7 +11,7 @@ echo options hid_apple fnmode=${FN_MODE} | sudo tee -a /etc/modprobe.d/hid_apple
 # copy the configuration into the initramfs boot file.
 sudo update-initramfs -u -k all
 
-echo -e "Please reboot..."
+printf "Please reboot...\n"
 
 #Activating now on-the-fly
 echo 0 | pkexec tee /sys/module/hid_apple/parameters/fnmode
