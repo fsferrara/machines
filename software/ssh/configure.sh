@@ -13,7 +13,7 @@ CMD_APPLY="rsync -av"
 #########
 # APPLY #
 #########
-echo -e "\n\n🔌 Configuring...\n";
+printf '\n\n🔌 Configuring...\n'
 ${CMD_APPLY} config/ ~
 
 
@@ -31,5 +31,5 @@ ssh-add -l
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;

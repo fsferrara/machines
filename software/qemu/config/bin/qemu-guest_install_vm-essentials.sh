@@ -3,7 +3,7 @@ set -e
 set -u
 
 LOG_TAG=${0}
-echo -e "[${LOG_TAG}] executing...";
+printf '[%s] executing...\n' "$LOG_TAG"
 
 sudo apt-get update
 
@@ -15,5 +15,5 @@ do
     ${INSTALL} ${pkg}
 done
 
-echo -e "[${LOG_TAG}] completed ;)";
+printf '[%s] completed ;)\n' "$LOG_TAG"
 exit 0;

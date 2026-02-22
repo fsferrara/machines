@@ -8,8 +8,8 @@ set -u
 # HELP #
 ########
 help() {
-    echo -e "\nUsage: $0 [destination]\n"
-    echo -e "destination: The folder where the configuration will be applied. Default is the home directory.\n"
+    printf '\nUsage: %s [destination]\n\n' "$0"
+    printf 'destination: The folder where the configuration will be applied. Default is the home directory.\n'
     exit 0;
 }
 
@@ -33,16 +33,16 @@ CMD_APPLY="rsync -av"
 #########
 # APPLY #
 #########
-echo -e "\n\n🔌 Configuring...\n";
+printf '\n\n🔌 Configuring...\n'
 ${CMD_APPLY} config/ ${DESTINATION}
 
-echo -e "(!) If needed, source the kickstart when your shell starts! Examples:"
-echo -e 'echo -e "\\n#My Shell Configuration\\nsource ~/.my-shell-conf/kickstart.sh\\n" >> ~/.bashrc'
-echo -e 'echo -e "\\n#My Shell Configuration\\nsource ~/.my-shell-conf/kickstart.sh\\n" >> ~/.zshrc'
+printf '(!) If needed, source the kickstart when your shell starts! Examples:\n'
+printf 'echo -e "\\n#My Shell Configuration\\nsource ~/.my-shell-conf/kickstart.sh\\n" >> ~/.bashrc\n'
+printf 'echo -e "\\n#My Shell Configuration\\nsource ~/.my-shell-conf/kickstart.sh\\n" >> ~/.zshrc\n'
 
 
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;

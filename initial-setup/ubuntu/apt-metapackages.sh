@@ -14,15 +14,15 @@ CMD_METAPACKAGE_INFO="apt show metapackage-name"
 ########
 # EXEC #
 ########
-echo -e "\n\n🔌 Executing...\n";
+printf '\n\n🔌 Executing...\n'
 eval "${CMD_METAPACKAGES_LIST}"
 
 
 ########
 # DONE #
 ########
-echo -e "\n\n⚠️ The list may be incomplete since it is a grep-based command filtering the descriptions\n";
-echo -e "\n\n✅ To know what's inside a metapackage use:\n\t $CMD_METAPACKAGE_INFO\n";
+printf '\n\n⚠️ The list may be incomplete since it is a grep-based command filtering the descriptions\n'
+printf '\n\n✅ To know what is inside a metapackage use:\n\t %s\n' "$CMD_METAPACKAGE_INFO"
 exit 0;
 
 

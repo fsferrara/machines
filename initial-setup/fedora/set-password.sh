@@ -11,17 +11,17 @@ USERNAME=$(whoami)
 # EXEC #
 ########
 
-echo -e "\n\n🔐 root password change...\n";
+printf '\n\n🔐 root password change...\n'
 sudo passwd
 
-echo -e "\n\n🔐 password change for ${USERNAME}...\n";
+printf '\n\n🔐 password change for %s...\n' "${USERNAME}"
 sudo passwd ${USERNAME}
 
 
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;
 
 

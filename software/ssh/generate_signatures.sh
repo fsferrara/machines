@@ -12,15 +12,15 @@ CMD_APPLY="rsync -av"
 ########
 # EXEC #
 ########
-echo -e "\n\n🚀 Generating signatures for all public keys...\n"
+printf '\n\n🚀 Generating signatures for all public keys...\n'
 for file in ./config/.ssh/*.pub; do
-    echo -e "key: $file"
+    printf 'key: %s\n' "$file"
     ssh-keygen -lf $file -E sha256
-    echo -e "\n"
+    printf '\n'
 done
 
 ########
 # DONE #
 ########
-echo -e "✅ Done!\n";
+printf '✅ Done!\n'
 exit 0;

@@ -14,7 +14,7 @@ CLONE_DIR="${CURRENT_DIR}/github/ronniedroid"
 #########
 # CLONE #
 #########
-echo -e "\n\n🛸 Cloning...\n";
+printf '\n\n🛸 Cloning...\n'
 rm -rf "$CLONE_DIR"
 mkdir -p "$CLONE_DIR"
 cd "$CLONE_DIR" || exit
@@ -24,7 +24,7 @@ git clone https://github.com/ronniedroid/getnf.git
 ###########
 # INSTALL #
 ###########
-echo -e "\n\n🚀 Installing...\n";
+printf '\n\n🚀 Installing...\n'
 cd getnf || exit
 ./install.sh
 cd "$CURRENT_DIR" || exit
@@ -35,5 +35,5 @@ ${HOME}/.local/bin/getnf -i Meslo # Only install MesloLGM Nerd Font
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;

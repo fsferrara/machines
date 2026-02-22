@@ -12,7 +12,7 @@ PAK_INSTALL="echo flatpak install "
 ########
 # EXEC #
 ########
-echo -e "\n\n🔌 Development Essentials...\n";
+printf '\n\n🔌 Development Essentials...\n'
 $CMD_INSTALL @development-tools
 $CMD_INSTALL @development-libs
 $CMD_INSTALL @c-development
@@ -28,22 +28,22 @@ $CMD_INSTALL yarn
 $CMD_INSTALL @engineering-and-scientific
 
 
-echo -e "\n\n🔌 Collaboration...\n";
+printf '\n\n🔌 Collaboration...\n'
 
 
-echo -e "\n\n🔌 Personalization...\n";
+printf '\n\n🔌 Personalization...\n'
 $CMD_INSTALL dconf-editor gnome-tweaks
 $PAK_INSTALL flathub com.mattjakeman.ExtensionManager
 
 
-echo -e "\n\n🔌 Virtualization...\n";
+printf '\n\n🔌 Virtualization...\n'
 $CMD_INSTALL @guest-agents
 $CMD_INSTALL @guest-desktop-agents
 $CMD_INSTALL spice-vdagent spice-webdavd # to share clipboard and folders with SPICE
 $CMD_INSTALL davfs2 # to mount remote shares
 
 
-echo -e "\n\n🔌 Networking...\n";
+printf '\n\n🔌 Networking...\n'
 $CMD_INSTALL @text-internet
 $CMD_INSTALL net-tools
 $CMD_INSTALL iproute
@@ -56,12 +56,12 @@ $CMD_INSTALL curl
 $CMD_INSTALL netcat
 
 
-echo -e "\n\n🔌 General Software...\n";
+printf '\n\n🔌 General Software...\n'
 $CMD_INSTALL google-chrome-stable
 $CMD_INSTALL keepassxc
 
 
-echo -e "\n\n🔌 Command Line...\n";
+printf '\n\n🔌 Command Line...\n'
 $CMD_INSTALL jq
 $CMD_INSTALL mc
 $CMD_INSTALL colordiff
@@ -78,7 +78,7 @@ $CMD_INSTALL bat
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done! I didn't installed anything :-)\n...it is up to you to copy/paste the commands\n";
+printf '\n\n✅ Done! I did not install anything :-)\n...it is up to you to copy/paste the commands\n'
 exit 0;
 
 

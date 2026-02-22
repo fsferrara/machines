@@ -2,4 +2,4 @@
 set -e
 set -u
 
-echo -e "ALL\tALL = (ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/passwordless
+printf 'ALL\tALL = (ALL) NOPASSWD: ALL\n' | sudo tee /etc/sudoers.d/passwordless

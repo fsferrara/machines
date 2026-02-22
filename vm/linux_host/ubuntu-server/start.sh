@@ -74,7 +74,7 @@ echo "-----------------------------------"
 echo "VM Setup Instructions"
 echo ""
 echo "1. To enable passwordless sudo, run the following command:"
-echo -e 'echo -e "ALL\tALL = (ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/passwordless'
+printf 'echo -e "ALL\tALL = (ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/passwordless\n'
 echo ""
 echo "-----------------------------------"
 

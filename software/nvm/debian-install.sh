@@ -3,7 +3,7 @@ set -e
 set -u
 
 LOG_TAG=${0}
-echo -e "[${LOG_TAG}] executing...";
+printf '[%s] executing...\n' "$LOG_TAG"
 
 
 git clone https://github.com/nvm-sh/nvm.git ~/.nvm
@@ -13,5 +13,5 @@ git checkout v0.39.3
 cd -
 echo "WARNING: Please restart the shell!!!"
 
-echo -e "[${LOG_TAG}] completed ;)";
+printf '[%s] completed ;)\n' "$LOG_TAG"
 exit 0;

@@ -11,14 +11,14 @@ CMD_GROUP_INFO="dnf group info group-name"
 ########
 # EXEC #
 ########
-echo -e "\n\n🔌 Executing...\n";
+printf '\n\n🔌 Executing...\n'
 ${CMD_GROUP_LIST}
 
 
 ########
 # DONE #
 ########
-echo -e "\n\n✅ To know what's inside a group use:\n\t $CMD_GROUP_INFO\n";
+printf '\n\n✅ To know what is inside a group use:\n\t %s\n' "$CMD_GROUP_INFO"
 exit 0;
 
 

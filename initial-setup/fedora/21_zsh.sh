@@ -9,15 +9,15 @@
 ########
 # EXEC #
 ########
-echo -e "\n\n🛵 Installing ZSH...\n";
+printf '\n\n🛵 Installing ZSH...\n'
 sudo dnf install --assumeyes zsh
 
-echo -e "\n\n♻️ Changing shell...\n";
+printf '\n\n♻️ Changing shell...\n'
 chsh -s $(which zsh)
 
 
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;

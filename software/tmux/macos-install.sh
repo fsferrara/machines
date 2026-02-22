@@ -11,14 +11,14 @@ CMD_INSTALL="brew install"
 ##########
 # UPDATE #
 ##########
-echo -e "\n\n🛸 Updading...\n";
+printf '\n\n🛸 Updading...\n'
 ${CMD_UPDATE}
 
 
 ###########
 # INSTALL #
 ###########
-echo -e "\n\n🚀 Installing...\n";
+printf '\n\n🚀 Installing...\n'
 ${CMD_INSTALL} tmux
 #${CMD_INSTALL} awk perl grep gnu-sed
 
@@ -26,5 +26,5 @@ ${CMD_INSTALL} tmux
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;

@@ -3,22 +3,22 @@ set -e
 set -u
 
 LOG_TAG=${0}
-echo -e "[${LOG_TAG}] executing...";
+printf '[%s] executing...\n' "$LOG_TAG"
 
 cd ~/downloads
 
-echo -e "[${LOG_TAG}] removing existing version, if any...";
+printf '[%s] removing existing version, if any...\n' "$LOG_TAG"
 sudo dpkg -r docker-ce-cli
 
-echo -e "[${LOG_TAG}] downloading...";
+printf '[%s] downloading...\n' "$LOG_TAG"
 wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce-cli_23.0.5-1~ubuntu.22.04~jammy_amd64.deb
-echo -e "[${LOG_TAG}] installing...";
+printf '[%s] installing...\n' "$LOG_TAG"
 sudo dpkg -i docker-ce-cli_23.0.5-1~ubuntu.22.04~jammy_amd64.deb
 
-echo -e "[${LOG_TAG}] remember to export the following environment variable:"
-echo -e "export DOCKER_HOST=tcp://${HOST_IP}"
+printf '[%s] remember to export the following environment variable:\n' "$LOG_TAG"
+printf 'export DOCKER_HOST=tcp://%s\n' "${HOST_IP}"
 
 cd -
 
-echo -e "[${LOG_TAG}] completed ;)";
+printf '[%s] completed ;)\n' "$LOG_TAG"
 exit 0;

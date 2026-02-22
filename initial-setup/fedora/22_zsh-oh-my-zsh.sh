@@ -9,7 +9,7 @@
 ########
 # EXEC #
 ########
-echo -e "\n\n🍭 Configuring ohmyzsh...\n";
+printf '\n\n🍭 Configuring ohmyzsh...\n'
 sudo dnf install --assumeyes wget curl
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -17,5 +17,5 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;

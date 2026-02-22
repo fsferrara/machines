@@ -16,7 +16,7 @@ CMD_PKG_INSTALL="sudo snap install --classic "
 ##########
 # UPDATE #
 ##########
-echo -e "\n\n🛸 Updading...\n";
+printf '\n\n🛸 Updading...\n'
 ${CMD_UPDATE}
 ${CMD_PKG_UPDATE}
 
@@ -24,7 +24,7 @@ ${CMD_PKG_UPDATE}
 ###########
 # INSTALL #
 ###########
-echo -e "\n\n🚀 Installing qemu...\n";
+printf '\n\n🚀 Installing qemu...\n'
 
 # qemu-kvm: the main backend that provides KVM hardware acceleration through QEMU.
 # qemu-img: a command-line tool for creating, converting, and modifying disk images used by QEMU.
@@ -49,10 +49,10 @@ ${CMD_INSTALL} git wget p7zip p7zip-full make dmg2img genisoimage tesseract-ocr 
 
 # Install quickemu
 ${CMD_INSTALL} quickemu
-echo -e "\n\n(!) Optionally, install quick gui: https://github.com/quickemu-project/quickgui/releases\n";
+printf '\n\n(!) Optionally, install quick gui: https://github.com/quickemu-project/quickgui/releases\n'
 
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;

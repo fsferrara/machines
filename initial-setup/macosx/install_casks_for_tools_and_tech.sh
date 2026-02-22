@@ -39,7 +39,7 @@ install_casks_for_tools_and_tech() {
   #brew install --cask karabiner-elements #replaced by macosx keyboard settings
   brew install --cask alt-tab
   # brew install --cask background-music # allow quicktime to record screen and audio
-  echo -e "[NOT a Cask] Please install Sleep Control Center from the app store"
+  printf '[NOT a Cask] Please install Sleep Control Center from the app store\n'
 
   # [CASK] Networking
   #brew install --cask microsoft-remote-desktop #use self service

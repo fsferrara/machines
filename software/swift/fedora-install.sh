@@ -11,14 +11,14 @@ CMD_INSTALL="sudo dnf install --assumeyes "
 ##########
 # UPDATE #
 ##########
-echo -e "\n\n🛸 Updading...\n";
+printf '\n\n🛸 Updading...\n'
 ${CMD_UPDATE}
 
 
 ###########
 # INSTALL #
 ###########
-echo -e "\n\n🚀 Installing...\n";
+printf '\n\n🚀 Installing...\n'
 ${CMD_INSTALL} swift-lang swiftlint
 
 # When running `swift repl` you may get this error:
@@ -30,5 +30,5 @@ ${CMD_INSTALL} python312
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;

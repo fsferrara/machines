@@ -5,7 +5,7 @@ LAZY_LOAD_PYENV=true
 
 ms-pyenv-load() {
    if [ -d "$HOME/.pyenv" ] ; then
-      echo -e "[ms] loading pyenv...";
+      printf '%s\n' "[ms] loading pyenv...";
       export PYENV_ROOT="$HOME/.pyenv"
 
       if [ -d "$PYENV_ROOT/bin" ] ; then
@@ -28,7 +28,7 @@ if [ "$LAZY_LOAD_PYENV" = true ] ; then
     pyenv2() {
       if ! command -v pyenv >/dev/null 2>&1
       then
-        echo -e "[ms] pyenv not found - I am trying to load it";
+        printf '%s\n' "[ms] pyenv not found - I am trying to load it";
         ms-pyenv-load
       fi
 

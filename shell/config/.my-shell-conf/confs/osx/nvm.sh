@@ -5,7 +5,7 @@
 LAZY_LOAD_NVM=true
 
 ms-nvm-load() {
-   echo -e "[ms] loading nvm...";
+   printf '%s\n' "[ms] loading nvm...";
    export NVM_DIR="$HOME/.nvm"
    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
@@ -17,7 +17,7 @@ if [ "$LAZY_LOAD_NVM" = true ] ; then
   node() {
     if ! command -v nvm >/dev/null 2>&1
     then
-      echo -e "[ms] nvm not found - I am trying to load it";
+      printf '%s\n' "[ms] nvm not found - I am trying to load it";
       ms-nvm-load
     fi
 

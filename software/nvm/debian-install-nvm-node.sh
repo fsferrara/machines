@@ -3,11 +3,11 @@ set -e
 set -u
 
 LOG_TAG=${0}
-echo -e "[${LOG_TAG}] executing...";
+printf '[%s] executing...\n' "$LOG_TAG"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 nvm install 14.18.1
 
-echo -e "[${LOG_TAG}] completed ;)";
+printf '[%s] completed ;)\n' "$LOG_TAG"
 exit 0;

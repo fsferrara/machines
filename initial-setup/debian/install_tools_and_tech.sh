@@ -110,5 +110,5 @@ ${CMD_INSTALL} yt-dlp
 ########
 # DONE #
 ########
-echo -e "\n\n✅ Done!\n";
+printf '\n\n✅ Done!\n'
 exit 0;
