@@ -1,14 +1,16 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 # The following flag can be used to load nvm just before you run node.
 # I suggest to set it to false if you'll be load nvm manually or at the shell startup. 
-LAZY_LOAD_NVM=true
+LAZY_LOAD_NVM=false
 
-ms-nvm-load() {
+ms_nvm_load() {
    printf '%s\n' "[ms] loading nvm...";
    export NVM_DIR="$HOME/.nvm"
-   [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
-   [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+  # shellcheck source=/dev/null
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  # shellcheck source=/dev/null
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
 
 if [ "$LAZY_LOAD_NVM" = true ] ; then
@@ -18,13 +20,13 @@ if [ "$LAZY_LOAD_NVM" = true ] ; then
     if ! command -v nvm >/dev/null 2>&1
     then
       printf '%s\n' "[ms] nvm not found - I am trying to load it";
-      ms-nvm-load
+      ms_nvm_load
     fi
 
     unset -f node
     # now invoking the nvm provided node.
-    node $@
+    node "$@"
   }
 else
-  ms-nvm-load
+  ms_nvm_load
 fi
