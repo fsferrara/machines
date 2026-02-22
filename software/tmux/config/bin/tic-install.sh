@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 tic terminfo/screen-256color.terminfo
 

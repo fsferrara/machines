@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 # TODO: set the alias only for MAC and only if VLC is not defined
 VLC_CMD='/Applications/VLC.app/Contents/MacOS/VLC'

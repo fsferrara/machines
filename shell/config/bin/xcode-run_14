@@ -1,20 +1,20 @@
-#! /usr/bin/env bash
-set -euo pipefail
+#! /usr/bin/env sh
+set -eu
 
 # Set the paths to your Old/New Xcodes
 OLD_XCODE="/Applications/Xcode14.2/Xcode.app" # The Xcode you want to run
 NEW_XCODE="/Applications/Xcode15.1/Xcode.app" # To get build number
 
 # Get New Xcode build number
-OLD_XCODE_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" ${OLD_XCODE}/Contents/Info.plist)
-NEW_XCODE_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" ${NEW_XCODE}/Contents/Info.plist)
-echo Starting Xcode build $OLD_XCODE_BUILD injecting the CFBundleVersion $NEW_XCODE_BUILD version...
+OLD_XCODE_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${OLD_XCODE}/Contents/Info.plist")
+NEW_XCODE_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${NEW_XCODE}/Contents/Info.plist")
+printf 'Starting Xcode build %s injecting the CFBundleVersion %s version...\n' "$OLD_XCODE_BUILD" "$NEW_XCODE_BUILD"
 
 # Change Old Xcode build version to New Xcode
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${NEW_XCODE_BUILD}" ${OLD_XCODE}/Contents/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${NEW_XCODE_BUILD}" "${OLD_XCODE}/Contents/Info.plist"
 
 # Open Old Xcode (system will check build version and cache it)
-open $OLD_XCODE || true
+open "$OLD_XCODE" || true
 
 # Revert Old's Xcode's build version
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${OLD_XCODE_BUILD}" ${OLD_XCODE}/Contents/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${OLD_XCODE_BUILD}" "${OLD_XCODE}/Contents/Info.plist"

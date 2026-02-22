@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 set -u
 
@@ -14,6 +14,9 @@ CMD_INSTALL_PACK="echo sudo snap install --classic "
 ########
 # EXEC #
 ########
+printf '\n\n🔌 Updating...\n'
+${CMD_UPDATE}
+
 printf '\n\n🔌 Development Essentials...\n'
 ${CMD_INSTALL} build-essential
 ${CMD_INSTALL} module-assistant

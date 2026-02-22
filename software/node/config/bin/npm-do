@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 # Please, consider using the `npx` command instead of this script.
 
@@ -9,6 +9,6 @@
 # The command `npm bin` lets you find out where the closest executables are.
 
 # With this script, we are including the closest executables folder in the `PATH`.
-PATH="$(npm bin):$PATH";
-eval $@
+PATH="$(npm bin):$PATH"
+exec "$@"
 

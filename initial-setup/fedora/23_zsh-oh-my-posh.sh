@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 
 ##########
@@ -18,8 +18,8 @@ oh-my-posh font install meslo
 printf '\n\n⚠️ > Configure your terminal/editor to use font: MesloLGM Nerd Font\n'
 
 printf '⚠️ > Source the kickstart when your shell starts! Examples:\n'
-printf 'echo -e "\\n#My Shell Configuration\\neval \"\$(oh-my-posh init bash)\"\\n" >> ~/.bashrc\n'
-printf 'echo -e "\\n#My Shell Configuration\\neval \"\$(oh-my-posh init zsh)\"\\n" >> ~/.zshrc\n'
+printf "echo -e \"\\n#My Shell Configuration\\neval \\\"\\\$(oh-my-posh init bash)\\\"\\n\" >> ~/.bashrc\n"
+printf "echo -e \"\\n#My Shell Configuration\\neval \\\"\\\$(oh-my-posh init zsh)\\\"\\n\" >> ~/.zshrc\n"
 
 printf '⚠️ > To use oh-my-posh with oh-my-zsh, make sure that you unset the ZSH_THEME from your .zshrc before loading OMZ\n'
 

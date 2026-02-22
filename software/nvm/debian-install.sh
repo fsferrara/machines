@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 set -u
 
@@ -9,6 +9,7 @@ printf '[%s] executing...\n' "$LOG_TAG"
 git clone https://github.com/nvm-sh/nvm.git ~/.nvm
 cd ~/.nvm
 git checkout v0.39.3
+# shellcheck source=/dev/null
 . ./nvm.sh
 cd -
 echo "WARNING: Please restart the shell!!!"

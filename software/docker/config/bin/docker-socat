@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 set -u
 
@@ -8,6 +8,6 @@ set -u
 #
 # To install socat: `brew install socat`.
 
-echo -e "[DOCKER-SOCAT] Binding daemon to tcp://0.0.0.0:2375\n";
+printf '[DOCKER-SOCAT] Binding daemon to tcp://0.0.0.0:2375\n\n'
 socat TCP-LISTEN:2375,fork UNIX-CONNECT:/var/run/docker.sock
-echo -e "[DOCKER-SOCAT] Goodbye!";
+printf '[DOCKER-SOCAT] Goodbye!\n'

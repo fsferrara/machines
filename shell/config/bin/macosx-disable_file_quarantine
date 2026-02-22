@@ -1,7 +1,7 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 set -u
 
 sudo defaults write com.apple.LaunchServices LSQuarantine -bool NO
 sudo spctl --master-disable
-echo -e "Please reboot your machine..."
+printf 'Please reboot your machine...\n'

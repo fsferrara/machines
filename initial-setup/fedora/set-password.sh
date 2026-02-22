@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 
 ##########
@@ -15,7 +15,7 @@ printf '\n\n🔐 root password change...\n'
 sudo passwd
 
 printf '\n\n🔐 password change for %s...\n' "${USERNAME}"
-sudo passwd ${USERNAME}
+sudo passwd "${USERNAME}"
 
 
 ########

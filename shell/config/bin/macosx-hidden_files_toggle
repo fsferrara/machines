@@ -1,9 +1,9 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 set -u
 
 # Reads the current value
-current_flag=`defaults read com.apple.finder AppleShowAllFiles`
+current_flag=$(defaults read com.apple.finder AppleShowAllFiles)
 
 # Flip it
 new_flag=true
@@ -12,5 +12,5 @@ if [ "$current_flag" = true ] ; then
 fi
 
 # Write the new conf and restart
-defaults write com.apple.finder AppleShowAllFiles $new_flag
+defaults write com.apple.finder AppleShowAllFiles "$new_flag"
 killall Finder

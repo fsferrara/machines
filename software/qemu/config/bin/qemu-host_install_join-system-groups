@@ -1,12 +1,12 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 set -e
 set -u
 
-sudo usermod -a -G libvirt $(whoami)
-sudo usermod -a -G kvm $(whoami)
-sudo usermod -a -G input $(whoami)
+sudo usermod -a -G libvirt "$(whoami)"
+sudo usermod -a -G kvm "$(whoami)"
+sudo usermod -a -G input "$(whoami)"
 
-echo -e "\n✅ You have been added to the libvirt and kvm groups. Please log out and log back in for the changes to take effect.\n"
+printf '\n✅ You have been added to the libvirt and kvm groups. Please log out and log back in for the changes to take effect.\n\n'
 
 exit 0

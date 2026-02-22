@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 
 ##########
@@ -7,7 +7,6 @@
 CMD_UPDATE="sudo apt update"
 CMD_INSTALL="sudo apt install -y"
 CMD_PKG_UPDATE="sudo snap refresh"
-CMD_PKG_INSTALL="sudo snap install --classic "
 
 
 ##########

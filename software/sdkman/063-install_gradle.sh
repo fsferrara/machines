@@ -1,6 +1,7 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 export SDKMAN_DIR="$HOME/.sdkman"
+# shellcheck source=/dev/null
 [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && . "$HOME/.sdkman/bin/sdkman-init.sh"
 
 install_gradle_6_3() {

@@ -1,11 +1,5 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 set -u
 
-for i in **/*;
-do
-   if [ -f "$i" ]
-   then
-      convert "$i" -density 72 -resize 1024x768 "$i"_web.jpg;
-   fi
-done;
+find . -type f -exec sh -c 'convert "$1" -density 72 -resize 1024x768 "${1}_web.jpg"' sh {} \;

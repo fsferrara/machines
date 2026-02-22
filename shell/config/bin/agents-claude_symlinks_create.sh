@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 set -u
 
@@ -14,7 +14,7 @@ cd "$(git rev-parse --show-toplevel)"
 # Find all AGENTS.md files and create corresponding CLAUDE.md symlinks
 git ls-files | grep "AGENTS\.md$" | while read -r file; do
     dir=$(dirname "$file")
-    claude_file="${file/AGENTS.md/CLAUDE.md}"
+    claude_file="${file%AGENTS.md}CLAUDE.md"
     
     # Remove existing CLAUDE.md file/link if it exists
     if [ -e "$claude_file" ] || [ -L "$claude_file" ]; then

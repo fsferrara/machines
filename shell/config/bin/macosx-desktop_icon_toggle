@@ -1,9 +1,9 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 set -u
 
 # Reads the current value
-current_create_desktop=`defaults read com.apple.finder CreateDesktop`
+current_create_desktop=$(defaults read com.apple.finder CreateDesktop)
 
 # Flip it
 new_create_desktop=true
@@ -12,5 +12,5 @@ if [ "$current_create_desktop" = true ] ; then
 fi
 
 # Write the new conf and restart
-defaults write com.apple.finder CreateDesktop $new_create_desktop
+defaults write com.apple.finder CreateDesktop "$new_create_desktop"
 killall Finder

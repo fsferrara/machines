@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 set -e
 set -u
@@ -34,7 +34,7 @@ CMD_APPLY="rsync -av"
 # APPLY #
 #########
 printf '\n\n🔌 Configuring...\n'
-${CMD_APPLY} config/ ${DESTINATION}
+${CMD_APPLY} config/ "${DESTINATION}"
 
 printf '(!) If needed, source the kickstart when your shell starts! Examples:\n'
 printf 'echo -e "\\n#My Shell Configuration\\nsource ~/.my-shell-conf/kickstart.sh\\n" >> ~/.bashrc\n'

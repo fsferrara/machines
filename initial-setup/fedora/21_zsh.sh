@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 
 ##########
@@ -13,7 +13,7 @@ printf '\n\n🛵 Installing ZSH...\n'
 sudo dnf install --assumeyes zsh
 
 printf '\n\n♻️ Changing shell...\n'
-chsh -s $(which zsh)
+chsh -s "$(command -v zsh)"
 
 
 ########

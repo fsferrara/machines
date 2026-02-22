@@ -1,3 +1,5 @@
-#! /usr/bin/env bash -x
+#! /usr/bin/env sh
+
+set -x
 
 /Applications/Xcode15.2/Xcode.app/Contents/MacOS/Xcode

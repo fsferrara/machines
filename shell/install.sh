@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 set -e
 set -u
@@ -6,7 +6,7 @@ set -u
 ##########
 #  USER  #
 ##########
-su - ${_REMOTE_USER}
+su - "${_REMOTE_USER}"
 
 #########
 # APPLY #

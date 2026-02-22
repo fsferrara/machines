@@ -1,13 +1,13 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 set -e
 set -u
 
 
-echo -e "\n\n🧹 Uninstalling RVM...\n"
+printf '\n\n🧹 Uninstalling RVM...\n\n'
 
-rm -rf $HOME/.rvm
-rm -f $HOME/.rvmrc
+rm -rf "$HOME"/.rvm
+rm -f "$HOME"/.rvmrc
 sudo rm -f /etc/rvmrc
 sudo rm -f /etc/profile.d/rvm.sh
 sudo rm -rf /usr/share/rvm

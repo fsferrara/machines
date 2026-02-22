@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 set -e
 set -u
@@ -17,7 +17,7 @@ printf '\n\n🔌 Configuring...\n'
 ${CMD_APPLY} config/ ~
 
 ## ubuntu - need to add you in the docker group
-sudo gpasswd -a $USER docker
+sudo gpasswd -a "$USER" docker
 
 ########
 # DONE #

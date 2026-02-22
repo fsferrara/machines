@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 set -e
 set -u
@@ -16,7 +16,7 @@ CMD_APPLY="rsync -av"
 printf '\n\n🔌 Configuring...\n'
 ${CMD_APPLY} config/ ~
 zsh --version
-sudo chsh -s /usr/bin/zsh $USER
+sudo chsh -s /usr/bin/zsh "$USER"
 
 
 ########

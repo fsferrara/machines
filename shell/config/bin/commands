@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 set -u
 
@@ -7,4 +7,4 @@ folder_path() {
 }
 FOLDER_PATH=$(folder_path)
 
-ls -1 ${FOLDER_PATH}
+ls -1 "${FOLDER_PATH}"

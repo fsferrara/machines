@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 
 ##########
@@ -12,6 +12,9 @@ PAK_INSTALL="echo flatpak install "
 ########
 # EXEC #
 ########
+printf '\n\n🔌 Updating...\n'
+${CMD_UPDATE}
+
 printf '\n\n🔌 Development Essentials...\n'
 $CMD_INSTALL @development-tools
 $CMD_INSTALL @development-libs
