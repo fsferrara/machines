@@ -16,7 +16,7 @@ export RUNNING_SHELL="ZSH"
 
 # Source global definitions
 if [[ -f /etc/zshrc ]]; then
-   source /etc/zshrc
+  . /etc/zshrc
 fi
 
 ################################################################################

@@ -20,7 +20,7 @@ fi
 
 # System profile
 if [ -f /etc/profile ]; then
-   source /etc/profile
+  . /etc/profile
 fi
 
 

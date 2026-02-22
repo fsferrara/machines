@@ -77,7 +77,7 @@ function source_dir {
          if [ -d $source_f ]; then
             source_dir $source_f
          else
-          source $source_f
+         . "$source_f"
          fi
       done
    fi
