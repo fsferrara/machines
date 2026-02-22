@@ -22,7 +22,7 @@ function ms-pyenv-load() {
 }
 
 if [ "$LAZY_LOAD_PYENV" = true ] ; then
-  if ! command -v pyenv &> /dev/null
+  if ! command -v pyenv >/dev/null 2>&1
   then
     # The following function overrides temporarily the comand.
     pyenv2() {
