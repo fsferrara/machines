@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env sh
 
 # use `0` to have FN functionality instead of the media keys
 # use `1` to switch back to media keys
