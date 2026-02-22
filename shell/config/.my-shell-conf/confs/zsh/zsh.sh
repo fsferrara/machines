@@ -3,7 +3,7 @@
 ################################################################################
 
 # If not zsh, then exit
-if [[ -z "$ZSH_VERSION" ]]; then
+if [ -z "${ZSH_VERSION:-}" ]; then
   return
 fi
 
@@ -15,7 +15,7 @@ export RUNNING_SHELL="ZSH"
 ################################################################################
 
 # Source global definitions
-if [[ -f /etc/zshrc ]]; then
+if [ -f /etc/zshrc ]; then
   . /etc/zshrc
 fi
 
