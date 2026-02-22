@@ -3,7 +3,7 @@
 # The following flag can be used to load pyenv just before you run it.
 LAZY_LOAD_PYENV=true
 
-function ms-pyenv-load() {
+ms-pyenv-load() {
    if [ -d "$HOME/.pyenv" ] ; then
       echo -e "[ms] loading pyenv...";
       export PYENV_ROOT="$HOME/.pyenv"

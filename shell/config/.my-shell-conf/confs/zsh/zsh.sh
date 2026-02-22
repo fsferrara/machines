@@ -63,7 +63,7 @@ PROMPT="%F{magenta}${RUNNING_SHELL}%f%B%F{blue}@%f%b%F{yellow}${RUNNING_ENV}%f %
 
 # Git branch in prompt
 
-function parse_git_branch() {
+parse_git_branch() {
     git branch --show-current 2> /dev/null | sed -n -e 's/^\(.*\)/[git:\1]/p'
 }
 

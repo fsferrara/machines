@@ -7,7 +7,7 @@ set -u
 ########
 # HELP #
 ########
-function help() {
+help() {
     echo -e "\nUsage: $0 [destination]\n"
     echo -e "destination: The folder where the configuration will be applied. Default is the home directory.\n"
     exit 0;

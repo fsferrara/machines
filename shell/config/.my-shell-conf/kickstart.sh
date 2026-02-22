@@ -16,7 +16,7 @@ esac
 ################################################################################
 
 # Those are sensible defaults that may be overrided in the `host-specific` folder
-function ms-define-running-env() {
+ms-define-running-env() {
   UNAME_OUTPUT="`uname -s | cut -c -5`"
   case ${UNAME_OUTPUT} in
     "Darwi")
@@ -37,7 +37,7 @@ function ms-define-running-env() {
 }
 ms-define-running-env
 
-function ms-define-running-shell() {
+ms-define-running-shell() {
   RUNNING_PROCESS_COMMAND=`ps -c -p $$ -o command=`
   case ${RUNNING_PROCESS_COMMAND} in
     "-bash")
@@ -70,7 +70,7 @@ ms-define-running-shell
 # CONFIGURATION DIRECTORY.
 # Sources all the scripts from a specified directory.
 ################################################################################
-function source_dir {
+source_dir() {
    source_d=$1
    if [ -d $source_d ]; then
       for source_f in $source_d/*.sh; do
@@ -83,7 +83,7 @@ function source_dir {
    fi
 }
 
-function my_shell_conf {
+my_shell_conf() {
   SHELL_ADD_SETTINGS_DIR=$1
   if [ -d $SHELL_ADD_SETTINGS_DIR ]; then
      source_dir $SHELL_ADD_SETTINGS_DIR

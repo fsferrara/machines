@@ -99,7 +99,7 @@ fi
 unset color_prompt force_color_prompt
 
 # Git branch in prompt
-function parse_git_branch() {
+parse_git_branch() {
     git branch --show-current 2> /dev/null | sed -n -e 's/^\(.*\)/[git:\1]/p'
 }
 

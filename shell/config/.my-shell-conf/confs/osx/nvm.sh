@@ -4,7 +4,7 @@
 # I suggest to set it to false if you'll be load nvm manually or at the shell startup. 
 LAZY_LOAD_NVM=true
 
-function ms-nvm-load() {
+ms-nvm-load() {
    echo -e "[ms] loading nvm...";
    export NVM_DIR="$HOME/.nvm"
    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
