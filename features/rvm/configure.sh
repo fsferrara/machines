@@ -4,17 +4,28 @@ set -e
 set -u
 
 
-##########
-# CONFIG #
-##########
-CMD_APPLY="rsync -av"
+#############
+# BOOTSTRAP #
+#############
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+INITIAL_DIR="$(pwd)"
+. "${SCRIPT_DIR}/../common-functions.sh"
 
+
+#########
+# INPUT #
+#########
+configure_parameters "$@"
 
 #########
 # APPLY #
 #########
-printf '\n\n🔌 Configuring...\n'
-${CMD_APPLY} config/ ~
+configure_apply "${SCRIPT_DIR}/config/" "${DESTINATION}"
+
+
+#########################
+# SPECIFIC INSTRUCTIONS #
+#########################
 
 
 ########

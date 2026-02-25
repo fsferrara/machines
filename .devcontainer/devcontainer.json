@@ -5,6 +5,6 @@
   ],
   "features": {
     "./features/debug": {},
-    "../shell": {}
+    "../dotfiles": {}
   }
 }

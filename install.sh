@@ -7,10 +7,14 @@ set -u
 #############
 # BOOTSTRAP #
 #############
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 INITIAL_DIR="$(pwd)"
-source "${SCRIPT_DIR}/common-functions.sh"
-printf "${MACHINE_DIR} OK"
+. "${SCRIPT_DIR}/common-functions.sh"
+
+echo "MACHINE_DIR: ${MACHINE_DIR}"
+echo "SCRIPT_DIR: ${SCRIPT_DIR}"
+echo "INITIAL_DIR: ${INITIAL_DIR}"
+
 
 
 #########################

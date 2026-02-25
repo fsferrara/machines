@@ -4,22 +4,42 @@ set -e
 set -u
 
 
-##########
-# CONFIG #
-##########
-CMD_APPLY="rsync -av"
+#############
+# BOOTSTRAP #
+#############
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+INITIAL_DIR="$(pwd)"
+. "${SCRIPT_DIR}/../common-functions.sh"
+
+
+#########
+# INPUT #
+#########
+configure_parameters "$@"
 
 
 #########
 # CLEAN #
 #########
 # required
-rm -rf ~/.config/nvim
+rm -rf ${DESTINATION}/.config/nvim
 
 # optional but recommended
-rm -rf ~/.local/share/nvim
-rm -rf ~/.local/state/nvim
-rm -rf ~/.cache/nvim
+rm -rf ${DESTINATION}/.local/share/nvim
+rm -rf ${DESTINATION}/.local/state/nvim
+rm -rf ${DESTINATION}/.cache/nvim
+
+
+#########
+# APPLY #
+#########
+configure_apply "${SCRIPT_DIR}/config/" "${DESTINATION}"
+
+
+#########################
+# SPECIFIC INSTRUCTIONS #
+#########################
+
 
 
 #########
