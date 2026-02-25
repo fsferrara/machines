@@ -1,5 +1,9 @@
 #! /usr/bin/env sh
 
+set -e
+set -u
+
+
 install_casks_for_tools_and_tech() {
 
   # [CASK] Development Essentials

@@ -3,6 +3,7 @@
 set -e
 set -u
 
+
 sudo usermod -a -G libvirt "$(whoami)"
 sudo usermod -a -G kvm "$(whoami)"
 sudo usermod -a -G input "$(whoami)"

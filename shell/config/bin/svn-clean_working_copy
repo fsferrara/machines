@@ -1,5 +1,9 @@
 #! /usr/bin/env bash
 
+set -e
+set -u
+
+
 # delete all .svn directories
 echo "Recursively removing .svn folders from current directory";
 find . -type d -name '.svn' | xargs -I %item% rm -rf "%item%"

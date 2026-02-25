@@ -1,5 +1,9 @@
 #! /usr/bin/env sh
 
+set -e
+set -u
+
+
 export SDKMAN_DIR="$HOME/.sdkman"
 # shellcheck source=/dev/null
 [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && . "$HOME/.sdkman/bin/sdkman-init.sh"

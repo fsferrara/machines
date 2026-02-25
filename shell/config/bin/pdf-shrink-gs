@@ -1,5 +1,9 @@
 #! /usr/bin/env sh
 
+set -e
+set -u
+
+
 gs	-q -dNOPAUSE -dBATCH -dSAFER \
 	-sDEVICE=pdfwrite \
 	-dCompatibilityLevel=1.3 \

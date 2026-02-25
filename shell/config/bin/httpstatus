@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 statuses="100 Continue
 101 Switching Protocols

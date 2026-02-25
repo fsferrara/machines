@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
-set -euo pipefail
+
+set -e
+set -u
+
 
 declare -A DICTIONARY=(
   [a]="Alfa" [b]="Bravo" [c]="Charlie" [d]="Delta" [e]="Echo"

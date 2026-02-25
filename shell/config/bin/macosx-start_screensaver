@@ -1,5 +1,8 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
+
 
 open -b com.apple.ScreenSaver.Engine

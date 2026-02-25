@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 # Reads the current value
 current_create_desktop=$(defaults read com.apple.finder CreateDesktop)

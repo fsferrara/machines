@@ -1,5 +1,9 @@
 #! /usr/bin/env sh
 
+set -e
+set -u
+
+
 # use `0` to have FN functionality instead of the media keys
 # use `1` to switch back to media keys
 FN_MODE=0

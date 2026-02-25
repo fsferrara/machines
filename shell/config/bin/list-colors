@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 i=0
 while [ $i -le 255 ]; do

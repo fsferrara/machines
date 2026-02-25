@@ -3,6 +3,7 @@
 set -e
 set -u
 
+
 if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
   echo "Usage: $0 [FILENAME] [SIZE]"
   echo ""

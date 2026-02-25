@@ -4,9 +4,10 @@
 # This is useful for QEMU 9p shares with security_model=none.
 #
 # Must be run as root.
-#
+
 set -e
 set -u
+
 
 # Defaults
 TARGET_UID="${1:-1000}"

@@ -1,4 +1,8 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
+
+set -e
+set -u
+
 
 install_homebrew(){
 	cd

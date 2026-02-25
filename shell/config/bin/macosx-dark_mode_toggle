@@ -1,5 +1,7 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'

@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 if hash pbcopy 2>/dev/null; then
 	cmd='pbcopy'

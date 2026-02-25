@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
+
 set -e
 set -u
+
 
 LOG_TAG=${0}
 printf '[%s] executing...\n' "$LOG_TAG"

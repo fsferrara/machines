@@ -2,6 +2,7 @@
 
 set -u
 
+
 echo -e "\n\n🛸 Checking QEMU installation...\n";
 qemu-system-x86_64 --version
 

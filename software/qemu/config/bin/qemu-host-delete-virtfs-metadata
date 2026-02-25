@@ -3,6 +3,7 @@
 set -e
 set -u
 
+
 printf '\n🔄 Deleting all .virtfs_metadata directories...\n\n'
 find . -type d -name ".virtfs_metadata" -exec rm -rf {} +
 printf '\n✅ All .virtfs_metadata directories have been deleted.\n\n'

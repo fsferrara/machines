@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'
 killall Dock

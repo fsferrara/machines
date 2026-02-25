@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+set -e
+set -u
+
 # Input parameters
 usage() {
    echo -e "usage $0 <response-text-file> [<port>]"

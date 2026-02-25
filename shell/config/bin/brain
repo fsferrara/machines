@@ -1,5 +1,7 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 code ~/github/fsferrara/brain

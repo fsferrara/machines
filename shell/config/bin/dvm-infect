@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
+
 set -e
 set -u
+
 
 # github: https://howtowhale.github.io/dvm/
 # repo: https://github.com/howtowhale/dvm

@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 # Reads the current value
 current_flag=$(defaults read com.apple.finder AppleShowAllFiles)

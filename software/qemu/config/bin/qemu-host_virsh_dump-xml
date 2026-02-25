@@ -3,6 +3,7 @@
 set -e
 set -u
 
+
 # Check if a VM name argument is provided
 if [ -z "${1:-}" ]; then
     echo -e "\n❌ Please provide the name of the virtual machine as an argument.\n"

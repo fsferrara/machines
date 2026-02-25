@@ -1,5 +1,9 @@
 #! /usr/bin/env bash
 
+set -e
+set -u
+
+
 echo "Recursively removing desktop.ini files from current directory";
 find . -type f -name 'desktop.ini' | xargs -I %item% rm "%item%"
 

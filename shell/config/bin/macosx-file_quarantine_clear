@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 xattr -dr com.apple.quarantine .
 xattr -dr com.apple.macl .

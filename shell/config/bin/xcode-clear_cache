@@ -1,5 +1,9 @@
 #! /usr/bin/env sh
 
+set -e
+set -u
+
+
 printf '[%s] Clearing ~/Library/Developer/Xcode/DerivedData ...\n' "$0"
 rm -rf ~/Library/Developer/Xcode/DerivedData
 

@@ -1,5 +1,3 @@
-#! /usr/bin/env sh
-
 # The following flag can be used to load nvm just before you run node.
 # I suggest to set it to false if you'll be load nvm manually or at the shell startup. 
 LAZY_LOAD_NVM=true

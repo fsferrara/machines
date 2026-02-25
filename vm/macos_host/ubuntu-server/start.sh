@@ -3,6 +3,7 @@
 set -e
 set -u
 
+
 # QEMU Arguments
 qemu_args=(
   # Uses the macOS Hypervisor

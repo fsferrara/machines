@@ -1,5 +1,7 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 exec watch -tn 1 date '+%l:%M:%S%p'

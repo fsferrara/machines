@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
+
 set -e
 set -u
+
 
 # Prune Cache
 brew cleanup --prune=all

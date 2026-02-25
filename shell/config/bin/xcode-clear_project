@@ -1,5 +1,9 @@
 #! /usr/bin/env sh
 
+set -e
+set -u
+
+
 rm -rf tmp
 rm -rf DerivedData
 rm -rf DerivedDataFolder
