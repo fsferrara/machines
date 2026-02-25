@@ -4,24 +4,38 @@ set -e
 set -u
 
 
-########
-# KEYS #
-########
-printf '\n\n🔑 Importing GPG keys...\n'
+#############
+# BOOTSTRAP #
+#############
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+INITIAL_DIR="$(pwd)"
+. "${SCRIPT_DIR}/common-functions.sh"
 
-curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+
+##########
+#  USER  #
+##########
+# if _REMOTE_USER is not set don't switch user
+if [ -n "${_REMOTE_USER:-}" ]; then
+  if [ "$(id -un)" != "${_REMOTE_USER}" ]; then
+    exec su - "${_REMOTE_USER}" -c "_REMOTE_USER= _REMOTE_USER_HOME=\"${_REMOTE_USER_HOME:-}\" sh \"${SCRIPT_DIR}/install.sh\""
+  fi
+fi
 
 
 ###########
 # INSTALL #
 ###########
-printf '\n\n🚀 Installing...\n'
-\curl -sSL https://get.rvm.io | bash -s stable
+run_install
 
 
-########
-# DONE #
-########
-printf '\n\n✅ Done!\n'
-exit 0;
+##################
+# CALL CONFIGURE #
+##################
+# if _REMOTE_USER_HOME is not set, use current user home
+TARGET_HOME="${_REMOTE_USER_HOME:-$HOME}"
+printf '\n\n🟢 Calling configure with target home: %s...\n' "${TARGET_HOME}"
+${SCRIPT_DIR}/configure.sh "${TARGET_HOME}"
+
+
+exit 0

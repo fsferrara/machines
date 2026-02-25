@@ -9,7 +9,6 @@ set -u
 ##########
 CMD_UPDATE="sudo apt update"
 CMD_INSTALL="sudo apt install -y"
-CMD_PKG_UPDATE="sudo snap refresh"
 
 
 ##########

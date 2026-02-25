@@ -26,4 +26,5 @@ INITIAL_DIR="$(pwd)"
 for feature in "${SCRIPT_DIR}/features/"*/; do
     cp -f "${SCRIPT_DIR}/dotfiles/common-functions.sh" "${feature}/"
     cp -f "${SCRIPT_DIR}/dotfiles/configure.sh" "${feature}/"
+    cp -f "${SCRIPT_DIR}/dotfiles/install.sh" "${feature}/"
 done
