@@ -12,23 +12,34 @@ INITIAL_DIR="$(pwd)"
 . "${SCRIPT_DIR}/common-functions.sh"
 
 
-#########
-# INPUT #
-#########
+##############
+# PARAMETERS #
+##############
 configure_parameters "$@"
 
-#########
-# APPLY #
-#########
+
+#################
+# PRE CONFIGURE #
+#################
+if [ -f "${SCRIPT_DIR}/pre-configure.sh" ]; then
+  printf '\n\n🟡 Pre Configure...\n'
+  "${SCRIPT_DIR}/pre-configure.sh"
+fi
+
+
+#############
+# CONFIGURE #
+#############
 configure_apply "${SCRIPT_DIR}/config/" "${DESTINATION}"
 
 
-#########################
-# SPECIFIC INSTRUCTIONS #
-#########################
-printf '(!) If needed, source the kickstart when your shell starts! Examples:\n'
-printf 'echo -e "\\n#My Shell Configuration\\nsource ~/.my-shell-conf/kickstart.sh\\n" >> ~/.bashrc\n'
-printf 'echo -e "\\n#My Shell Configuration\\nsource ~/.my-shell-conf/kickstart.sh\\n" >> ~/.zshrc\n'
+##################
+# POST CONFIGURE #
+##################
+if [ -f "${SCRIPT_DIR}/post-configure.sh" ]; then
+  printf '\n\n🟠 Post Configure...\n'
+  "${SCRIPT_DIR}/post-configure.sh"
+fi
 
 
 ########

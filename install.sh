@@ -11,14 +11,21 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 INITIAL_DIR="$(pwd)"
 . "${SCRIPT_DIR}/common-functions.sh"
 
-echo "MACHINE_DIR: ${MACHINE_DIR}"
-echo "SCRIPT_DIR: ${SCRIPT_DIR}"
-echo "INITIAL_DIR: ${INITIAL_DIR}"
-
-
 
 #########################
 # DOTFILES INSTALLATION #
 #########################
+cp -f "${MACHINE_DIR}/common-functions.sh" "${MACHINE_DIR}/dotfiles/"
+
 # cd dotfiles
 # ./install.sh
+
+
+####################
+# REFRESH FEATURES #
+####################
+# for each feature in the features directory, run the configure script
+for feature in "${MACHINE_DIR}/features/"*/; do
+    cp -f "${MACHINE_DIR}/dotfiles/common-functions.sh" "${feature}/"
+    cp -f "${MACHINE_DIR}/dotfiles/configure.sh" "${feature}/"
+done

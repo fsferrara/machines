@@ -9,44 +9,37 @@ set -u
 #############
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 INITIAL_DIR="$(pwd)"
-. "${SCRIPT_DIR}/../common-functions.sh"
+. "${SCRIPT_DIR}/common-functions.sh"
 
 
-#########
-# INPUT #
-#########
+##############
+# PARAMETERS #
+##############
 configure_parameters "$@"
 
 
-#########
-# CLEAN #
-#########
-# required
-rm -rf ${DESTINATION}/.config/nvim
-
-# optional but recommended
-rm -rf ${DESTINATION}/.local/share/nvim
-rm -rf ${DESTINATION}/.local/state/nvim
-rm -rf ${DESTINATION}/.cache/nvim
+#################
+# PRE CONFIGURE #
+#################
+if [ -f "${SCRIPT_DIR}/pre-configure.sh" ]; then
+  printf '\n\n🟡 Pre Configure...\n'
+  "${SCRIPT_DIR}/pre-configure.sh"
+fi
 
 
-#########
-# APPLY #
-#########
+#############
+# CONFIGURE #
+#############
 configure_apply "${SCRIPT_DIR}/config/" "${DESTINATION}"
 
 
-#########################
-# SPECIFIC INSTRUCTIONS #
-#########################
-
-
-
-#########
-# APPLY #
-#########
-printf '\n\n🔌 Configuring...\n'
-${CMD_APPLY} config/ ~
+##################
+# POST CONFIGURE #
+##################
+if [ -f "${SCRIPT_DIR}/post-configure.sh" ]; then
+  printf '\n\n🟠 Post Configure...\n'
+  "${SCRIPT_DIR}/post-configure.sh"
+fi
 
 
 ########
@@ -54,7 +47,3 @@ ${CMD_APPLY} config/ ~
 ########
 printf '\n\n✅ Done!\n'
 exit 0;
-
-
-
-

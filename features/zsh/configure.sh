@@ -9,26 +9,37 @@ set -u
 #############
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 INITIAL_DIR="$(pwd)"
-. "${SCRIPT_DIR}/../common-functions.sh"
+. "${SCRIPT_DIR}/common-functions.sh"
 
 
-#########
-# INPUT #
-#########
+##############
+# PARAMETERS #
+##############
 configure_parameters "$@"
 
-#########
-# APPLY #
-#########
+
+#################
+# PRE CONFIGURE #
+#################
+if [ -f "${SCRIPT_DIR}/pre-configure.sh" ]; then
+  printf '\n\n🟡 Pre Configure...\n'
+  "${SCRIPT_DIR}/pre-configure.sh"
+fi
+
+
+#############
+# CONFIGURE #
+#############
 configure_apply "${SCRIPT_DIR}/config/" "${DESTINATION}"
 
 
-#########################
-# SPECIFIC INSTRUCTIONS #
-#########################
-zsh --version
-sudo chsh -s /usr/bin/zsh "$USER"
-printf 'Reboot your machine before proceeding\n'
+##################
+# POST CONFIGURE #
+##################
+if [ -f "${SCRIPT_DIR}/post-configure.sh" ]; then
+  printf '\n\n🟠 Post Configure...\n'
+  "${SCRIPT_DIR}/post-configure.sh"
+fi
 
 
 ########
