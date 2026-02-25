@@ -10,5 +10,5 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass
 and then we can call the function inside
 
 ```shell
-RenameWslDistro -OldDistroName "FedoraLinux-42" -NewDistroName "FedoraLinux-43"
+RenameWslDistro -OldDistroName "<old_distro_name>" -NewDistroName "<new_distro_name>"
 ```
