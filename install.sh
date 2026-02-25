@@ -9,14 +9,12 @@ set -u
 #############
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 INITIAL_DIR="$(pwd)"
-. "${SCRIPT_DIR}/common-functions.sh"
+. "${SCRIPT_DIR}/dotfiles/common-functions.sh"
 
 
 #########################
 # DOTFILES INSTALLATION #
 #########################
-cp -f "${MACHINE_DIR}/common-functions.sh" "${MACHINE_DIR}/dotfiles/"
-
 # cd dotfiles
 # ./install.sh
 
@@ -25,7 +23,7 @@ cp -f "${MACHINE_DIR}/common-functions.sh" "${MACHINE_DIR}/dotfiles/"
 # REFRESH FEATURES #
 ####################
 # for each feature in the features directory, run the configure script
-for feature in "${MACHINE_DIR}/features/"*/; do
-    cp -f "${MACHINE_DIR}/dotfiles/common-functions.sh" "${feature}/"
-    cp -f "${MACHINE_DIR}/dotfiles/configure.sh" "${feature}/"
+for feature in "${SCRIPT_DIR}/features/"*/; do
+    cp -f "${SCRIPT_DIR}/dotfiles/common-functions.sh" "${feature}/"
+    cp -f "${SCRIPT_DIR}/dotfiles/configure.sh" "${feature}/"
 done

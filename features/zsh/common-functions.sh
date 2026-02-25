@@ -4,10 +4,10 @@ set -e
 set -u
 
 
-####################
-# BOOTSTRAP COMMON #
-####################
-MACHINE_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+#############
+# CONSTANTS #
+#############
+MY_CONSTANT="This is a constant value that can be used throughout the scripts"
 
 
 ###################
