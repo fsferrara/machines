@@ -15,16 +15,23 @@ INITIAL_DIR="$(pwd)"
 #########################
 # DOTFILES INSTALLATION #
 #########################
-# cd dotfiles
-# ./install.sh
+cd dotfiles
+./install.sh
 
 
 ####################
 # REFRESH FEATURES #
 ####################
-# for each feature in the features directory, run the configure script
+printf '\n\n🟢 Refreshing features...\n'
 for feature in "${SCRIPT_DIR}/features/"*/; do
     cp -f "${SCRIPT_DIR}/dotfiles/common-functions.sh" "${feature}/"
     cp -f "${SCRIPT_DIR}/dotfiles/configure.sh" "${feature}/"
     cp -f "${SCRIPT_DIR}/dotfiles/install.sh" "${feature}/"
 done
+
+
+########
+# DONE #
+########
+printf '\n\n✅ Done!\n'
+exit 0;

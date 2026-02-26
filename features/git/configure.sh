@@ -46,4 +46,3 @@ fi
 # DONE #
 ########
 printf '\n\n✅ Done!\n'
-exit 0;

@@ -14,41 +14,45 @@ MY_CONSTANT="This is a constant value that can be used throughout the scripts"
 # INSTALL SUPPORT #
 ###################
 run_install() {
-  # check if the OS is osx,debian or ubuntu and call the corresponding install script with a case statement
-  OS=$(uname -s)
-  case "$OS" in
-      Darwin)
-          printf '\n\n🍎 Detected macOS...\n'
-          if [ -f "${SCRIPT_DIR}/install/macosx.sh" ]; then
-              ${SCRIPT_DIR}/install/macosx.sh
-          else
-              printf '\n\n⚠️  No macOS install script found, skipping...\n'
-          fi
-          ;;
-      Linux)
-          if [ -f /etc/os-release ]; then
-              . /etc/os-release
-              case "$ID" in
-                  ubuntu)
-                      printf '\n\n🐧 Detected Ubuntu...\n'
-                      if [ -f "${SCRIPT_DIR}/install/ubuntu.sh" ]; then
-                          ${SCRIPT_DIR}/install/ubuntu.sh
-                      else
-                          printf '\n\n⚠️  No Ubuntu install script found, skipping...\n'
-                      fi
-                      ;;
-                  debian)
-                      printf '\n\n🐧 Detected Debian...\n'
-                      if [ -f "${SCRIPT_DIR}/install/debian.sh" ]; then
-                          ${SCRIPT_DIR}/install/debian.sh
-                      else
-                          printf '\n\n⚠️  No Debian install script found, skipping...\n'
-                      fi
-                      ;;
-              esac
-          fi
-          ;;
-  esac
+if [ -f "${SCRIPT_DIR}/install/install.sh" ]; then
+    printf '\n\n🚀 Running generic install script...\n'
+    ${SCRIPT_DIR}/install/install.sh
+else
+    OS=$(uname -s)
+    case "$OS" in
+        Darwin)
+            printf '\n\n🍎 Detected macOS...\n'
+            if [ -f "${SCRIPT_DIR}/install/macosx.sh" ]; then
+                ${SCRIPT_DIR}/install/macosx.sh
+            else
+                printf '\n\n⚠️  No macOS install script found, skipping...\n'
+            fi
+            ;;
+        Linux)
+            if [ -f /etc/os-release ]; then
+                . /etc/os-release
+                case "$ID" in
+                    ubuntu)
+                        printf '\n\n🐧 Detected Ubuntu...\n'
+                        if [ -f "${SCRIPT_DIR}/install/ubuntu.sh" ]; then
+                            ${SCRIPT_DIR}/install/ubuntu.sh
+                        else
+                            printf '\n\n⚠️  No Ubuntu install script found, skipping...\n'
+                        fi
+                        ;;
+                    debian)
+                        printf '\n\n🐧 Detected Debian...\n'
+                        if [ -f "${SCRIPT_DIR}/install/debian.sh" ]; then
+                            ${SCRIPT_DIR}/install/debian.sh
+                        else
+                            printf '\n\n⚠️  No Debian install script found, skipping...\n'
+                        fi
+                        ;;
+                esac
+            fi
+            ;;
+    esac
+fi
 }
 
 

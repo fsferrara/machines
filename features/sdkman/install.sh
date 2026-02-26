@@ -36,6 +36,3 @@ run_install
 TARGET_HOME="${_REMOTE_USER_HOME:-$HOME}"
 printf '\n\n🟢 Calling configure with target home: %s...\n' "${TARGET_HOME}"
 ${SCRIPT_DIR}/configure.sh "${TARGET_HOME}"
-
-
-exit 0
