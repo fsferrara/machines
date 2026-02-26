@@ -1,6 +1,6 @@
 {
-    "id": "my-feature-id",
+    "id": "my-feature-git",
     "version": "1.0.0",
-    "name": "My Feature Name",
-    "description": "Insert a description of your feature here."
+    "name": "My Feature Git",
+    "description": "Configure Git settings and tools."
 }
