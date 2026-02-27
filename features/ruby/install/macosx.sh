@@ -22,8 +22,7 @@ ${CMD_UPDATE}
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-${CMD_INSTALL} ruby
-
+${CMD_INSTALL} ruby@3.3
 
 ########
 # DONE #
