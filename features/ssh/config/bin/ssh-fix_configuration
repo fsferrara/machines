@@ -6,7 +6,7 @@ set -u
 
 # Fix permissions
 chmod 0700 ~/.ssh
-chmod 0400 ~/.ssh/id*
+chmod 0400 ~/.ssh/id_*
 
 # Find and add all private keys in ~/.ssh/
 for key in ~/.ssh/id_*; do
