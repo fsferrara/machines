@@ -9,13 +9,12 @@ set -u
 #############
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 INITIAL_DIR="$(pwd)"
-. "${SCRIPT_DIR}/dotfiles/common-functions.sh"
 
 
 #########################
 # DOTFILES INSTALLATION #
 #########################
-cd dotfiles
+cd "${SCRIPT_DIR}/dotfiles"
 ./install.sh
 
 
@@ -23,8 +22,9 @@ cd dotfiles
 # REFRESH FEATURES #
 ####################
 printf '\n\n🟢 Refreshing features...\n'
+cd "${SCRIPT_DIR}"
 for feature in "${SCRIPT_DIR}/features/"*/; do
-    cp -f "${SCRIPT_DIR}/dotfiles/common-functions.sh" "${feature}/"
+    rm -f "${feature}/common-functions.sh"
     cp -f "${SCRIPT_DIR}/dotfiles/configure.sh" "${feature}/"
     cp -f "${SCRIPT_DIR}/dotfiles/install.sh" "${feature}/"
 done
@@ -33,5 +33,6 @@ done
 ########
 # DONE #
 ########
+cd "${INITIAL_DIR}"
 printf '\n\n✅ Done!\n'
 exit 0;

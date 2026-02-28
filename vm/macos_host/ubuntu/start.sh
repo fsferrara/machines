@@ -39,7 +39,7 @@ qemu_args=(
   -virtfs local,path=../../../shell,mount_tag=shell,security_model=none,id=shell,readonly=off
   -virtfs local,path=../../../software,mount_tag=software,security_model=none,id=software,readonly=off
   # Installation ISO
-  -cdrom ubuntu-24.04.3-live-server-arm64.iso
+  -cdrom ubuntu-25.10-desktop-arm64.iso
 )
 
 echo ""
