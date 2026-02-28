@@ -5,7 +5,7 @@ set -u
 
 
 printf '\n\n🚀 Generating signatures for all public keys...\n'
-for file in ./config/.ssh/*.pub; do
+for file in ~/.ssh/*.pub; do
     printf 'key: %s\n' "$file"
     ssh-keygen -lf $file -E sha256
     printf '\n'

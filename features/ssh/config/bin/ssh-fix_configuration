@@ -4,9 +4,16 @@ set -e
 set -u
 
 
+# Fix permissions
 chmod 0700 ~/.ssh
-chmod 0600 ~/.ssh/*
 chmod 0400 ~/.ssh/id*
 
-ssh-add
+# Find and add all private keys in ~/.ssh/
+for key in ~/.ssh/id_*; do
+    [[ "$key" != *.pub ]] && ssh-add "$key"
+done
+
+# Print check
 ssh-add -l
+
+exit 0
