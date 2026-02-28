@@ -1,6 +1,6 @@
 # My dotfiles
 
-tbd
+My SSH configuration for work and personal use.
 
 ## Feature
 

@@ -4,10 +4,12 @@ set -e
 set -u
 
 
-echo "Generating signatures for all public keys in the current directory"
-for file in *.pub; do
-    echo "Generating signature for $file"
-    ssh-keygen -lf "$file" -E sha256
+printf '\n\n🚀 Generating signatures for all public keys...\n'
+for file in ./config/.ssh/*.pub; do
+    printf 'key: %s\n' "$file"
+    ssh-keygen -lf $file -E sha256
+    printf '\n'
 done
+
 
 exit 0

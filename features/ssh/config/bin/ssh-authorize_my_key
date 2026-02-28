@@ -1,8 +1,0 @@
-#! /usr/bin/env sh
-
-set -e
-set -u
-
-
-cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
-chmod 640 ~/.ssh/authorized_keys

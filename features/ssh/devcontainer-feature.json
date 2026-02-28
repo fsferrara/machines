@@ -1,6 +1,6 @@
 {
-    "id": "my-feature-id",
+    "id": "my-ssh-configuration",
     "version": "1.0.0",
-    "name": "My Feature Name",
-    "description": "Insert a description of your feature here."
+    "name": "My SSH Configuration",
+    "description": "A custom SSH configuration for my development environment"
 }

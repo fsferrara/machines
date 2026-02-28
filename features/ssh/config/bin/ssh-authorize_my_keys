@@ -1,0 +1,12 @@
+#! /usr/bin/env sh
+
+set -e
+set -u
+
+
+echo "Authorizing my public key for SSH access..."
+for file in *.pub; do
+    echo "Authorizing $file"
+    cat "$file" >> ~/.ssh/authorized_keys
+    chmod 640 ~/.ssh/authorized_keys
+done
