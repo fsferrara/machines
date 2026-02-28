@@ -50,7 +50,7 @@ configure_parameters "$@"
 #################
 if [ -f "${SCRIPT_DIR}/pre-configure.sh" ]; then
   printf '\n\n🟡 Pre Configure...\n'
-  "${SCRIPT_DIR}/pre-configure.sh"
+  "${SCRIPT_DIR}/pre-configure.sh" "${DESTINATION}"
 fi
 
 
@@ -65,7 +65,7 @@ configure_apply "${SCRIPT_DIR}/config/" "${DESTINATION}"
 ##################
 if [ -f "${SCRIPT_DIR}/post-configure.sh" ]; then
   printf '\n\n🟠 Post Configure...\n'
-  "${SCRIPT_DIR}/post-configure.sh"
+  "${SCRIPT_DIR}/post-configure.sh" "${DESTINATION}"
 fi
 
 
