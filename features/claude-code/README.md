@@ -1,6 +1,6 @@
 # My dotfiles
 
-tbd
+My claude code feature and dotfiles.
 
 ## Feature
 
