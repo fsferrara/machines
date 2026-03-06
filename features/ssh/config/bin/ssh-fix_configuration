@@ -7,10 +7,18 @@ set -u
 # Fix permissions
 chmod 0700 ~/.ssh
 chmod 0400 ~/.ssh/id_*
+chmod 0600 ~/.ssh/config
+
+
+# for macos use --apple-use-keychain
+ADDTL_OPTS=""
+if [[ "$(uname)" == "Darwin" ]]; then
+    ADDTL_OPTS="--apple-use-keychain"
+fi
 
 # Find and add all private keys in ~/.ssh/
 for key in ~/.ssh/id_*; do
-    [[ "$key" != *.pub ]] && ssh-add "$key"
+    [[ "$key" != *.pub ]] && ssh-add $ADDTL_OPTS "$key"
 done
 
 # Print check
