@@ -1,0 +1,24 @@
+#! /usr/bin/env sh
+set -e
+set -u
+
+
+#########
+# TOKEN #
+#########
+if [ -z "${GITHUB_TOKEN:-}" ]; then
+  printf "🟠 GITHUB_TOKEN is not set.\n\n"
+else
+  printf "🟢 GITHUB_TOKEN is set.\n\n"
+fi
+
+
+##########
+# STATUS #
+##########
+printf "🪪 Checking GitHub authentication status...\n\n"
+gh auth status
+
+printf "\n"
+
+exit 0

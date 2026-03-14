@@ -1,0 +1,35 @@
+#! /usr/bin/env sh
+set -e
+set -u
+
+
+##########
+# CONFIG #
+##########
+TOKEN_FILE="${HOME}/.config/gh/gh_tokenfile_work"
+
+
+###########
+# CLEANUP #
+###########
+printf "🧹 Cleaning up existing GITHUB_TOKEN authentication...\n\n"
+unset GITHUB_TOKEN
+
+
+#########
+# LOGIN #
+#########
+if [ ! -f "$TOKEN_FILE" ] || [ ! -s "$TOKEN_FILE" ]; then
+    printf "❌ Token file not found or empty at %s\n" "$TOKEN_FILE"
+    gh auth login --web --clipboard
+else
+    printf "🔐 Logging in to GitHub with token from %s\n\n" "$TOKEN_FILE"
+    gh auth login --with-token < "$TOKEN_FILE"
+fi
+
+
+#########
+# TOKEN #
+#########
+printf "📂 To export the GITHUB_TOKEN for the current session, run:\n\n"
+printf "export GITHUB_TOKEN=\$(cat \"$TOKEN_FILE\")\n"
