@@ -20,5 +20,8 @@
     "../features/vim": {}
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/fsferrara/workspace,type=bind,consistency=delegated",
-  "workspaceFolder": "/home/fsferrara/workspace"
+  "workspaceFolder": "/home/fsferrara/workspace",
+  "mounts": [
+    "source=devcontainer-home,target=/home/fsferrara,type=volume"
+  ]
 }
