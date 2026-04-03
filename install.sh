@@ -24,7 +24,6 @@ cd "${SCRIPT_DIR}/dotfiles"
 printf '\n\n🟢 Refreshing features...\n'
 cd "${SCRIPT_DIR}"
 for feature in "${SCRIPT_DIR}/features/"*/; do
-    rm -f "${feature}/common-functions.sh"
     cp -f "${SCRIPT_DIR}/dotfiles/configure.sh" "${feature}/"
     cp -f "${SCRIPT_DIR}/dotfiles/install.sh" "${feature}/"
 done

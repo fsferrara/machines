@@ -41,14 +41,6 @@ run_install() {
                               printf '\n\n⚠️  No Ubuntu install script found, skipping...\n'
                           fi
                           ;;
-                      debian)
-                          printf '\n\n🐧 Detected Debian...\n'
-                          if [ -f "${SCRIPT_DIR}/install/debian.sh" ]; then
-                              ${SCRIPT_DIR}/install/debian.sh
-                          else
-                              printf '\n\n⚠️  No Debian install script found, skipping...\n'
-                          fi
-                          ;;
                   esac
               fi
               ;;
