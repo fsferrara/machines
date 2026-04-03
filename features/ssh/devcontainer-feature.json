@@ -1,6 +1,8 @@
 {
-    "id": "my-ssh-configuration",
+    "id": "my-feature-ssh",
     "version": "1.0.0",
-    "name": "My SSH Configuration",
-    "description": "A custom SSH configuration for my development environment"
+    "name": "My Feature SSH",
+    "installsAfter": [
+        "dotfiles"
+    ]
 }

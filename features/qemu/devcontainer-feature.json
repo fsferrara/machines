@@ -1,6 +1,8 @@
 {
-    "id": "my-feature-id",
+    "id": "my-feature-qemu",
     "version": "1.0.0",
-    "name": "My Feature Name",
-    "description": "Insert a description of your feature here."
+    "name": "My Feature QEMU",
+    "installsAfter": [
+        "dotfiles"
+    ]
 }

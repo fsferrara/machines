@@ -2,5 +2,7 @@
     "id": "my-feature-git",
     "version": "1.0.0",
     "name": "My Feature Git",
-    "description": "Configure Git settings and tools."
+    "installsAfter": [
+        "dotfiles"
+    ]
 }

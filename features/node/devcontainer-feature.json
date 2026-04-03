@@ -1,6 +1,8 @@
 {
-    "id": "my-feature-id",
+    "id": "my-feature-node",
     "version": "1.0.0",
-    "name": "My Feature Name",
-    "description": "Insert a description of your feature here."
+    "name": "My Feature NODE",
+    "installsAfter": [
+        "dotfiles"
+    ]
 }

@@ -22,7 +22,7 @@ ${CMD_UPDATE}
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-${CMD_INSTALL} ssh
+${CMD_INSTALL} openssh-client
 
 
 ########

@@ -14,9 +14,8 @@ CMD_INSTALL="sudo apt install -y"
 ##########
 # UPDATE #
 ##########
-printf '\n\n🛸 Updading...\n'
+printf '\n\n🛸 Updating...\n'
 ${CMD_UPDATE}
-${CMD_PKG_UPDATE}
 
 
 ###########

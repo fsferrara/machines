@@ -4,8 +4,10 @@ set -e
 set -u
 
 
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+
 # tic
-tic config/bin/terminfo/screen-256color.terminfo
+tic "${SCRIPT_DIR}/config/bin/terminfo/screen-256color.terminfo"
 
 
 exit 0

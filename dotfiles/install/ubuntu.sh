@@ -7,8 +7,15 @@ set -u
 ##########
 # CONFIG #
 ##########
+CMD_UPDATE="sudo apt update"
 CMD_INSTALL="sudo apt install -y"
-sudo apt update
+
+
+##########
+# UPDATE #
+##########
+printf '\n\n🛸 Updading...\n'
+${CMD_UPDATE}
 
 
 ################

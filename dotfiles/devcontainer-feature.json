@@ -1,6 +1,5 @@
 {
-    "id": "my-dotfiles",
+    "id": "my-feature-dotfiles",
     "version": "1.0.0",
-    "name": "My Dotfiles",
-    "description": "Configure my dotfiles"
+    "name": "My Feature DOTFILES"
 }

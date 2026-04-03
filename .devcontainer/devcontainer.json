@@ -12,7 +12,12 @@
   },
   "features": {
     "../dotfiles": {},
-    "../features/git": {}
+    "../features/git": {},
+    "../features/ssh": {},
+    "../features/zsh": {},
+    "../features/tmux": {},
+    "../features/gh": {},
+    "../features/vim": {}
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/fsferrara/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/home/fsferrara/workspace"

@@ -1,6 +1,8 @@
 {
-    "id": "my-claude-code",
+    "id": "my-feature-claude-code",
     "version": "1.0.0",
-    "name": "My Claude Code Feature",
-    "description": "Feature for installing and configuring Claude AI."
+    "name": "My Feature CLAUDE CODE",
+    "installsAfter": [
+        "dotfiles"
+    ]
 }

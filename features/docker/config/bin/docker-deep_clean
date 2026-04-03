@@ -1,0 +1,16 @@
+#! /usr/bin/env sh
+
+
+docker stop $(docker ps -aq)
+
+docker rm $(docker ps -aq)
+docker rm -f $(docker ps -aq)
+
+docker image rm -f $(docker images -q)
+
+docker builder prune -a
+docker image prune -a
+docker system prune -a
+
+docker buildx history rm --all
+docker buildx prune

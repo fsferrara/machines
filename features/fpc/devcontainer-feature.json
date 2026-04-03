@@ -1,7 +1,7 @@
 {
-    "id": "my-feature-tmux",
+    "id": "my-feature-fpc",
     "version": "1.0.0",
-    "name": "My Feature TMUX",
+    "name": "My Feature FPC",
     "installsAfter": [
         "dotfiles"
     ]
