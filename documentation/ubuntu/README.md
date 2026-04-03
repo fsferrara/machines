@@ -1,4 +1,4 @@
-# Ubuntu
+# Initial Setup for Ubuntu
 
 Notes
 
