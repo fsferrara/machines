@@ -30,6 +30,3 @@ core
 *.ovf
 *.mf
 *.nvram
-# Do not track shared folders
-share/.virtfs*
-share/*
