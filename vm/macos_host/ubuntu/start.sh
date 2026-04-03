@@ -19,7 +19,7 @@ qemu_args=(
   # UEFI firmware for ARM64
   -bios /opt/homebrew/share/qemu/edk2-aarch64-code.fd
   # Disk image
-  -drive if=virtio,format=qcow2,file=ubuntu-server.qcow2
+  -drive if=virtio,format=qcow2,file=disk.qcow2
   # Slot 1 - network card
   -device virtio-net-pci,netdev=net0,addr=0x1
   # Slot 2 - Virtio GPU
@@ -36,10 +36,10 @@ qemu_args=(
   -netdev user,id=net0,hostfwd=tcp::2222-:22
   # Shared Folder
   -virtfs local,path=../../share,mount_tag=share,security_model=none,id=share,readonly=off
-  -virtfs local,path=../../../shell,mount_tag=shell,security_model=none,id=shell,readonly=off
-  -virtfs local,path=../../../software,mount_tag=software,security_model=none,id=software,readonly=off
+  -virtfs local,path=../../../dotfiles,mount_tag=dotfiles,security_model=none,id=dotfiles,readonly=off
+  -virtfs local,path=../../../features,mount_tag=features,security_model=none,id=features,readonly=off
   # Installation ISO
-  -cdrom ubuntu-25.10-desktop-arm64.iso
+  -cdrom ubuntu-24.04.4-live-server-arm64.iso
 )
 
 echo ""
