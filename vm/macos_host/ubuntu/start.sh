@@ -4,7 +4,16 @@ set -e
 set -u
 
 
-# QEMU Arguments
+#############
+# BOOTSTRAP #
+#############
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+INITIAL_DIR="$(pwd)"
+
+
+#############
+# ARGUMENTS #
+#############
 qemu_args=(
   # Uses the macOS Hypervisor
   -accel hvf
@@ -26,8 +35,12 @@ qemu_args=(
   -device virtio-gpu-pci,addr=0x2
   # Slot 3 - USB card
   -device qemu-xhci,addr=0x3
+  # Slot 4 - Audio
+  -audiodev coreaudio,id=audio0
+  -device intel-hda,addr=0x4
+  -device hda-output,audiodev=audio0
   # Display settings
-  -display default
+  -display cocoa,show-cursor=off
   # USB keyboard and mouse
   -device usb-kbd
   # USB tablet for better mouse handling
@@ -36,20 +49,21 @@ qemu_args=(
   -netdev user,id=net0,hostfwd=tcp::2222-:22
   # Shared Folder
   -virtfs local,path=../../share,mount_tag=share,security_model=none,id=share,readonly=off
-  -virtfs local,path=../../../dotfiles,mount_tag=dotfiles,security_model=none,id=dotfiles,readonly=off
-  -virtfs local,path=../../../features,mount_tag=features,security_model=none,id=features,readonly=off
   # Installation ISO
   -cdrom ubuntu-24.04.4-live-server-arm64.iso
 )
 
-echo ""
-echo "-----------------------------------"
-echo "VM Setup Instructions"
-echo ""
-echo "1. To enable passwordless sudo, run the following command:"
-printf 'echo -e "ALL\tALL = (ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/passwordless\n'
-echo ""
-echo "-----------------------------------"
+################
+# INSTRUCTIONS #
+################
+printf "\nGENERAL INSTRUCTIONS\n"
+cat ${SCRIPT_DIR}/README.md
+printf "\nSHARED FOLDER INSTRUCTIONS\n"
+cat ${SCRIPT_DIR}/../../share/README.md
+printf "\nSTARTING THE VM\n"
 
-# Start the VM
+
+############
+# START VM #
+############
 qemu-system-aarch64 "${qemu_args[@]}"

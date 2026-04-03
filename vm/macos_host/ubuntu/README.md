@@ -8,9 +8,12 @@ Download the ISO image and install it in a VM.
 User access with `user/password` and the user has sudo access.
 
 ### SSH server
-Check the option to install the ssh server. In alternative, install it `sudo apt-get install openssh-server`.
+
+Check the option to install the ssh server.
+In alternative, install it `sudo apt-get install openssh-server`.
 
 ### Passwordless sudo
+
 To enable passwordless sudo, run the following command:
 
 ```shell
@@ -22,9 +25,9 @@ echo -e "ALL    ALL = (ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/passwordles
 To create a custom user, with custom uid/gid, execute:
 
 ```shell
-export CUST_USR="fsferrara"
-export CUST_USR_UID="1000"
-export CUST_USR_GID="1000"
+export CUST_USR="user"
+export CUST_USR_UID="1010"
+export CUST_USR_GID="1010"
 
 sudo adduser --uid ${CUST_USR_UID} --gid ${CUST_USR_GID} --add_extra_groups ${CUST_USR}
 
