@@ -1,8 +1,8 @@
 {
-    "id": "my-feature-nerdfonts",
+    "id": "nerdfonts",
     "version": "1.0.0",
     "name": "my feature nerdfonts",
     "dependsOn": {
-        "my-feature-dotfiles": {}
+        "dotfiles": {}
     }
 }

@@ -1,8 +1,8 @@
 {
-    "id": "my-feature-vim",
+    "id": "vim",
     "version": "1.0.0",
     "name": "my feature vim",
     "dependsOn": {
-        "my-feature-dotfiles": {}
+        "dotfiles": {}
     }
 }

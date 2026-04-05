@@ -1,8 +1,8 @@
 {
-    "id": "my-feature-fpc",
+    "id": "fpc",
     "version": "1.0.0",
     "name": "my feature fpc",
     "dependsOn": {
-        "my-feature-dotfiles": {}
+        "dotfiles": {}
     }
 }

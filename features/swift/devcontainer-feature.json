@@ -1,8 +1,8 @@
 {
-    "id": "my-feature-swift",
+    "id": "swift",
     "version": "1.0.0",
     "name": "my feature swift",
     "dependsOn": {
-        "my-feature-dotfiles": {}
+        "dotfiles": {}
     }
 }

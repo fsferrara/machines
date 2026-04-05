@@ -21,14 +21,14 @@
     "./private": {}
   },
   "overrideFeatureInstallOrder": [
-    "my-feature-dotfiles",
-    "my-feature-git",
-    "my-feature-ssh",
-    "my-feature-zsh",
-    "my-feature-tmux",
-    "my-feature-gh",
-    "my-feature-vim",
-    "my-feature-secrets"
+    "./dotfiles",
+    "./features/git",
+    "./features/ssh",
+    "./features/zsh",
+    "./features/tmux",
+    "./features/gh",
+    "./features/vim",
+    "./private"
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/home/user/workspace",

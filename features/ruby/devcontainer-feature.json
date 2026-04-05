@@ -1,8 +1,8 @@
 {
-    "id": "my-feature-ruby",
+    "id": "ruby",
     "version": "1.0.0",
     "name": "my feature ruby",
     "dependsOn": {
-        "my-feature-dotfiles": {}
+        "dotfiles": {}
     }
 }

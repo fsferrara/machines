@@ -1,8 +1,8 @@
 {
-    "id": "my-feature-docker",
+    "id": "docker",
     "version": "1.0.0",
     "name": "my feature docker",
     "dependsOn": {
-        "my-feature-dotfiles": {}
+        "dotfiles": {}
     }
 }

@@ -1,8 +1,8 @@
 {
-    "id": "my-feature-gh",
+    "id": "gh",
     "version": "1.0.0",
     "name": "my feature gh",
     "dependsOn": {
-        "my-feature-dotfiles": {}
+        "dotfiles": {}
     }
 }

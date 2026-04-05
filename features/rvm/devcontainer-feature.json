@@ -1,8 +1,8 @@
 {
-    "id": "my-feature-rvm",
+    "id": "rvm",
     "version": "1.0.0",
     "name": "my feature rvm",
     "dependsOn": {
-        "my-feature-dotfiles": {}
+        "dotfiles": {}
     }
 }
