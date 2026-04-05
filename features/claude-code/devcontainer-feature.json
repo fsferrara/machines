@@ -1,8 +1,8 @@
 {
     "id": "my-feature-claude-code",
     "version": "1.0.0",
-    "name": "My Feature CLAUDE CODE",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature claude-code",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

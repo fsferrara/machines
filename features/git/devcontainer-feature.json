@@ -1,8 +1,8 @@
 {
     "id": "my-feature-git",
     "version": "1.0.0",
-    "name": "My Feature Git",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature git",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

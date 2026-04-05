@@ -1,8 +1,8 @@
 {
     "id": "my-feature-ruby",
     "version": "1.0.0",
-    "name": "My Feature RUBY",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature ruby",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

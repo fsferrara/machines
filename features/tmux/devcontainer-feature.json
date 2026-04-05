@@ -1,8 +1,8 @@
 {
     "id": "my-feature-tmux",
     "version": "1.0.0",
-    "name": "My Feature TMUX",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature tmux",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

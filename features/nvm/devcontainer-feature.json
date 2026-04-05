@@ -1,8 +1,8 @@
 {
     "id": "my-feature-nvm",
     "version": "1.0.0",
-    "name": "My Feature NVM",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature nvm",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

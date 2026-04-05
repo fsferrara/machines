@@ -1,8 +1,8 @@
 {
     "id": "my-feature-ssh",
     "version": "1.0.0",
-    "name": "My Feature SSH",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature ssh",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

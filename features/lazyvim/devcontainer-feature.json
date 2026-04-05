@@ -1,8 +1,8 @@
 {
     "id": "my-feature-lazyvim",
     "version": "1.0.0",
-    "name": "My Feature LAZYVIM",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature lazyvim",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

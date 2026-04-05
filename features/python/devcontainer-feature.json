@@ -1,8 +1,8 @@
 {
     "id": "my-feature-python",
     "version": "1.0.0",
-    "name": "My Feature PYTHON",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature python",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

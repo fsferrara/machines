@@ -1,8 +1,8 @@
 {
     "id": "my-feature-mpv",
     "version": "1.0.0",
-    "name": "My Feature MPV",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature mpv",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

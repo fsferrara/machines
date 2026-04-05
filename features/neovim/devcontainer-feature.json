@@ -1,8 +1,8 @@
 {
     "id": "my-feature-neovim",
     "version": "1.0.0",
-    "name": "My Feature NEOVIM",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature neovim",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }

@@ -1,8 +1,8 @@
 {
     "id": "my-feature-qemu",
     "version": "1.0.0",
-    "name": "My Feature QEMU",
-    "installsAfter": [
-        "my-feature-dotfiles"
-    ]
+    "name": "my feature qemu",
+    "dependsOn": {
+        "my-feature-dotfiles": {}
+    }
 }
