@@ -6,13 +6,13 @@ Here is a generic dev container containing my configuration.
 
 This dev container uses locally referenced Features from `devcontainer.json`.
 
-To satisfy the Dev Container Feature layout requirements, `.devcontainer/features/` is a real directory containing one direct symbolic link for each feature in the repository-level `features/` folder.
+To satisfy the Dev Container Feature layout requirements, each locally referenced feature is exposed as a direct entry under `.devcontainer/`.
 
 The helper script [create_feature_links.sh](create_feature_links.sh) rebuilds those links:
 
-- it replaces `.devcontainer/features` if it is a single symlink
-- it recreates `.devcontainer/features` as a normal directory
-- it adds one direct symlink per feature, such as `./features/git`
+- it removes the old `.devcontainer/features` directory or symlink
+- it removes previously generated feature symlinks from `.devcontainer/`
+- it adds one direct symlink per feature, such as `./git`
 
 ## Summary: Locally Referenced Features
 
@@ -21,10 +21,10 @@ Per the Dev Container documentation, a Feature can be referenced from a local fo
 Key constraints:
 
 - the project must have a `.devcontainer/` folder at the workspace root
-- the Feature source must live inside a subfolder of `.devcontainer/`
+- the Feature source must live inside a direct subfolder of `.devcontainer/`
 - the subfolder name must match the Feature `id`
 - Features must be referenced with a relative path, not an absolute path
 - each Feature folder must contain at least `devcontainer-feature.json` and `install.sh`
-- paths must use Unix-style syntax like `./features/git`, even on non-Unix hosts
+- paths must use Unix-style syntax like `./git`, even on non-Unix hosts
 
-In this repository, the effective local references used by [devcontainer.json](devcontainer.json) are made valid by creating direct links under `.devcontainer/features/` that point to the actual feature implementations in the top-level `features/` directory.
+In this repository, the effective local references used by [devcontainer.json](devcontainer.json) are made valid by creating direct symlinks in `.devcontainer/` that point to the actual feature implementations in the top-level `features/` directory.
