@@ -19,4 +19,4 @@ source "$SCRIPT_DIR/qemu-common_config"
 # =============================================================================
 
 echo -e "\n\n🔌  Executing command on ${GUEST_USER}@${GUEST_IP}...\n";
-ssh ${GUEST_USER}@"${GUEST_IP}" -p ${GUEST_SSH_PORT} "$@"
+sshpass -p "${GUEST_PASSWORD}" ssh ${GUEST_USER}@"${GUEST_IP}" -p ${GUEST_SSH_PORT} "$@"

@@ -1,11 +1,14 @@
 #! /usr/bin/env sh
 
+set -e
+set -u
+
 
 ##########
 # CONFIG #
 ##########
-CMD_UPDATE="sudo apt update"
-CMD_INSTALL="sudo apt install -y"
+CMD_UPDATE="brew update"
+CMD_INSTALL="brew install"
 
 
 ##########
@@ -19,8 +22,8 @@ ${CMD_UPDATE}
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-${CMD_INSTALL} build-essential fpc
-#${CMD_INSTALL} lazarus
+#${CMD_INSTALL} openssh
+${CMD_INSTALL} sshpass
 
 
 ########

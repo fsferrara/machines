@@ -19,6 +19,13 @@ if [ -z "${GUEST_USER:-}" ]; then
 fi
 echo -e "${PRNT_PREFIX} [ENV] GUEST_USER \t${PRNT_SEP} ${GUEST_USER}"
 
+# GUEST_PASSWORD
+if [ -z "${GUEST_PASSWORD:-}" ]; then
+    echo -e "${PRNT_PREFIX} [ENV] GUEST_PASSWORD not set. Using default value."
+    export GUEST_PASSWORD="password"
+fi
+echo -e "${PRNT_PREFIX} [ENV] GUEST_PASSWORD \t${PRNT_SEP} ${GUEST_PASSWORD}"
+
 # GUEST_IP
 if [ -z "${GUEST_IP:-}" ]; then
     echo -e "${PRNT_PREFIX} [ENV] GUEST_IP not set. Using default value."
