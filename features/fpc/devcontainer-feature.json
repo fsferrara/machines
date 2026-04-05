@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "name": "my feature fpc",
     "dependsOn": {
-        "dotfiles": {}
+        "./dotfiles": {}
     }
 }

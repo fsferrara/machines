@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "name": "my feature vim",
     "dependsOn": {
-        "dotfiles": {}
+        "./dotfiles": {}
     }
 }
