@@ -3,12 +3,12 @@
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
-      "REMOTE_USER": "fsferrara"
+      "REMOTE_USER": "user"
     }
   },
-  "remoteUser": "fsferrara",
+  "remoteUser": "user",
   "containerEnv": {
-    "GIT_USER": "fsferrara"
+    "GIT_USER": "user"
   },
   "features": {
     "./dotfiles": {},
@@ -19,11 +19,11 @@
     "./features/gh": {},
     "./features/vim": {}
   },
-  "workspaceMount": "source=${localWorkspaceFolder},target=/home/fsferrara/workspace,type=bind,consistency=delegated",
-  "workspaceFolder": "/home/fsferrara/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind,consistency=delegated",
+  "workspaceFolder": "/home/user/workspace",
   "mounts": [
-    "source=devcontainer-home,target=/home/fsferrara,type=volume"
+    "source=devcontainer-home,target=/home/user,type=volume"
   ],
-  "postStartCommand": "echo '[devcontainer] user: fsferrara'",
+  "postStartCommand": "echo '[devcontainer] user: user'",
   "waitFor": "postStartCommand"
 }

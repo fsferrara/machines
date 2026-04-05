@@ -36,7 +36,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # User configuration
-ARG USERNAME=fsferrara
+ARG USERNAME=user
 ARG USER_UID=1010
 ARG USER_GID=1010
 RUN groupadd --gid "${USER_GID}" "${USERNAME}"

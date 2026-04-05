@@ -24,7 +24,7 @@ With `security_model=none` the guest writes files with the same permissions as t
 I usually create a VM user with the same UID and GID as the host user, so that permissions are consistent between host and guest.
 
 ```shell
-export USERNAME=fsferrara
+export USERNAME=user
 export USER_UID=1010
 export USER_GID=1010
 groupadd --gid "${USER_GID}" "${USERNAME}"
