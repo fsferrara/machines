@@ -1,8 +1,5 @@
 {
     "id": "fpc",
     "version": "1.0.0",
-    "name": "my feature fpc",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature fpc"
 }

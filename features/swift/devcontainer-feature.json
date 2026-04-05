@@ -1,8 +1,5 @@
 {
     "id": "swift",
     "version": "1.0.0",
-    "name": "my feature swift",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature swift"
 }

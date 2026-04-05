@@ -1,8 +1,5 @@
 {
     "id": "mpv",
     "version": "1.0.0",
-    "name": "my feature mpv",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature mpv"
 }

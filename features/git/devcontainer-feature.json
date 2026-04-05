@@ -1,8 +1,5 @@
 {
     "id": "git",
     "version": "1.0.0",
-    "name": "my feature git",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature git"
 }

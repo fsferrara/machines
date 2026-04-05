@@ -1,8 +1,5 @@
 {
     "id": "qemu",
     "version": "1.0.0",
-    "name": "my feature qemu",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature qemu"
 }

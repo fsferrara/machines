@@ -1,8 +1,5 @@
 {
     "id": "zsh",
     "version": "1.0.0",
-    "name": "my feature zsh",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature zsh"
 }

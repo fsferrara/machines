@@ -1,8 +1,5 @@
 {
     "id": "claude-code",
     "version": "1.0.0",
-    "name": "my feature claude-code",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature claude-code"
 }

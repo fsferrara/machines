@@ -1,8 +1,5 @@
 {
     "id": "gh",
     "version": "1.0.0",
-    "name": "my feature gh",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature gh"
 }

@@ -1,8 +1,5 @@
 {
     "id": "ruby",
     "version": "1.0.0",
-    "name": "my feature ruby",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature ruby"
 }

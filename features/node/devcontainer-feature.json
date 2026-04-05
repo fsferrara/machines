@@ -1,8 +1,5 @@
 {
     "id": "node",
     "version": "1.0.0",
-    "name": "my feature node",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature node"
 }

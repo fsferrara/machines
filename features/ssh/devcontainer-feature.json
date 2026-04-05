@@ -1,8 +1,5 @@
 {
     "id": "ssh",
     "version": "1.0.0",
-    "name": "my feature ssh",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature ssh"
 }

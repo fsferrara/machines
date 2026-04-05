@@ -1,8 +1,5 @@
 {
     "id": "neovim",
     "version": "1.0.0",
-    "name": "my feature neovim",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature neovim"
 }

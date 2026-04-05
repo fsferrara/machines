@@ -1,8 +1,5 @@
 {
     "id": "python",
     "version": "1.0.0",
-    "name": "my feature python",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature python"
 }

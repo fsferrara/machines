@@ -1,8 +1,5 @@
 {
     "id": "tmux",
     "version": "1.0.0",
-    "name": "my feature tmux",
-    "dependsOn": {
-        "./dotfiles": {}
-    }
+    "name": "my feature tmux"
 }
