@@ -1,8 +1,5 @@
 {
     "id": "my-feature-dotfiles",
     "version": "1.0.0",
-    "name": "my feature dotfiles",
-    "dependsOn": {
-        "my-feature-dotfiles": {}
-    }
+    "name": "my feature dotfiles"
 }
