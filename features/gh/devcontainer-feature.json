@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "name": "My Feature GH",
     "installsAfter": [
-        "dotfiles"
+        "my-feature-dotfiles"
     ]
 }

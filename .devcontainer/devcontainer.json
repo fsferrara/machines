@@ -17,7 +17,8 @@
     "./features/zsh": {},
     "./features/tmux": {},
     "./features/gh": {},
-    "./features/vim": {}
+    "./features/vim": {},
+    "./private": {}
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/home/user/workspace",
