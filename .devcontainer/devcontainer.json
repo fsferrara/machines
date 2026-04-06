@@ -12,22 +12,22 @@
   },
   "features": {
     "./dotfiles": {},
-    "./git": {},
-    "./ssh": {},
-    "./zsh": {},
-    "./tmux": {},
-    "./gh": {},
-    "./vim": {},
+    "./features/git": {},
+    "./features/ssh": {},
+    "./features/zsh": {},
+    "./features/tmux": {},
+    "./features/gh": {},
+    "./features/vim": {},
     "./private": {}
   },
   "overrideFeatureInstallOrder": [
     "./dotfiles",
-    "./git",
-    "./ssh",
-    "./zsh",
-    "./tmux",
-    "./gh",
-    "./vim",
+    "./features/git",
+    "./features/ssh",
+    "./features/zsh",
+    "./features/tmux",
+    "./features/gh",
+    "./features/vim",
     "./private"
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind,consistency=delegated",
@@ -35,6 +35,6 @@
   "mounts": [
     "source=devcontainer-home,target=/home/user,type=volume"
   ],
-  "postStartCommand": "echo '[devcontainer] user: user'",
+  "postStartCommand": "echo '[devcontainer] user/password'",
   "waitFor": "postStartCommand"
 }
