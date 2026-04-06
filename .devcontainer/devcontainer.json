@@ -18,6 +18,12 @@
     "./features/tmux": {},
     "./features/gh": {},
     "./features/vim": {},
+    "./features/node": {},
+    "./features/fpc": {},
+    "./features/lazyvim": {},
+    "./features/python": {},
+    "./features/rvm": {},
+    "./features/claude-code": {},
     "./private": {}
   },
   "overrideFeatureInstallOrder": [
@@ -28,12 +34,22 @@
     "./features/tmux",
     "./features/gh",
     "./features/vim",
+    "./features/node",
+    "./features/fpc",
+    "./features/lazyvim",
+    "./features/python",
+    "./features/rvm",
+    "./features/claude-code",
     "./private"
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/home/user/workspace",
   "mounts": [
-    "source=devcontainer-home,target=/home/user,type=volume"
+    "source=devcontainer-home,target=/home/user,type=volume",
+    "source=${localEnv:HOME}/github,target=/home/user/github,type=bind,consistency=delegated",
+    "source=${localEnv:HOME}/work,target=/home/user/work,type=bind,consistency=delegated",
+    "source=${localEnv:HOME}/tools,target=/home/user/tools,type=bind,consistency=delegated",
+    "source=${localEnv:HOME}/tmp,target=/home/user/tmp,type=bind,consistency=delegated"
   ],
   "postStartCommand": "echo '[devcontainer] user/password'",
   "waitFor": "postStartCommand"
