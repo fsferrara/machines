@@ -1,5 +1,8 @@
 #! /usr/bin/env sh
 
+set -e
+set -u
+
 
 ##########
 # CONFIG #
@@ -12,14 +15,18 @@ CMD_INSTALL="brew install"
 # UPDATE #
 ##########
 printf '\n\n🛸 Updading...\n'
-${CMD_UPDATE}
+# ${CMD_UPDATE}
 
 
 ###########
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-${CMD_INSTALL} mpv
+curl -O https://download.swift.org/swiftly/darwin/swiftly.pkg && \
+installer -pkg swiftly.pkg -target CurrentUserHomeDirectory && \
+~/.swiftly/bin/swiftly init --quiet-shell-followup && \
+. "${SWIFTLY_HOME_DIR:-$HOME/.swiftly}/env.sh" && \
+hash -r
 
 
 ########
