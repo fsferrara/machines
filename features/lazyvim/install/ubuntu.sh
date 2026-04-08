@@ -6,7 +6,6 @@
 ##########
 CMD_UPDATE="sudo apt update"
 CMD_INSTALL="sudo apt install -y"
-CMD_PACK_INSTALL="sudo snap install --classic "
 
 
 ##########
@@ -20,7 +19,7 @@ ${CMD_UPDATE}
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-${CMD_PACK_INSTALL} nvim
+${CMD_INSTALL} neovim
 ${CMD_INSTALL} git
 ${CMD_INSTALL} fzf
 ${CMD_INSTALL} ripgrep
