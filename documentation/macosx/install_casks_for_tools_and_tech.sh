@@ -14,7 +14,6 @@ install_casks_for_tools_and_tech() {
   #brew install --cask intellij-idea # replaced by jetbrains-toolbox
   #brew install --cask intellij-idea-ce # replaced by jetbrains-toolbox
   brew install --cask lm-studio
-  brew install --cask docker
   brew install --cask lens
   brew install --cask insomnia
   #brew install --cask postman #stick with insomnia
@@ -27,6 +26,10 @@ install_casks_for_tools_and_tech() {
   #brew install --cask microsoft-edge
   #brew install --cask opera
   #brew install --cask alacritty
+
+  # Docker
+  brew install docker
+  brew install --cask docker-desktop
 
   # [CASK] Collaboration
   #brew install --cask zoom #use self-service
