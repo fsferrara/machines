@@ -22,8 +22,10 @@ ${CMD_UPDATE}
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-${CMD_INSTALL} python3 python3-pip
 ${CMD_INSTALL} pipx
+pipx install uv
+
+uv tool install -p 3.13 serena-agent@latest --prerelease=allow
 
 
 ########
