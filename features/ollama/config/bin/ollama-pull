@@ -1,0 +1,6 @@
+#! /usr/bin/env sh
+
+set -e
+set -u
+
+ollama pull ${OLLAMA_MODEL_DEFAULT}
