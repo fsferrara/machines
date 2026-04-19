@@ -2,9 +2,6 @@
 # OLLAMA CONFIGURATION
 ################################################################################
 
-# Models
-export OLLAMA_MODEL_DEFAULT=qwen3.6
-
 # Bind to all interfaces
 export OLLAMA_HOST=0.0.0.0
 
