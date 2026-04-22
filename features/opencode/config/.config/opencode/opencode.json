@@ -1,11 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "ollama/qwen3.6",
+  "model": "ollama/custom",
   "provider": {
     "ollama": {
       "models": {
-        "qwen3.6": {
-          "name": "qwen3.6"
+        "custom": {
+          "name": "custom"
         }
       },
       "name": "Ollama",

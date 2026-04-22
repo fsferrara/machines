@@ -6,7 +6,7 @@ set -u
 unset CLAUDE_CODE_USE_BEDROCK
 unset ANTHROPIC_AUTH_TOKEN
 
-export OLLAMA_MODEL_DEFAULT=qwen3.6
+export OLLAMA_MODEL_DEFAULT=custom
 
 export ANTHROPIC_BASE_URL=http://localhost:11434
 export ANTHROPIC_API_KEY=ollama

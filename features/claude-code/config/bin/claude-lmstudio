@@ -3,12 +3,12 @@
 set -e
 set -u
 
-export CLAUDE_CODE_USE_BEDROCK="0"
+unset CLAUDE_CODE_USE_BEDROCK
+unset ANTHROPIC_API_KEY
 
 export LMSTUDIO_MODEL_DEFAULT="qwen/qwen3.6-35b-a3b"
 
 export ANTHROPIC_BASE_URL=http://localhost:1234
 export ANTHROPIC_AUTH_TOKEN=lmstudio
-unset ANTHROPIC_API_KEY
 
 claude --model ${LMSTUDIO_MODEL_DEFAULT}
