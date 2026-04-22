@@ -22,6 +22,7 @@
     "./features/vim": {},
     "./features/lazyvim": {},
     "./features/aws": {},
+    "./features/serena": {},
     "./features/claude-code": {},
     "./features/swiftly": {},
     "./private": {}
@@ -38,6 +39,7 @@
     "./features/vim",
     "./features/lazyvim",
     "./features/aws",
+    "./features/serena",
     "./features/claude-code",
     "./features/swiftly",
     "./private"
