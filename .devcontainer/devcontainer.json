@@ -24,6 +24,7 @@
     "./features/aws": {},
     "./features/serena": {},
     "./features/claude-code": {},
+    "./features/opencode": {},
     "./features/swiftly": {},
     "./private": {}
   },
@@ -41,6 +42,7 @@
     "./features/aws",
     "./features/serena",
     "./features/claude-code",
+    "./features/opencode",
     "./features/swiftly",
     "./private"
   ],

@@ -25,7 +25,7 @@ printf '\n\n🚀 Installing...\n'
 ${CMD_INSTALL} pipx
 pipx install uv
 
-uv tool install -p 3.13 serena-agent@latest --prerelease=allow
+${HOME}/.local/bin/uv tool install -p 3.13 serena-agent@latest --prerelease=allow
 
 
 ########

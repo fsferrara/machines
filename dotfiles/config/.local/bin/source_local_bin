@@ -1,0 +1,13 @@
+#! /usr/bin/env sh
+
+set -e
+set -u
+
+
+## User private bin
+BIN_PRIVATE="${HOME}/.local/bin"
+if [ -d ${BIN_PRIVATE} ]; then
+   PATH="${BIN_PRIVATE}:${PATH}"
+fi
+
+export PATH
