@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := default
 
-MODEL ?= qwen
-BASE_MODEL ?= qwen3.6
+MODEL ?= custom
+BASE_MODEL ?= "qwen3.5:9b"
 MODELFILE ?= Modelfile
 
 OLLAMA_HOST ?= 0.0.0.0

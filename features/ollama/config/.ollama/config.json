@@ -1,0 +1,15 @@
+{
+  "integrations": {
+    "claude": {
+      "models": [
+        "custom"
+      ]
+    },
+    "opencode": {
+      "models": [
+        "custom"
+      ]
+    }
+  },
+  "last_selection": "opencode"
+}
