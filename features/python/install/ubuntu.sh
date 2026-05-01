@@ -22,7 +22,7 @@ ${CMD_UPDATE}
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-${CMD_INSTALL} python3 python3-pip
+${CMD_INSTALL} python3 python3-pip python3-dev
 ${CMD_INSTALL} pipx
 
 
