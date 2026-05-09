@@ -25,7 +25,6 @@
     "./features/serena": {},
     "./features/claude-code": {},
     "./features/opencode": {},
-    "./features/swiftly": {},
     "./private": {}
   },
   "overrideFeatureInstallOrder": [
@@ -43,7 +42,6 @@
     "./features/serena",
     "./features/claude-code",
     "./features/opencode",
-    "./features/swiftly",
     "./private"
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind,consistency=delegated",
