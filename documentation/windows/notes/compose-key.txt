@@ -7,4 +7,5 @@ You can use United states-International keyboard layout, You can type accented c
 ' + c = ç
 " + o = ö
 
-As a programmer, dead keys are not practical since with such I have to type ` + space to get the ` character, etc. I think a compose key is better. To write something like a book, though, this is good.
+As a programmer, dead keys are not practical since with such I have to type ` + space to get the ` character, etc.
+I think a compose key is better. To write something like a book, though, this is good.
