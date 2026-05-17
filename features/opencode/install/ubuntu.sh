@@ -22,7 +22,6 @@ CMD_INSTALL="sudo apt install -y"
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-# ${CMD_INSTALL} ollama
 curl -fsSL https://opencode.ai/install | bash
 
 
