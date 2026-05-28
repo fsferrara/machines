@@ -31,6 +31,11 @@ install_casks_for_tools_and_tech() {
   brew install docker
   brew install --cask docker-desktop
 
+  # AI
+  brew install --cask claude # claude desktop
+  brew install --cask cmux
+  brew install --cask warp
+
   # [CASK] Collaboration
   #brew install --cask zoom #use self-service
   brew install --cask slack
