@@ -3,8 +3,11 @@
 ################################################################################
 
 # Alias
-alias tmux="env TERM=screen-256color tmux"
-alias ta="env TERM=screen-256color tmux new -A -s '0'"
+alias tmux-list="tmux ls"
+alias tmux-attach="tmux attach -t"
+alias tmux-new="tmux new -s"
+alias tmux-kill="tmux kill-session -t"
+alias tmux-kill-all="tmux kill-server"
 
 # Misc
 export TERM="screen-256color"
