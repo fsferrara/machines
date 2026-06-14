@@ -1,0 +1,29 @@
+# Font Settings (ensure these fonts are installed on your system)
+font-family = "MesloLGM Nerd Font Mono"
+font-size = 14
+
+# Theme
+theme = TokyoNight Storm
+
+# Window Settings
+#window-decoration = false
+#background-opacity = 0.90
+#background-blur-radius = 20
+
+# Scrolling and Selection
+scrollback-limit = 10000
+
+# macOS Specific Tweaks (ignored on Linux automatically)
+#macos-titlebar-style = "hidden"
+macos-option-as-alt = true
+
+# Linux Specific Tweaks (ignored on macOS automatically)
+gtk-single-instance = true
+
+# Custom Keybindings
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+shift+t=new_tab
+
+# Shaders
+custom-shader = ~/.config/ghostty/shaders/bloom.glsl
+
