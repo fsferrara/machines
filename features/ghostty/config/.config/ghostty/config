@@ -6,11 +6,13 @@ font-size = 14
 theme = TokyoNight Storm
 
 # Window Settings
-#window-decoration = false
-#background-opacity = 0.90
-#background-blur-radius = 20
+window-theme = dark
+window-show-tab-bar = always
+window-new-tab-position = current
+window-subtitle = working-directory
 
 # Scrolling and Selection
+scrollbar = never
 scrollback-limit = 10000
 
 # macOS Specific Tweaks (ignored on Linux automatically)
@@ -23,6 +25,11 @@ gtk-single-instance = true
 # Custom Keybindings
 keybind = ctrl+shift+n=new_window
 keybind = ctrl+shift+t=new_tab
+
+# Mouse
+mouse-reporting = true
+# press SHIFT to use system mouse capabilities
+mouse-shift-capture = false
 
 # Shaders
 custom-shader = ~/.config/ghostty/shaders/bloom.glsl
