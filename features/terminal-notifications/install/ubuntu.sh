@@ -4,6 +4,19 @@ set -e
 set -u
 
 
+########
+# DEPS #
+########
+CMD_UPDATE="sudo apt update"
+CMD_INSTALL="sudo apt install -y"
+
+printf '\n\n🛸 Updading...\n'
+${CMD_UPDATE}
+
+printf '\n\n🚀 Dependencies...\n'
+${CMD_INSTALL} libnotify-bin pulseaudio-utils
+
+
 #############
 # BOOTSTRAP #
 #############

@@ -9,8 +9,6 @@
 #
 # Usage: ./notify-linux.sh "Your message" [sound_type]
 # Sound types: input, complete, default, none
-#
-# Source: https://startupbros.com/terminal-notifications/
 
 MESSAGE="${1:-Terminal notification}"
 SOUND_TYPE="${2:-default}"
