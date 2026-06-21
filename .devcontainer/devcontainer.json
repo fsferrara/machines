@@ -24,7 +24,8 @@
     "./features/aws": {},
     "./features/claude-code": {},
     "./features/opencode": {},
-    "./private": {}
+    "./private": {},
+    "./private-work": {}
   },
   "overrideFeatureInstallOrder": [
     "./dotfiles",
@@ -40,7 +41,8 @@
     "./features/aws",
     "./features/claude-code",
     "./features/opencode",
-    "./private"
+    "./private",
+    "./private-work"
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/home/user/workspace",
