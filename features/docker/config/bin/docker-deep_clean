@@ -11,6 +11,7 @@ docker image rm -f $(docker images -q)
 docker builder prune -a
 docker image prune -a
 docker system prune -a
+docker volume prune -a
 
 docker buildx history rm --all
 docker buildx prune
