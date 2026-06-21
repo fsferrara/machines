@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 # Build arguments - builds in non-interactive mode
 ARG DEBIAN_FRONTEND=noninteractive
