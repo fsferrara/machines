@@ -1,4 +1,4 @@
-let mapleader='\'       " default leader key
+let mapleader=' '       " default leader key
 
 so ~/.vim/conf/plugins.vim
 
