@@ -6,6 +6,15 @@
 This is an [EditorConfig][] plugin for Vim. This plugin can be found on both
 [GitHub][] and [Vim online][].
 
+## Bundled versions
+
+Depending on which version of Vim or Neovim you are using, you might not need to
+specifically install this plugin at all:
+
+* Vim 9.0.1799 and above comes bundled with [a recent stable version of this
+  plugin][].
+* Neovim 0.9 and above comes with [its own Lua-based implementation][].
+
 ## Installation
 
 To install this plugin, you can use one of the following ways:
@@ -14,8 +23,8 @@ To install this plugin, you can use one of the following ways:
 
 Download the [archive][] and extract it into your Vim runtime directory
 (`~/.vim` on UNIX/Linux and `$VIM_INSTALLATION_FOLDER\vimfiles` on windows).
-You should have 3 sub-directories in this runtime directory now: "autoload",
-"doc" and "plugin".
+You should have 4 sub-directories in this runtime directory now: "autoload",
+"doc", "ftdetect" and "plugin".
 
 ### Install as Vim8 plugin
 
@@ -62,6 +71,12 @@ The core included the code to parse `.editorconfig` files.
 This plugin **includes** the core, so you don't need to download the
 core separately.
 
+### Version Supported
+
+Vim v9.1.0543 and Neovim v0.10.x or earlier versions: This plugin after version
+1.2.1 will not automatically set `.editorconfig` filetype to `dosini`. Please
+install version 1.2.1 of this plugin if you would like to retain this behavior.
+
 ## Supported properties
 
 The EditorConfig Vim plugin supports the following EditorConfig [properties][]:
@@ -75,6 +90,7 @@ The EditorConfig Vim plugin supports the following EditorConfig [properties][]:
   or [PreserveNoEOL][] is required for this property)
 * `trim_trailing_whitespace`
 * `max_line_length`
+* `spelling_language`
 * `root` (only used by EditorConfig core)
 
 ## Selected Options
@@ -133,11 +149,13 @@ You are able to disable any supported EditorConfig properties.
 Feel free to submit bugs, feature requests, and other issues to the
 [issue tracker][]. Be sure you have read the [contribution guidelines][]!
 
-[EditorConfig]: http://editorconfig.org
+[EditorConfig]: https://editorconfig.org
 [GitHub]: https://github.com/editorconfig/editorconfig-vim
 [PreserveNoEOL]: http://www.vim.org/scripts/script.php?script_id=4550
 [Tim Pope's fugitive]: https://github.com/tpope/vim-fugitive
 [Vim online]: http://www.vim.org/scripts/script.php?script_id=3934
+[a recent stable version of this plugin]: https://github.com/vim/vim/pull/12902
+[its own Lua-based implementation]: https://github.com/neovim/neovim/commit/ab9a2c49253413dbbb31756a3eeddb354a663035
 [Vundle]: https://github.com/gmarik/Vundle.vim
 [archive]: https://github.com/editorconfig/editorconfig-vim/archive/master.zip
 [contribution guidelines]: https://github.com/editorconfig/editorconfig/blob/master/CONTRIBUTING.md#submitting-an-issue

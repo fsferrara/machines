@@ -18,6 +18,7 @@ const (
 var (
 	consoleFlagsInput  = uint32(windows.ENABLE_VIRTUAL_TERMINAL_INPUT | windows.ENABLE_PROCESSED_INPUT | windows.ENABLE_EXTENDED_FLAGS)
 	consoleFlagsOutput = uint32(windows.ENABLE_VIRTUAL_TERMINAL_PROCESSING | windows.ENABLE_PROCESSED_OUTPUT | windows.DISABLE_NEWLINE_AUTO_RETURN)
+	counter            = uint64(0)
 )
 
 // IsLightRendererSupported checks to see if the Light renderer is supported
@@ -39,7 +40,7 @@ func IsLightRendererSupported() bool {
 	return canSetVt100
 }
 
-func (r *LightRenderer) defaultTheme() *ColorTheme {
+func (r *LightRenderer) DefaultTheme() *ColorTheme {
 	// the getenv check is borrowed from here: https://github.com/gdamore/tcell/commit/0c473b86d82f68226a142e96cc5a34c5a29b3690#diff-b008fcd5e6934bf31bc3d33bf49f47d8R178:
 	if !IsLightRendererSupported() || os.Getenv("ConEmuPID") != "" || os.Getenv("TCELL_TRUECOLOR") == "disable" {
 		return Default16
@@ -61,27 +62,11 @@ func (r *LightRenderer) initPlatform() error {
 	}
 	r.inHandle = uintptr(inHandle)
 
-	r.setupTerminal()
-
 	// channel for non-blocking reads. Buffer to make sure
 	// we get the ESC sets:
 	r.ttyinChannel = make(chan byte, 1024)
 
-	// the following allows for non-blocking IO.
-	// syscall.SetNonblock() is a NOOP under Windows.
-	go func() {
-		fd := int(r.inHandle)
-		b := make([]byte, 1)
-		for {
-			// HACK: if run from PSReadline, something resets ConsoleMode to remove ENABLE_VIRTUAL_TERMINAL_INPUT.
-			_ = windows.SetConsoleMode(windows.Handle(r.inHandle), consoleFlagsInput)
-
-			_, err := util.Read(fd, b)
-			if err == nil {
-				r.ttyinChannel <- b[0]
-			}
-		}
-	}()
+	r.setupTerminal()
 
 	return nil
 }
@@ -91,35 +76,71 @@ func (r *LightRenderer) closePlatform() {
 	windows.SetConsoleMode(windows.Handle(r.inHandle), r.origStateInput)
 }
 
-func openTtyIn() *os.File {
+func openTtyIn(ttyDefault string) (*os.File, error) {
 	// not used
-	return nil
+	return nil, nil
 }
 
-func (r *LightRenderer) setupTerminal() error {
-	if err := windows.SetConsoleMode(windows.Handle(r.outHandle), consoleFlagsOutput); err != nil {
-		return err
-	}
-	return windows.SetConsoleMode(windows.Handle(r.inHandle), consoleFlagsInput)
+func openTtyOut(ttyDefault string) (*os.File, error) {
+	return os.Stderr, nil
 }
 
-func (r *LightRenderer) restoreTerminal() error {
-	if err := windows.SetConsoleMode(windows.Handle(r.inHandle), r.origStateInput); err != nil {
-		return err
+func (r *LightRenderer) setupTerminal() {
+	windows.SetConsoleMode(windows.Handle(r.outHandle), consoleFlagsOutput)
+	windows.SetConsoleMode(windows.Handle(r.inHandle), consoleFlagsInput)
+
+	// The following allows for non-blocking IO.
+	// syscall.SetNonblock() is a NOOP under Windows.
+	current := counter
+	go func() {
+		fd := int(r.inHandle)
+		b := make([]byte, 1)
+		for {
+			if _, err := util.Read(fd, b); err == nil {
+				r.mutex.Lock()
+				// This condition prevents the goroutine from running after the renderer
+				// has been closed or paused.
+				if current != counter {
+					r.mutex.Unlock()
+					break
+				}
+				r.ttyinChannel <- b[0]
+				// HACK: if run from PSReadline, something resets ConsoleMode to remove ENABLE_VIRTUAL_TERMINAL_INPUT.
+				windows.SetConsoleMode(windows.Handle(r.inHandle), consoleFlagsInput)
+				r.mutex.Unlock()
+			}
+		}
+	}()
+}
+
+func (r *LightRenderer) restoreTerminal() {
+	r.mutex.Lock()
+	counter++
+	// We're setting ENABLE_VIRTUAL_TERMINAL_INPUT to allow escape sequences to be read during 'execute'.
+	// e.g. fzf --bind 'enter:execute:less {}'
+	windows.SetConsoleMode(windows.Handle(r.inHandle), r.origStateInput|windows.ENABLE_VIRTUAL_TERMINAL_INPUT)
+	windows.SetConsoleMode(windows.Handle(r.outHandle), r.origStateOutput)
+	r.mutex.Unlock()
+}
+
+func (r *LightRenderer) Size() TermSize {
+	var w, h int
+	var bufferInfo windows.ConsoleScreenBufferInfo
+	if err := windows.GetConsoleScreenBufferInfo(windows.Handle(r.outHandle), &bufferInfo); err != nil {
+		w = getEnv("COLUMNS", defaultWidth)
+		h = r.maxHeightFunc(getEnv("LINES", defaultHeight))
+
+	} else {
+		w = int(bufferInfo.Window.Right - bufferInfo.Window.Left)
+		h = r.maxHeightFunc(int(bufferInfo.Window.Bottom - bufferInfo.Window.Top))
 	}
-	return windows.SetConsoleMode(windows.Handle(r.outHandle), r.origStateOutput)
+	return TermSize{h, w, 0, 0}
 }
 
 func (r *LightRenderer) updateTerminalSize() {
-	var bufferInfo windows.ConsoleScreenBufferInfo
-	if err := windows.GetConsoleScreenBufferInfo(windows.Handle(r.outHandle), &bufferInfo); err != nil {
-		r.width = getEnv("COLUMNS", defaultWidth)
-		r.height = r.maxHeightFunc(getEnv("LINES", defaultHeight))
-
-	} else {
-		r.width = int(bufferInfo.Window.Right - bufferInfo.Window.Left)
-		r.height = r.maxHeightFunc(int(bufferInfo.Window.Bottom - bufferInfo.Window.Top))
-	}
+	size := r.Size()
+	r.width = size.Columns
+	r.height = size.Lines
 }
 
 func (r *LightRenderer) findOffset() (row int, col int) {
@@ -127,19 +148,36 @@ func (r *LightRenderer) findOffset() (row int, col int) {
 	if err := windows.GetConsoleScreenBufferInfo(windows.Handle(r.outHandle), &bufferInfo); err != nil {
 		return -1, -1
 	}
-	return int(bufferInfo.CursorPosition.X), int(bufferInfo.CursorPosition.Y)
+	return int(bufferInfo.CursorPosition.Y), int(bufferInfo.CursorPosition.X)
 }
 
-func (r *LightRenderer) getch(nonblock bool) (int, bool) {
-	if nonblock {
-		select {
-		case bc := <-r.ttyinChannel:
-			return int(bc), true
-		case <-time.After(timeoutInterval * time.Millisecond):
-			return 0, false
-		}
-	} else {
+func (r *LightRenderer) getch(cancellable bool, nonblock bool) (int, getCharResult) {
+	if !nonblock && !cancellable {
 		bc := <-r.ttyinChannel
-		return int(bc), true
+		return int(bc), getCharSuccess
+	}
+
+	var timeout <-chan time.Time
+	if nonblock {
+		timeout = time.After(timeoutInterval * time.Millisecond)
+	}
+
+	var cancel chan struct{}
+	if cancellable {
+		cancel = make(chan struct{})
+		r.setCancel(func() {
+			close(cancel)
+		})
+		defer r.setCancel(nil)
+	}
+
+	select {
+	case bc := <-r.ttyinChannel:
+		return int(bc), getCharSuccess
+	case <-cancel:
+		return 0, getCharCancelled
+	case <-timeout:
+		// NOTE: not really an error
+		return 0, getCharError
 	}
 }

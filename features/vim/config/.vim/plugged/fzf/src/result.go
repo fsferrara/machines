@@ -2,6 +2,7 @@ package fzf
 
 import (
 	"math"
+	"slices"
 	"sort"
 	"unicode"
 
@@ -15,6 +16,12 @@ type Offset [2]int32
 type colorOffset struct {
 	offset [2]int32
 	color  tui.ColorPair
+	match  bool
+	url    *url
+}
+
+func (co colorOffset) IsFullBgMarker(at int32) bool {
+	return at == co.offset[0] && at == co.offset[1] && co.color.Attr()&tui.FullBg > 0
 }
 
 type Result struct {
@@ -24,11 +31,9 @@ type Result struct {
 
 func buildResult(item *Item, offsets []Offset, score int) Result {
 	if len(offsets) > 1 {
-		sort.Sort(ByOrder(offsets))
+		slices.SortFunc(offsets, compareOffsets)
 	}
 
-	result := Result{item: item}
-	numChars := item.text.Length()
 	minBegin := math.MaxUint16
 	minEnd := math.MaxUint16
 	maxEnd := 0
@@ -36,12 +41,20 @@ func buildResult(item *Item, offsets []Offset, score int) Result {
 	for _, offset := range offsets {
 		b, e := int(offset[0]), int(offset[1])
 		if b < e {
-			minBegin = util.Min(b, minBegin)
-			minEnd = util.Min(e, minEnd)
-			maxEnd = util.Max(e, maxEnd)
+			minBegin = min(b, minBegin)
+			minEnd = min(e, minEnd)
+			maxEnd = max(e, maxEnd)
 			validOffsetFound = true
 		}
 	}
+
+	return buildResultFromBounds(item, score, minBegin, minEnd, maxEnd, validOffsetFound)
+}
+
+// buildResultFromBounds builds a Result from pre-computed offset bounds.
+func buildResultFromBounds(item *Item, score int, minBegin, minEnd, maxEnd int, validOffsetFound bool) Result {
+	result := Result{item: item}
+	numChars := item.text.Length()
 
 	for idx, criterion := range sortCriteria {
 		val := uint16(math.MaxUint16)
@@ -67,10 +80,24 @@ func buildResult(item *Item, offsets []Offset, score int) Result {
 			}
 		case byLength:
 			val = item.TrimLength()
+		case byPathname:
+			if validOffsetFound {
+				lastDelim := -1
+				s := item.text.ToString()
+				for i := len(s) - 1; i >= 0; i-- {
+					if s[i] == '/' || s[i] == '\\' {
+						lastDelim = i
+						break
+					}
+				}
+				if lastDelim <= minBegin {
+					val = util.AsUint16(minBegin - lastDelim)
+				}
+			}
 		case byBegin, byEnd:
 			if validOffsetFound {
 				whitePrefixLen := 0
-				for idx := 0; idx < numChars; idx++ {
+				for idx := range numChars {
 					r := item.text.Get(idx)
 					whitePrefixLen = idx
 					if idx == minBegin || !unicode.IsSpace(r) {
@@ -80,7 +107,7 @@ func buildResult(item *Item, offsets []Offset, score int) Result {
 				if criterion == byBegin {
 					val = util.AsUint16(minEnd - whitePrefixLen)
 				} else {
-					val = util.AsUint16(math.MaxUint16 - math.MaxUint16*(maxEnd-whitePrefixLen)/int(item.TrimLength()))
+					val = util.AsUint16(math.MaxUint16 - math.MaxUint16*(maxEnd-whitePrefixLen)/(int(item.TrimLength())+1))
 				}
 			}
 		}
@@ -102,21 +129,21 @@ func minRank() Result {
 	return Result{item: &minItem, points: [4]uint16{math.MaxUint16, 0, 0, 0}}
 }
 
-func (result *Result) colorOffsets(matchOffsets []Offset, theme *tui.ColorTheme, colBase tui.ColorPair, colMatch tui.ColorPair, current bool) []colorOffset {
+func (result *Result) colorOffsets(matchOffsets []Offset, nthOffsets []Offset, theme *tui.ColorTheme, colBase tui.ColorPair, colMatch tui.ColorPair, attrNth tui.Attr, nthOverlay tui.Attr, hidden bool) []colorOffset {
 	itemColors := result.item.Colors()
 
 	// No ANSI codes
-	if len(itemColors) == 0 {
-		var offsets []colorOffset
-		for _, off := range matchOffsets {
-			offsets = append(offsets, colorOffset{offset: [2]int32{off[0], off[1]}, color: colMatch})
+	if len(itemColors) == 0 && len(nthOffsets) == 0 {
+		offsets := make([]colorOffset, len(matchOffsets))
+		for i, off := range matchOffsets {
+			offsets[i] = colorOffset{offset: [2]int32{off[0], off[1]}, color: colMatch, match: true}
 		}
 		return offsets
 	}
 
 	// Find max column
 	var maxCol int32
-	for _, off := range matchOffsets {
+	for _, off := range append(matchOffsets, nthOffsets...) {
 		if off[1] > maxCol {
 			maxCol = off[1]
 		}
@@ -127,55 +154,95 @@ func (result *Result) colorOffsets(matchOffsets []Offset, theme *tui.ColorTheme,
 		}
 	}
 
-	cols := make([]int, maxCol)
+	type cellInfo struct {
+		index int
+		color bool
+		match bool
+		nth   bool
+		fbg   tui.Color
+	}
+
+	cols := make([]cellInfo, maxCol+1)
+	for idx := range cols {
+		cols[idx].fbg = -1
+	}
 	for colorIndex, ansi := range itemColors {
-		for i := ansi.offset[0]; i < ansi.offset[1]; i++ {
-			cols[i] = colorIndex + 1 // 1-based index of itemColors
+		if ansi.offset[0] == ansi.offset[1] && ansi.color.attr&tui.FullBg > 0 {
+			cols[ansi.offset[0]].fbg = ansi.color.lbg
+		} else {
+			for i := ansi.offset[0]; i < ansi.offset[1]; i++ {
+				cols[i] = cellInfo{colorIndex, true, false, false, cols[i].fbg}
+			}
 		}
 	}
 
 	for _, off := range matchOffsets {
 		for i := off[0]; i < off[1]; i++ {
-			// Negative of 1-based index of itemColors
-			// - The extra -1 means highlighted
-			cols[i] = cols[i]*-1 - 1
+			cols[i].match = true
 		}
 	}
 
-	// sort.Sort(ByOrder(offsets))
+	for _, off := range nthOffsets {
+		for i := off[0]; i < off[1]; i++ {
+			cols[i].nth = true
+		}
+	}
+
+	// slices.SortFunc(offsets, compareOffsets)
 
 	// Merge offsets
 	// ------------  ----  --  ----
 	//   ++++++++      ++++++++++
 	// --++++++++--  --++++++++++---
-	curr := 0
+	curr := cellInfo{0, false, false, false, -1}
 	start := 0
 	ansiToColorPair := func(ansi ansiOffset, base tui.ColorPair) tui.ColorPair {
+		if !theme.Colored {
+			// Ignore ANSI colors but keep the attributes. Retain the base
+			// colors (e.g. an overridden input-bg or list-bg) instead of
+			// resetting to the terminal default.
+			return tui.NewColorPair(base.Fg(), base.Bg(), ansi.color.attr).MergeAttr(base)
+		}
+		// fd --color always | fzf --ansi --delimiter / --nth -1 --color fg:dim:strip,nth:regular
+		if base.ShouldStripColors() {
+			return base
+		}
 		fg := ansi.color.fg
 		bg := ansi.color.bg
 		if fg == -1 {
-			if current {
-				fg = theme.Current.Color
-			} else {
-				fg = theme.Fg.Color
-			}
+			fg = colBase.Fg()
 		}
 		if bg == -1 {
-			if current {
-				bg = theme.DarkBg.Color
-			} else {
-				bg = theme.Bg.Color
-			}
+			bg = colBase.Bg()
 		}
-		return tui.NewColorPair(fg, bg, ansi.color.attr).MergeAttr(base)
+		return tui.NewColorPair(fg, bg, ansi.color.attr).WithUl(ansi.color.ul).MergeAttr(base)
 	}
+	fgAttr := tui.ColNormal.Attr()
+	nthAttrFinal := fgAttr.Merge(attrNth).Merge(nthOverlay)
+	nthBase := colBase.WithNewAttr(nthAttrFinal)
+
 	var colors []colorOffset
 	add := func(idx int) {
-		if curr != 0 && idx > start {
-			if curr < 0 {
-				color := colMatch
-				if curr < -1 && theme.Colored {
-					origColor := ansiToColorPair(itemColors[-curr-2], colMatch)
+		if curr.fbg >= 0 {
+			colors = append(colors, colorOffset{
+				offset: [2]int32{int32(start), int32(start)},
+				color:  tui.NewColorPair(-1, curr.fbg, tui.FullBg),
+				match:  false,
+				url:    nil})
+		}
+		if (curr.color || curr.nth || curr.match) && idx > start {
+			if curr.match {
+				var color tui.ColorPair
+				if curr.nth {
+					color = nthBase.Merge(colMatch)
+				} else {
+					color = colBase.Merge(colMatch)
+				}
+				var url *url
+				if curr.color {
+					ansi := itemColors[curr.index]
+					url = ansi.color.url
+					origColor := ansiToColorPair(ansi, colMatch)
 					// hl or hl+ only sets the foreground color, so colMatch is the
 					// combination of either [hl and bg] or [hl+ and bg+].
 					//
@@ -186,17 +253,40 @@ func (result *Result) colorOffsets(matchOffsets []Offset, theme *tui.ColorTheme,
 					//      echo -e "\x1b[42mfoo\x1b[mbar" | fzf --ansi --color bg+:1,hl+:-1:underline
 					if color.Fg().IsDefault() && origColor.HasBg() {
 						color = origColor
+						if curr.nth {
+							color = color.WithAttr((attrNth &^ tui.AttrRegular).Merge(nthOverlay))
+						}
 					} else {
 						color = origColor.MergeNonDefault(color)
 					}
 				}
 				colors = append(colors, colorOffset{
-					offset: [2]int32{int32(start), int32(idx)}, color: color})
-			} else {
-				ansi := itemColors[curr-1]
+					offset: [2]int32{int32(start), int32(idx)}, color: color, match: true, url: url})
+			} else if curr.color {
+				ansi := itemColors[curr.index]
+				base := colBase
+				if curr.nth {
+					base = nthBase
+				}
+				if hidden {
+					base = base.WithFg(theme.Nomatch)
+				}
+				color := ansiToColorPair(ansi, base)
 				colors = append(colors, colorOffset{
 					offset: [2]int32{int32(start), int32(idx)},
-					color:  ansiToColorPair(ansi, colBase)})
+					color:  color,
+					match:  false,
+					url:    ansi.color.url})
+			} else {
+				color := nthBase
+				if hidden {
+					color = color.WithFg(theme.Nomatch)
+				}
+				colors = append(colors, colorOffset{
+					offset: [2]int32{int32(start), int32(idx)},
+					color:  color,
+					match:  false,
+					url:    nil})
 			}
 		}
 	}
@@ -211,21 +301,20 @@ func (result *Result) colorOffsets(matchOffsets []Offset, theme *tui.ColorTheme,
 	return colors
 }
 
-// ByOrder is for sorting substring offsets
-type ByOrder []Offset
-
-func (a ByOrder) Len() int {
-	return len(a)
-}
-
-func (a ByOrder) Swap(i, j int) {
-	a[i], a[j] = a[j], a[i]
-}
-
-func (a ByOrder) Less(i, j int) bool {
-	ioff := a[i]
-	joff := a[j]
-	return (ioff[0] < joff[0]) || (ioff[0] == joff[0]) && (ioff[1] <= joff[1])
+func compareOffsets(a, b Offset) int {
+	if a[0] < b[0] {
+		return -1
+	}
+	if a[0] > b[0] {
+		return 1
+	}
+	if a[1] < b[1] {
+		return -1
+	}
+	if a[1] > b[1] {
+		return 1
+	}
+	return 0
 }
 
 // ByRelevance is for sorting Items
@@ -256,4 +345,80 @@ func (a ByRelevanceTac) Swap(i, j int) {
 
 func (a ByRelevanceTac) Less(i, j int) bool {
 	return compareRanks(a[i], a[j], true)
+}
+
+// radixSortResults sorts Results by their points key using LSD radix sort.
+// O(n) time complexity vs O(n log n) for comparison sort.
+// The sort is stable, so equal-key items maintain original (item-index) order.
+// For tac mode, runs of equal keys are reversed after sorting.
+func radixSortResults(a []Result, tac bool, scratch []Result) []Result {
+	n := len(a)
+	if n < 128 {
+		if tac {
+			sort.Sort(ByRelevanceTac(a))
+		} else {
+			sort.Sort(ByRelevance(a))
+		}
+		return scratch[:0]
+	}
+
+	if cap(scratch) < n {
+		scratch = make([]Result, n)
+	}
+	buf := scratch[:n]
+	src, dst := a, buf
+	scattered := 0
+
+	for pass := range 8 {
+		shift := uint(pass) * 8
+
+		var count [256]int
+		for i := range src {
+			count[byte(sortKey(&src[i])>>shift)]++
+		}
+
+		// Skip if all items have the same byte value at this position
+		if count[byte(sortKey(&src[0])>>shift)] == n {
+			continue
+		}
+
+		var offset [256]int
+		for i := 1; i < 256; i++ {
+			offset[i] = offset[i-1] + count[i-1]
+		}
+
+		for i := range src {
+			b := byte(sortKey(&src[i]) >> shift)
+			dst[offset[b]] = src[i]
+			offset[b]++
+		}
+
+		src, dst = dst, src
+		scattered++
+	}
+
+	// If odd number of scatters, data is in buf, copy back to a
+	if scattered%2 == 1 {
+		copy(a, src)
+	}
+
+	// Handle tac: reverse runs of equal keys so equal-key items
+	// are in reverse item-index order
+	if tac {
+		i := 0
+		for i < n {
+			ki := sortKey(&a[i])
+			j := i + 1
+			for j < n && sortKey(&a[j]) == ki {
+				j++
+			}
+			if j-i > 1 {
+				for l, r := i, j-1; l < r; l, r = l+1, r-1 {
+					a[l], a[r] = a[r], a[l]
+				}
+			}
+			i = j
+		}
+	}
+	return scratch
 }

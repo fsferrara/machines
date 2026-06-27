@@ -1,5 +1,7 @@
 " LOOKNFEEL -------------------------------------------------------------- {{{
-colorscheme tokyonight
+colorscheme default
+let g:rehash256 = 1
+
 set noshowmode      " Do not show the mode you are on the last line.
 set showcmd         " Show partial command you type in the last line of the screen.
 set nocursorline    " Highlight cursor line underneath the cursor horizontally.
@@ -14,6 +16,6 @@ endif
 " GUI -------------------------------------------------------------------- {{{
 if has('gui_running') " If GUI version of Vim is running set these options.
     set background=dark " Set the background tone.
-    colorscheme tokyonight " Set the color scheme.
+    colorscheme default " Set the color scheme.
 endif
 " ------------------------------------------------------------------------ }}}

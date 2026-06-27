@@ -1,45 +1,58 @@
 ---
-name: Test fzf on Linux
+name: build
 
 on:
   push:
     branches: [ master, devel ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, devel ]
   workflow_dispatch:
 
 permissions:
   contents: read
 
+env:
+  LANG: C.UTF-8
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
     - name: Set up Go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@v6
       with:
-        go-version: 1.19
+        go-version: "1.23"
 
     - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@9eb537ca036ebaed86729dcb9309076e4c5c3b74 # v1
       with:
-        ruby-version: 3.0.0
+        ruby-version: 3.4.6
 
     - name: Install packages
-      run: sudo apt-get install --yes zsh fish tmux
+      run: |
+        sudo install -d -m 0755 /etc/apt/keyrings
+        wget -qO- https://apt.fury.io/nushell/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/fury-nushell.gpg
+        echo "deb [signed-by=/etc/apt/keyrings/fury-nushell.gpg] https://apt.fury.io/nushell/ /" | sudo tee /etc/apt/sources.list.d/fury-nushell.list
+        sudo apt-get update
+        sudo apt-get install --yes zsh fish tmux shfmt nushell
 
     - name: Install Ruby gems
-      run: sudo gem install --no-document minitest:5.14.2 rubocop:1.0.0 rubocop-minitest:0.10.1 rubocop-performance:1.8.1
+      run: bundle install
 
     - name: Rubocop
-      run: rubocop --require rubocop-minitest --require rubocop-performance
+      run: make lint
 
     - name: Unit test
       run: make test
 
+    - name: Fuzz test
+      run: |
+        go test ./src/algo/ -fuzz=FuzzIndexByteTwo -fuzztime=5s
+        go test ./src/algo/ -fuzz=FuzzLastIndexByteTwo -fuzztime=5s
+
     - name: Integration test
-      run: make install && ./install --all && LC_ALL=C tmux new-session -d && ruby test/test_go.rb --verbose
+      run: make install && ./install --all && tmux new-session -d && ruby test/runner.rb --verbose

@@ -1,7 +1,6 @@
 package fzf
 
 import (
-	"io/ioutil"
 	"os"
 	"runtime"
 	"testing"
@@ -25,7 +24,7 @@ func TestHistory(t *testing.T) {
 		}
 	}
 
-	f, _ := ioutil.TempFile("", "fzf-history")
+	f, _ := os.CreateTemp("", "fzf-history")
 	f.Close()
 
 	{ // Append lines
@@ -39,7 +38,7 @@ func TestHistory(t *testing.T) {
 		if len(h.lines) != maxHistory+1 {
 			t.Errorf("Expected: %d, actual: %d\n", maxHistory+1, len(h.lines))
 		}
-		for i := 0; i < maxHistory; i++ {
+		for i := range maxHistory {
 			if h.lines[i] != "foobar" {
 				t.Error("Expected: foobar, actual: " + h.lines[i])
 			}

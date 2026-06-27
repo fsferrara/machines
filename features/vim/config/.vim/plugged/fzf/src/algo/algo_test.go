@@ -9,6 +9,10 @@ import (
 	"github.com/junegunn/fzf/src/util"
 )
 
+func init() {
+	Init("default")
+}
+
 func assertMatch(t *testing.T, fun Algo, caseSensitive, forward bool, input, pattern string, sidx int, eidx int, score int) {
 	assertMatch2(t, fun, caseSensitive, false, forward, input, pattern, sidx, eidx, score)
 }
@@ -53,6 +57,15 @@ func TestFuzzyMatch(t *testing.T) {
 				scoreMatch*4+int(bonusBoundaryDelimiter)*bonusFirstCharMultiplier+int(bonusBoundaryDelimiter)*3)
 			assertMatch(t, fn, false, forward, "/.oh-my-zsh/cache", "zshc", 8, 13,
 				scoreMatch*4+bonusBoundary*bonusFirstCharMultiplier+bonusBoundary*2+scoreGapStart+int(bonusBoundaryDelimiter))
+			// Non-word character at start of input is treated as a strong boundary
+			assertMatch(t, fn, false, forward, ".vimrc", ".vimrc", 0, 6,
+				scoreMatch*6+int(bonusBoundaryWhite)*(bonusFirstCharMultiplier+5))
+			// Non-word character right after a delimiter inherits the delimiter boundary
+			assertMatch(t, fn, false, forward, "/.vimrc", ".vimrc", 1, 7,
+				scoreMatch*6+int(bonusBoundaryDelimiter)*(bonusFirstCharMultiplier+5))
+			// Non-word character in the middle of a word stays at bonusNonWord
+			assertMatch(t, fn, false, forward, "a.vimrc", ".vimrc", 1, 7,
+				scoreMatch*6+bonusBoundary*(bonusFirstCharMultiplier+5))
 			assertMatch(t, fn, false, forward, "ab0123 456", "12356", 3, 10,
 				scoreMatch*5+bonusConsecutive*3+scoreGapStart+scoreGapExtension)
 			assertMatch(t, fn, false, forward, "abc123 456", "12356", 3, 10,
@@ -82,7 +95,7 @@ func TestFuzzyMatch(t *testing.T) {
 					scoreGapStart*2+scoreGapExtension*2)
 			assertMatch(t, fn, true, forward, "FooBar Baz", "FooB", 0, 4,
 				scoreMatch*4+int(bonusBoundaryWhite)*bonusFirstCharMultiplier+int(bonusBoundaryWhite)*2+
-					util.Max(bonusCamel123, int(bonusBoundaryWhite)))
+					max(bonusCamel123, int(bonusBoundaryWhite)))
 
 			// Consecutive bonus updated
 			assertMatch(t, fn, true, forward, "foo-bar", "o-ba", 2, 6,
@@ -195,4 +208,13 @@ func TestLongString(t *testing.T) {
 	}
 	bytes[math.MaxUint16] = 'z'
 	assertMatch(t, FuzzyMatchV2, true, true, string(bytes), "zx", math.MaxUint16, math.MaxUint16+2, scoreMatch*2+bonusConsecutive)
+}
+
+func TestLongStringWithNormalize(t *testing.T) {
+	bytes := make([]byte, 30000)
+	for i := range bytes {
+		bytes[i] = 'x'
+	}
+	unicodeString := string(bytes) + " Minímal example"
+	assertMatch2(t, FuzzyMatchV1, false, true, false, unicodeString, "minim", 30001, 30006, 140)
 }

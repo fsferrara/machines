@@ -39,7 +39,7 @@ call plug#end()
 
 " CONF: itchyny/lightline.vim
 let g:lightline = {
-      \ 'colorscheme': 'molokai',
+      \ 'colorscheme': 'default',
       \ }
 
 " CONF: editorconfig/editorconfig-vim
