@@ -3,5 +3,6 @@
 set -e
 set -u
 
-
-code ~/github/fsferrara/brain
+export MY_SECOND_BRAIN_FOLDER="${HOME}/github/fsferrara/brain/"
+cd ${MY_SECOND_BRAIN_FOLDER}
+nvim .
