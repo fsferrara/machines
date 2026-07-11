@@ -24,7 +24,7 @@ install_casks_for_tools_and_tech() {
   #brew install --cask firefox
   #brew install --cask microsoft-edge
   #brew install --cask opera
-  #brew install --cask alacritty
+  brew install --cask ghostty
 
   # Docker
   brew install docker
