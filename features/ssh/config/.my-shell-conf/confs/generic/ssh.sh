@@ -2,5 +2,5 @@
 # SSH CONFIGURATION
 ################################################################################
 
-SSH_GITHUB_PERSONAL_URI="git@github.com-personal:"
-SSH_GITHUB_WORK_URI="git@github.com-work:"
+export SSH_GITHUB_PERSONAL_URI="git@github.com-personal:"
+export SSH_GITHUB_WORK_URI="git@github.com-work:"

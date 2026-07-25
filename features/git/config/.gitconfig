@@ -4,9 +4,10 @@
   editor = vim
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   excludesfile = ~/.gitignore_global
-[user]
-  name = Saverio Ferrara
-  email = fsferrara@users.noreply.github.com
+[includeIf "gitdir:~/workspace/personal/"]
+    path = .gitconfig-personal
+[includeIf "gitdir:~/workspace/work/"]
+    path = .gitconfig-work
 [color]
   ui = true
 [color "branch"]

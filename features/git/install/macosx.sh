@@ -19,7 +19,6 @@ ${CMD_UPDATE}
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-
 ${CMD_INSTALL} git
 ${CMD_INSTALL} git-lfs
 
