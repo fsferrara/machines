@@ -1,0 +1,7 @@
+#! /usr/bin/env sh
+
+set -e
+set -u
+
+rm -rf ~/.cache/opencode
+rm -rf ~/.local/share/opencode
