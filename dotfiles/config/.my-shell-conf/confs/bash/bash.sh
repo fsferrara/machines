@@ -98,14 +98,10 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# Git branch in prompt
-parse_git_branch() {
-    git branch --show-current 2> /dev/null | sed -n -e 's/^\(.*\)/[git:\1]/p'
-}
-
 COLOR_DEF='\[\033[0m\]'
+# Git branch in prompt requires ../generic/git-prompt.sh
 COLOR_GIT='\[\033[38;5;39m\]'
-export PS1="${PS1}${COLOR_GIT}\$(parse_git_branch)${COLOR_DEF}"
+export PS1="${PS1}${COLOR_GIT}\$(__git_ps1 "[git:%s]")${COLOR_DEF}"
 
 # Close prompt string
 
