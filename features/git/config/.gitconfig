@@ -28,8 +28,10 @@
   tool = vimdiff
 [branch]
   autosetuprebase = always
+  autoSetupMerge = simple
 [push]
   default = simple
+  autoSetupRemote = true
 [merge]
   tool = vimdiff
 [credential]
