@@ -6,6 +6,10 @@ This file provides guidance to coding agents when working with code in this repo
 
 Configuration files for personal machines (physical and virtual). Uses devcontainer features structure for modular software installation and configuration.
 
+## Documentation Layout
+
+Repository documentation and machine setup guides live under `docs/`. The directory also contains supporting setup scripts and configuration payloads that are documented by the nearby README files. Keep reusable installed or configured software in the feature-style structures described below.
+
 ## Feature Structure
 
 Each feature in `features/` and `dotfiles/` follows the devcontainer features pattern:

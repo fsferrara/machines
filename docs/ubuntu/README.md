@@ -26,6 +26,5 @@ git clone git@github.com:fsferrara/fsferrara.git
 
 Execute:
 
-- `./common/default-directories.sh`
-- `./common/passwordless-sudo.sh`
-- `./ubuntu/install_tools_and_tech.sh`
+- `../common/passwordless-sudo.sh`
+- `./install_tools_and_tech.sh`
