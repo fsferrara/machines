@@ -38,17 +38,6 @@ feature/
 
 Source `~/.my-shell-conf/kickstart.sh` from `.bashrc` or `.zshrc`.
 
-## VM Management (QEMU)
-
-Ubuntu VMs in `vm/macos_host/ubuntu/`:
-
-```bash
-make start                    # Start VM
-make disk                     # Create new 80G qcow2 disk
-make inject-machine-tarball   # Package dotfiles+features for VM injection
-make nuke                     # Delete disk image
-```
-
 ## Devcontainer
 
 The `.devcontainer/` provides a generic dev container with common features (dotfiles, git, ssh, zsh, tmux, gh, vim). Features are referenced as local paths in `devcontainer.json`.
