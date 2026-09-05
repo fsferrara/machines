@@ -23,8 +23,8 @@ run_install() {
       case "$OS" in
           Darwin)
               printf '\n\n🍎 Detected macOS...\n'
-              if [ -f "${SCRIPT_DIR}/install/macosx.sh" ]; then
-                  ${SCRIPT_DIR}/install/macosx.sh
+              if [ -f "${SCRIPT_DIR}/install/macos.sh" ]; then
+                  ${SCRIPT_DIR}/install/macos.sh
               else
                   printf '\n\n⚠️  No macOS install script found, skipping...\n'
               fi
