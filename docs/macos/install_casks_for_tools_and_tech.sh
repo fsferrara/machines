@@ -6,10 +6,10 @@ set -u
 install_casks_for_tools_and_tech() {
 
   # [CASK] Development Essentials
-  brew install --cask sublime-text
+  #brew install --cask sublime-text
   brew install --cask visual-studio-code
-  brew install --cask vscodium
-  brew install --cask jetbrains-toolbox
+  #brew install --cask vscodium
+  #brew install --cask jetbrains-toolbox
   #brew install --cask intellij-idea # replaced by jetbrains-toolbox
   #brew install --cask intellij-idea-ce # replaced by jetbrains-toolbox
   brew install --cask lm-studio
@@ -31,24 +31,23 @@ install_casks_for_tools_and_tech() {
   brew install --cask docker-desktop
 
   # AI
-  brew install --cask claude # claude desktop
-  brew install --cask cmux
-  brew install --cask warp
+  #brew install --cask claude # claude desktop
+  #brew install --cask cmux
+  #brew install --cask warp
 
   # [CASK] Collaboration
   #brew install --cask zoom #use self-service
   brew install --cask slack
 
   # [CASK] My MacOS Personalization
-  #brew install --cask appcleaner #replaced by a shell scrpt
+  #brew install --cask appcleaner #replaced by a shell script
   #brew install --cask disk-expert #use this only if need to free up space
-  brew install --cask jordanbaird-ice
-  #brew install --cask clipy
+  #brew install --cask jordanbaird-ice #primary function is hiding and showing menu bar items
   brew install --cask maccy # clipboard manager
-  #brew install --cask rectangle #replaced by macos sequoia
+  brew install --cask rectangle
   #brew install --cask spaceid # build your version from the fork
   #brew install --cask karabiner-elements #replaced by macos keyboard settings
-  brew install --cask alt-tab
+  #brew install --cask alt-tab
   # brew install --cask background-music # allow quicktime to record screen and audio
   printf '[NOT a Cask] Please install Sleep Control Center from the app store\n'
 
@@ -63,7 +62,7 @@ install_casks_for_tools_and_tech() {
   # [CASK] General Software
   #brew install --cask git-credential-manager
   #brew install --cask libreoffice
-  #brew install --cask calibre
+  brew install --cask calibre
   brew install --cask gimp
   brew install --cask vlc
   #brew install --cask dropbox
