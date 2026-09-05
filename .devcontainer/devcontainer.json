@@ -24,8 +24,7 @@
     "./features/aws": {},
     "./features/claude-code": {},
     "./features/opencode": {},
-    "./private": {},
-    "./private-work": {}
+    "./private": {}
   },
   "overrideFeatureInstallOrder": [
     "./dotfiles",
@@ -41,15 +40,13 @@
     "./features/aws",
     "./features/claude-code",
     "./features/opencode",
-    "./private",
-    "./private-work"
+    "./private"
   ],
-  "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind,consistency=delegated",
-  "workspaceFolder": "/home/user/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/machines,type=bind,consistency=delegated",
+  "workspaceFolder": "/home/user/machines",
   "mounts": [
     "source=devcontainer-home,target=/home/user,type=volume",
-    "source=${localEnv:HOME}/github,target=/home/user/github,type=bind,consistency=delegated",
-    "source=${localEnv:HOME}/work,target=/home/user/work,type=bind,consistency=delegated",
+    "source=${localEnv:HOME}/workspace,target=/home/user/workspace,type=bind,consistency=delegated",
     "source=${localEnv:HOME}/tools,target=/home/user/tools,type=bind,consistency=delegated",
     "source=${localEnv:HOME}/.aws,target=/home/user/.aws,type=bind,consistency=delegated",
     "source=${localEnv:HOME}/.claude,target=/home/user/.claude,type=bind,consistency=delegated"
