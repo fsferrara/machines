@@ -1,0 +1,63 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+      "Bash(chmod 777 *)",
+      "Bash(mkfs *)",
+      "Bash(dd *)",
+      "Bash(git push --force *)",
+      "Bash(git push --hard *)"
+    ],
+    "ask": [
+      "Bash(rm*)",
+      "Bash(mv*)",
+      "Bash(kill*)",
+      "Bash(git push*)",
+      "Bash(git clean*)",
+      "Bash(npm install*)",
+      "Bash(npm uninstall*)",
+      "Bash(yarn install*)",
+      "Bash(yarn remove*)",
+      "Bash(chmod*)",
+      "Bash(chown*)"
+    ],
+     "allow": [
+      "Bash(gh api:*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "opusplan",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.local/bin/notify 'Awaiting your input' input"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.local/bin/notify 'Task completed' complete"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ${HOME}/.claude/statusline-command.sh"
+  },
+  "effortLevel": "high",
+  "showClearContextOnPlanAccept": true,
+  "autoMemoryEnabled": false,
+  "autoDreamEnabled": false,
+  "theme": "dark",
+  "disableClaudeAiConnectors": true
+}

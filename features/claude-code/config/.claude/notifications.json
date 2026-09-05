@@ -1,0 +1,24 @@
+{
+    "hooks": {
+        "Notification": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.local/bin/notify 'Awaiting your input' input"
+                    }
+                ]
+            }
+        ],
+        "Stop": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.local/bin/notify 'Task completed' complete"
+                    }
+                ]
+            }
+        ]
+    }
+}
