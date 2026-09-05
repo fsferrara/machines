@@ -22,7 +22,7 @@ feature/
 ├── install/            # OS-specific installers
 │   ├── install.sh      # Generic (if present, used instead of OS-specific)
 │   ├── ubuntu.sh       # Ubuntu-specific
-│   └── macosx.sh       # macOS-specific
+│   └── macos.sh        # macOS-specific
 ├── config/             # Files to rsync to destination
 ├── pre-configure.sh    # Optional: runs before configure
 └── post-configure.sh   # Optional: runs after configure

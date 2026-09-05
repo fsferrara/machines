@@ -45,9 +45,9 @@ install_casks_for_tools_and_tech() {
   brew install --cask jordanbaird-ice
   #brew install --cask clipy
   brew install --cask maccy # clipboard manager
-  #brew install --cask rectangle #replaced by macosx sequoia
+  #brew install --cask rectangle #replaced by macos sequoia
   #brew install --cask spaceid # build your version from the fork
-  #brew install --cask karabiner-elements #replaced by macosx keyboard settings
+  #brew install --cask karabiner-elements #replaced by macos keyboard settings
   brew install --cask alt-tab
   # brew install --cask background-music # allow quicktime to record screen and audio
   printf '[NOT a Cask] Please install Sleep Control Center from the app store\n'

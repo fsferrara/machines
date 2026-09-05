@@ -6,6 +6,6 @@ Configuration files for my machines, both physical and virtual.
 
 - [Machine setup documentation](docs/README.md)
 - [Common setup](docs/common/README.md)
-- [macOS setup](docs/macosx/README.md)
+- [macOS setup](docs/macos/README.md)
 - [Ubuntu setup](docs/ubuntu/README.md)
 - [Windows setup](docs/windows/README.md)
