@@ -31,6 +31,3 @@ mouse-reporting = true
 # press SHIFT to use system mouse capabilities
 mouse-shift-capture = false
 
-# Shaders
-custom-shader = ~/.config/ghostty/shaders/bloom.glsl
-
