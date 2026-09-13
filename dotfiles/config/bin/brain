@@ -1,8 +1,0 @@
-#! /usr/bin/env sh
-
-set -e
-set -u
-
-export MY_SECOND_BRAIN_FOLDER="${HOME}/github/fsferrara/brain/"
-cd ${MY_SECOND_BRAIN_FOLDER}
-nvim .
