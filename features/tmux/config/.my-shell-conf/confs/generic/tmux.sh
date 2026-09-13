@@ -68,7 +68,7 @@ _tmux_create_configured_session() (
 	fi
 )
 
-unalias tmux-list tmux-attach tmux-new 2>/dev/null || true
+unalias tmux tmux-list tmux-attach tmux-new 2>/dev/null || true
 
 _tmux_list() (
 	sessions_dir=$(_tmux_sessions_dir)
@@ -136,6 +136,14 @@ _tmux_connect() (
 
 	_tmux_connect_session "$session_name"
 )
+
+tmux() {
+	if [ "$#" -eq 0 ]; then
+		_tmux_connect home
+	else
+		command tmux "$@"
+	fi
+}
 
 # Commands
 alias tmux-list="_tmux_list"

@@ -5,6 +5,9 @@ management commands to the shell configuration.
 
 ## Commands
 
+- `tmux` without arguments connects to or creates the `home` session in `$HOME`.
+  Invocations with arguments pass unchanged to the native tmux command. Use
+  `command tmux` to bypass the wrapper explicitly.
 - `tmux-list` lists running sessions followed by configured sessions. Duplicate
   names are shown once.
 - `tmux-connect [name]` connects to an existing session or creates it when it
