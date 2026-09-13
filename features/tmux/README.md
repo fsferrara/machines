@@ -53,8 +53,10 @@ Session names cannot contain periods, slashes, or colons.
 
 With the configured `C-a` prefix:
 
-- `C-a C-c` prompts for a session name, creates it in the current pane's
-  directory, and switches to it.
+- `C-a C-c` prompts for a session name, defaulting to the current pane
+  directory's basename. A new name creates the session in that directory; an
+  existing name switches to the existing session without changing its windows
+  or directory.
 - `C-a C-s` opens the session picker in a tmux popup.
 - `C-a s` remains tmux's built-in session chooser.
 - `C-a x` kills the current pane without confirmation.
