@@ -1,0 +1,1 @@
+TMUX_SESSION_DIRECTORY="$HOME/workspace"
