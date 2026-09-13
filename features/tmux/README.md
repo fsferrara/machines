@@ -52,7 +52,7 @@ With the configured `C-a` prefix:
 
 - `C-a C-c` prompts for a session name, creates it in the current pane's
   directory, and switches to it.
-- `C-a S` opens the session picker in a tmux popup.
+- `C-a C-s` opens the session picker in a tmux popup.
 - `C-a s` remains tmux's built-in session chooser.
 - `C-a x` kills the current pane without confirmation.
 
