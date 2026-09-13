@@ -3,11 +3,11 @@ font-family = "MesloLGM Nerd Font Mono"
 font-size = 14
 
 # Theme
-theme = TokyoNight Storm
+theme = Adwaita Dark
 
 # Window Settings
 window-theme = dark
-window-show-tab-bar = always
+window-show-tab-bar = auto
 window-new-tab-position = current
 window-subtitle = working-directory
 
@@ -16,7 +16,6 @@ scrollbar = never
 scrollback-limit = 10000
 
 # macOS Specific Tweaks (ignored on Linux automatically)
-#macos-titlebar-style = "hidden"
 macos-option-as-alt = true
 
 # Linux Specific Tweaks (ignored on macOS automatically)
