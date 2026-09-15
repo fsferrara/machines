@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+set -e
+set -u
+
+
+# doc: https://ss64.com/mac/caffeinate.html
+
+printf 'Prevent sleep indefinitely (until the terminal session is closed)...'
+caffeinate
+
