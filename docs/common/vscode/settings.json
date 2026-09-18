@@ -1,0 +1,44 @@
+{
+    "window.autoDetectColorScheme": true,
+    "editor.fontFamily": "MesloLGM Nerd Font Mono",
+    "workbench.colorCustomizations": {
+        // --- Core surfaces ---
+        "terminal.foreground": "#e6e6e6",
+        "terminal.background": "#1e1e1e",
+        "terminal.border": "#3a3a3a",
+        "panel.border": "#3a3a3a",
+
+        // --- Cursor ---
+        "terminalCursor.foreground": "#ffffff",
+        "terminalCursor.background": "#1e1e1e",
+        "terminalOverviewRuler.cursorForeground": "#ffffff",
+
+        // --- Selection & search ---
+        "terminal.selectionBackground": "#ffffff33",
+        "terminal.inactiveSelectionBackground": "#ffffff1a",
+        "terminal.findMatchBackground": "#d1a11e66",
+        "terminal.findMatchHighlightBackground": "#d1a11e33",
+
+        // --- ANSI palette (readable on dark bg) ---
+        "terminal.ansiBlack": "#3a3a3a",
+        "terminal.ansiBrightBlack": "#6e6e6e",
+        "terminal.ansiRed": "#e06c75",
+        "terminal.ansiBrightRed": "#ff7b86",
+        "terminal.ansiGreen": "#98c379",
+        "terminal.ansiBrightGreen": "#b5e890",
+        "terminal.ansiYellow": "#e5c07b",
+        "terminal.ansiBrightYellow": "#f5d896",
+        "terminal.ansiBlue": "#61afef",
+        "terminal.ansiBrightBlue": "#82c4ff",
+        "terminal.ansiMagenta": "#c678dd",
+        "terminal.ansiBrightMagenta": "#e29bf5",
+        "terminal.ansiCyan": "#56b6c2",
+        "terminal.ansiBrightCyan": "#7fd4df",
+        "terminal.ansiWhite": "#d0d0d0",
+        "terminal.ansiBrightWhite": "#ffffff"
+    },
+    "terminal.integrated.env.osx": {
+        "TMUX": null,
+        "TMUX_PANE": null
+    }
+}
