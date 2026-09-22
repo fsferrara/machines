@@ -1,15 +1,30 @@
-TMUX_SESSION_DIRECTORY="$MAEW_AGENTS/code-reviewer"
+source "${MAEW_AGENTS}/code-reviewer/.env"
+mkdir -p ${MAEW_AGENT_HOME}
+mkdir -p ${MAEW_AGENT_WORKFLOWS}
+mkdir -p ${MAEW_AGENT_KNOWLEDGE}
+mkdir -p ${MAEW_AGENT_SPACE}
+
+TMUX_SESSION_DIRECTORY="${MAEW_AGENT_HOME}"
 
 tmux_session_create() {
-  session_name=$1
-  session_directory=$2
-  agent_instance_command='codex'
+  SESSION_NAME=$1
+  SESSION_DIRECTORY=$2
 
-  tmux new-session -d -s "$session_name" -n agent_home -c "$session_directory"
-  tmux send-keys -t "$session_name:agent_home" "nvim $session_directory" C-m
+  # First window: MAEW_AGENT_HOME and MAEW_AGENT_KNOWLEDGE
+  tmux new-session -d -s "${SESSION_NAME}" -n MAEW_AGENT_HOME -c "${SESSION_DIRECTORY}"
+  tmux send-keys -t "${SESSION_NAME}:MAEW_AGENT_HOME" "# MAEW_AGENT_HOME" C-m
+  tmux split-window -v -t "${SESSION_NAME}:MAEW_AGENT_HOME" -c "${MAEW_AGENT_KNOWLEDGE}"
+  tmux send-keys -t "${SESSION_NAME}:MAEW_AGENT_HOME" "# MAEW_AGENT_KNOWLEDGE" C-m
+  tmux select-pane -t "${SESSION_NAME}:MAEW_AGENT_HOME.0"
 
-  tmux new-window -t "$session_name" -n default_agent_instance -c "$session_directory"
-  tmux send-keys -t "$session_name:default_agent_instance" "$agent_instance_command" C-m
+  # Second window: MAEW_AGENT_SPACE
+  tmux new-window -t "${SESSION_NAME}" -n MAEW_AGENT_SPACE -c "${MAEW_AGENT_SPACE}"
+  tmux send-keys -t "${SESSION_NAME}:MAEW_AGENT_SPACE" "# MAEW_AGENT_SPACE" C-m
 
-  tmux select-window -t "$session_name:default_agent_instance"
+  # Third window: DEFAULT_AGENT_INSTANCE
+  tmux new-window -t "${SESSION_NAME}" -n DEFAULT_AGENT_INSTANCE -c "${SESSION_DIRECTORY}"
+  tmux send-keys -t "${SESSION_NAME}:DEFAULT_AGENT_INSTANCE" "# DEFAULT_AGENT_INSTANCE" C-m
+
+  # Select the default window to start with
+  tmux select-window -t "${SESSION_NAME}:DEFAULT_AGENT_INSTANCE"
 }
