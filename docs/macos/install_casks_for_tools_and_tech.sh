@@ -23,7 +23,6 @@ install_casks_for_tools_and_tech() {
   #brew install --cask chromium
   #brew install --cask firefox
   #brew install --cask microsoft-edge
-  brew install --cask wave # wave terminal
   brew install --cask ghostty
 
   # Docker
