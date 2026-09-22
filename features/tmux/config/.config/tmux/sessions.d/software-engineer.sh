@@ -3,7 +3,7 @@ TMUX_SESSION_DIRECTORY="$MAEW_AGENTS/software-engineer"
 tmux_session_create() {
   session_name=$1
   session_directory=$2
-  agent_instance_command='codex'
+  agent_instance_command='claude-dangerous'
 
   tmux new-session -d -s "$session_name" -n agent_home -c "$session_directory"
   tmux send-keys -t "$session_name:agent_home" "nvim $session_directory" C-m
