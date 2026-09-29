@@ -23,7 +23,7 @@ ${CMD_UPDATE}
 ###########
 printf '\n\n🚀 Installing...\n'
 ${CMD_INSTALL} opencode
-
+${CMD_INSTALL} opencode-desktop
 
 ########
 # DONE #
