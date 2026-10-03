@@ -42,7 +42,8 @@ HISTFILE="${HOME}/.zsh_history"
 # enable programmable completion features
 autoload -Uz compinit && compinit
 
-# check the window size is handled automatically by zsh (SIGWINCH)
+# Put zsh in emacs mode
+bindkey -e
 
 ################################################################################
 # LOOK 'N FEEL.
@@ -52,7 +53,7 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 
 # PS1 equivalent
-# Colors: 
+# Colors:
 # 00;35m (Magenta) -> %F{magenta}
 # 01;34m (Bold Blue) -> %B%F{blue}
 # 00;33m (Yellow) -> %F{yellow}
