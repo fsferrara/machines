@@ -42,8 +42,20 @@ HISTFILE="${HOME}/.zsh_history"
 # enable programmable completion features
 autoload -Uz compinit && compinit
 
-# Put zsh in emacs mode
+################################################################################
+# LINE NAVIGATION WITH CTRL + ARROWS (Fixes ;5D and ;5C)
+################################################################################
+
+# Ensure emacs mode is active for keybindings
 bindkey -e
+
+# Move per LINE (Beginning/End) with CTRL + Arrows
+bindkey "^[[1;5D" beginning-of-line # Ctrl + Left Arrow -> Go to Beginning of Line
+bindkey "^[[1;5C" end-of-line       # Ctrl + Right Arrow -> Go to End of Line
+
+# Move per WORD with ALT + Arrows (Recommended so you don't lose word navigation)
+bindkey "^[[1;3D" backward-word # Alt + Left Arrow -> Word Backward
+bindkey "^[[1;3C" forward-word  # Alt + Right Arrow -> Word Forward
 
 ################################################################################
 # LOOK 'N FEEL.

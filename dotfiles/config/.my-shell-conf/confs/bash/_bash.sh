@@ -4,10 +4,8 @@
 
 # If not bash, then exit
 if [ "${RUNNING_SHELL}" != "BASH" ]; then
-  return;
+  return
 fi
-
-
 
 ################################################################################
 # PROFILE VARIABLES.
@@ -15,15 +13,13 @@ fi
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-   . /etc/bashrc
+  . /etc/bashrc
 fi
 
 # System profile
 if [ -f /etc/profile ]; then
   . /etc/profile
 fi
-
-
 
 ################################################################################
 # HISTORY MANAGEMENT.
@@ -40,7 +36,17 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+################################################################################
+# LINE NAVIGATION WITH CTRL + ARROWS (Fixes ;5D and ;5C for Bash)
+################################################################################
 
+# Move per LINE (Beginning/End) with CTRL + Arrows
+"\e[1;5D": beginning-of-line # Ctrl + Left Arrow -> Go to Beginning of Line
+"\e[1;5C": end-of-line       # Ctrl + Right Arrow -> Go to End of Line
+
+# Move per WORD with ALT + Arrows (Recommended so you don't lose word navigation)
+"\e[1;3D": backward-word # Alt + Left Arrow -> Word Backward
+"\e[1;3C": forward-word  # Alt + Right Arrow -> Word Forward
 
 ################################################################################
 # BEHAVIOUR.
@@ -49,7 +55,7 @@ HISTFILESIZE=2000
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if ! shopt -oq posix  && [ ! "$OS" = Windows_NT ]; then
+if ! shopt -oq posix && [ ! "$OS" = Windows_NT ]; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
@@ -61,15 +67,13 @@ fi
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-
-
 ################################################################################
 # LOOK 'N FEEL.
 ################################################################################
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+xterm-color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -78,23 +82,23 @@ esac
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
     # a case would tend to support setf rather than setaf.)
     color_prompt=yes
-    else
+  else
     color_prompt=
-    fi
+  fi
 fi
 
 #  prompt string
 if [ "$color_prompt" = yes ]; then
-    # PS1='\[\033[00;35m\]\u\[\033[01;34m\]@\[\033[00;33m\]\h\[\033[00m\]:\[\033[01;32m\]\W\[\033[00m\]'
-    PS1='\[\033[00;35m\]${RUNNING_SHELL}\[\033[01;34m\]@\[\033[00;33m\]${RUNNING_ENV}\[\033[00m\] \[\033[01;32m\]\W\[\033[00m\]'
+  # PS1='\[\033[00;35m\]\u\[\033[01;34m\]@\[\033[00;33m\]\h\[\033[00m\]:\[\033[01;32m\]\W\[\033[00m\]'
+  PS1='\[\033[00;35m\]${RUNNING_SHELL}\[\033[01;34m\]@\[\033[00;33m\]${RUNNING_ENV}\[\033[00m\] \[\033[01;32m\]\W\[\033[00m\]'
 else
-    # PS1='\u@\h:\W'
-    PS1='${RUNNING_SHELL}@${RUNNING_ENV} \W'
+  # PS1='\u@\h:\W'
+  PS1='${RUNNING_SHELL}@${RUNNING_ENV} \W'
 fi
 unset color_prompt force_color_prompt
 
