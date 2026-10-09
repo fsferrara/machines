@@ -31,8 +31,16 @@ install_casks_for_tools_and_tech() {
 
   # AI
   brew install --cask claude # claude desktop
+  brew install --cask claude-code
   #brew install --cask wave
   #brew install --cask warp
+  brew install --cask cursor
+  brew install --cask cursor-cli
+  brew install --cask github-copilot-app
+
+  # Codex
+  brew install --cask chatgpt
+  brew install --cask codex
 
   # [CASK] Collaboration
   #brew install --cask zoom #use self-service
