@@ -4,6 +4,24 @@
     "*": "allow"
   },
   "provider": {
+    "openrouter": {
+      "name": "OpenRouter",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://openrouter.ai/api/v1"
+      },
+      "models": {
+        "openrouter/free": {
+          "name": "openrouter/free",
+          "tool_call": true,
+          "attachment": true,
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        }
+      }
+    },
     "lmstudio": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "LM Studio (local)",
@@ -24,5 +42,5 @@
       }
     }
   },
-  "model": "lmstudio/qwen/qwen3.6-35b-a3b"
+  "model": "openrouter/openrouter/free"
 }

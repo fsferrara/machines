@@ -46,6 +46,10 @@ $networkingPackages = @(
     'Insecure.Nmap'
 )
 
+$aiPackages = @(
+    'SST.OpenCodeDesktop'
+)
+
 $generalPackages = @(
     'Obsidian.Obsidian',
     'Google.Chrome',
@@ -136,6 +140,12 @@ foreach ($package in $virtualizationPackages) {
 
 Write-Host ">>> Networking..."
 foreach ($package in $networkingPackages) {
+    $wingetInstallPackage = $wingetInstall + $package
+    Write-Host $wingetInstallPackage
+}
+
+Write-Host ">>> AI..."
+foreach ($package in $aiPackages) {
     $wingetInstallPackage = $wingetInstall + $package
     Write-Host $wingetInstallPackage
 }
