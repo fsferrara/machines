@@ -1,0 +1,7 @@
+#! /usr/bin/env sh
+
+set -e
+set -u
+
+brew install JetBrains/utils/kotlin-lsp
+claude plugin install kotlin-lsp

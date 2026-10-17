@@ -1,0 +1,7 @@
+#! /usr/bin/env sh
+
+set -e
+set -u
+
+# Install Xcode from the App Store or `brew install swift`.
+claude plugin install swift-lsp

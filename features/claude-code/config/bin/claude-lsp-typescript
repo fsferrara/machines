@@ -1,0 +1,7 @@
+#! /usr/bin/env sh
+
+set -e
+set -u
+
+npm install -g typescript-language-server typescript
+claude plugin install typescript-lsp
