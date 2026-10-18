@@ -3,6 +3,10 @@
     "ENABLE_LSP_TOOLS": "1"
   },
   "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true
+    "swift-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "kotlin-lsp@claude-plugins-official": true
   }
 }
