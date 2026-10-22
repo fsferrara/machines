@@ -30,6 +30,7 @@ install_casks_for_tools_and_tech() {
   brew install --cask docker-desktop
 
   # AI
+  brew install herdr
   brew install --cask claude # claude desktop
   brew install --cask claude-code
   #brew install --cask wave
