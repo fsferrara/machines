@@ -1,0 +1,22 @@
+[keys]
+prefix = "ctrl+a"
+split_horizontal = "prefix+b"
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+new_tab = ["prefix+c", "prefix+shift+c"]
+rename_tab = "prefix+comma"
+new_workspace = "prefix+ctrl+c"
+workspace_picker = ["prefix+s", "prefix+ctrl+s"]
+detach = "prefix+d"
+reload_config = "prefix+r"
+
+# Free tmux keys while keeping Herdr-only actions accessible.
+toggle_sidebar = "prefix+shift+b"
+resize_mode = "prefix+shift+r"
+settings = "prefix+shift+s"
+swap_pane_left = "prefix+shift+left"
+swap_pane_down = "prefix+shift+down"
+swap_pane_up = "prefix+shift+up"
+swap_pane_right = "prefix+shift+right"
