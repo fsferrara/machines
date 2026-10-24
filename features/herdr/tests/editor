@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+set -eu
+printf '%s\n' "$PWD" "$@" > "$HERDR_TEST_MARKERS/editor-$HERDR_PANE_ID"

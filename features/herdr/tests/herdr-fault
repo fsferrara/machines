@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+set -eu
+if [ "$1 $2" = 'pane get' ]; then
+	case "$HERDR_TEST_FAULT" in
+		invalid-json) printf 'not json\n'; exit 0 ;;
+		api-error) printf '{"error":{"message":"test failure"}}\n'; exit 0 ;;
+		stale-context) "$HERDR_TEST_REAL" "$@" | jq '.result.pane.tab_id = "stale"'; exit 0 ;;
+	esac
+fi
+if [ "$1 $2" = 'pane split' ]; then
+	case "$HERDR_TEST_FAULT" in
+		missing-id) printf '{"result":{"pane":{}}}\n'; exit 0 ;;
+		second-split)
+			if [ -f "$HOME/split-once" ]; then
+				printf 'Injected second-split failure\n' >&2
+				exit 1
+			fi
+			touch "$HOME/split-once" ;;
+	esac
+fi
+exec "$HERDR_TEST_REAL" "$@"
