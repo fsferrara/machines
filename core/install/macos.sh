@@ -29,6 +29,7 @@ ${CMD_INSTALL} tree
 ${CMD_INSTALL} tmux
 ${CMD_INSTALL} grep
 ${CMD_INSTALL} watch
+${CMD_INSTALL} less
 ${CMD_INSTALL} coreutils
 ${CMD_INSTALL} gnu-sed
 ${CMD_INSTALL} automake
