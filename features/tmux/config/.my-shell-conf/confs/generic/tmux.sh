@@ -1,158 +1,160 @@
-################################################################################
-# TMUX
-################################################################################
-
-# Session management
-_tmux_sessions_dir() {
-	printf '%s\n' "${TMUX_SESSIONS_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/tmux/sessions.d}"
+_tmux_run() {
+	command tmux "$@" || {
+		printf 'Error: tmux %s failed; any partial layout has been left intact.\n' "$1" >&2
+		return 1
+	}
 }
 
-_tmux_has_session() {
-	tmux has-session -t "=$1" 2>/dev/null
-}
-
-_tmux_validate_session_name() {
-	case "$1" in
-		'')
-			printf 'Error: session name cannot be empty.\n' >&2
-			return 1
-			;;
-		*[./:]*)
-			printf 'Error: session name cannot contain periods, slashes, or colons: %s\n' "$1" >&2
-			return 1
-			;;
-	esac
-}
-
-_tmux_connect_session() {
+t() {
+	if [ "$#" -ne 0 ]; then
+		printf 'Usage: t\n' >&2
+		return 1
+	fi
 	if [ -n "${TMUX:-}" ]; then
-		tmux switch-client -t "=$1"
+		_tmux_run choose-tree -s
 	else
-		tmux attach-session -t "=$1"
+		# One server command queue distinguishes no sessions from an attach error.
+		_tmux_run start-server \; if-shell -F '#{session_name}' \
+			attach-session 'new-session -s Work'
 	fi
 }
 
-_tmux_create_configured_session() (
-	session_name=$1
-	session_file=$2
-
-	TMUX_SESSION_DIRECTORY=
-	TMUX_SESSION_COMMAND=
-	unset -f tmux_session_create 2>/dev/null || true
-
-	# shellcheck disable=SC1090
-	. "$session_file"
-
-	if [ -z "$TMUX_SESSION_DIRECTORY" ]; then
-		printf 'Error: TMUX_SESSION_DIRECTORY is not set in %s.\n' "$session_file" >&2
+_tmux_layout_context() {
+	if [ -z "${TMUX:-}" ] || [ -z "${TMUX_PANE:-}" ]; then
+		printf 'Error: layouts must be run from a pane inside tmux.\n' >&2
 		return 1
 	fi
-
-	if [ ! -d "$TMUX_SESSION_DIRECTORY" ]; then
-		printf 'Error: session directory does not exist: %s\n' "$TMUX_SESSION_DIRECTORY" >&2
+	if [ "$(_tmux_run display-message -p -t "$TMUX_PANE" '#{window_panes}')" != 1 ]; then
+		printf 'Error: layouts require a single-pane starting window.\n' >&2
 		return 1
 	fi
+}
 
-	if command -v tmux_session_create >/dev/null 2>&1; then
-		tmux_session_create "$session_name" "$TMUX_SESSION_DIRECTORY"
-	elif [ -n "$TMUX_SESSION_COMMAND" ]; then
-		tmux new-session -d -s "$session_name" -c "$TMUX_SESSION_DIRECTORY" \
-			"$TMUX_SESSION_COMMAND; exec \"${SHELL:-/bin/sh}\""
+_tmux_send() {
+	_tmux_run send-keys -t "$1" -l -- "$2" &&
+		_tmux_run send-keys -t "$1" Enter
+}
+
+_tmux_quote() {
+	printf "'"
+	printf '%s' "$1" | sed "s/'/'\\\\''/g"
+	printf "'"
+}
+
+_tmux_dev_layout() (
+	pane=$1 directory=$2 layout=$3 first_command=$4 second_command=$5
+	_tmux_run rename-window -t "$pane" -- "${directory##*/}" || return 1
+	if [ "$layout" = tds ]; then
+		bottom=$(_tmux_run split-window -d -v -p 50 -t "$pane" -c "$directory" -P -F '#{pane_id}') || return 1
+		right=$(_tmux_run split-window -d -h -p 50 -t "$pane" -c "$directory" -P -F '#{pane_id}') || return 1
+		second=$(_tmux_run split-window -d -h -p 50 -t "$bottom" -c "$directory" -P -F '#{pane_id}') || return 1
 	else
-		tmux new-session -d -s "$session_name" -c "$TMUX_SESSION_DIRECTORY"
-	fi
-
-	if ! _tmux_has_session "$session_name"; then
-		printf 'Error: session definition did not create session: %s\n' "$session_name" >&2
-		return 1
-	fi
-)
-
-unalias tmux tmux-list tmux-attach tmux-new 2>/dev/null || true
-
-_tmux_list() (
-	sessions_dir=$(_tmux_sessions_dir)
-
-	{
-		tmux list-sessions -F '#S' 2>/dev/null || true
-
-		for session_file in "$sessions_dir"/*.sh; do
-			[ -f "$session_file" ] || continue
-			session_name=${session_file##*/}
-			printf '%s\n' "${session_name%.sh}"
-		done
-	} | awk 'NF && !seen[$0]++'
-)
-
-_tmux_new() (
-	if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
-		printf 'Usage: tmux-new <name> [directory]\n' >&2
-		return 1
-	fi
-
-	session_name=$1
-	session_directory=${2:-$PWD}
-
-	_tmux_validate_session_name "$session_name" || return 1
-
-	if [ ! -d "$session_directory" ]; then
-		printf 'Error: session directory does not exist: %s\n' "$session_directory" >&2
-		return 1
-	fi
-
-	if _tmux_has_session "$session_name"; then
-		printf 'Error: tmux session already exists: %s\n' "$session_name" >&2
-		return 1
-	fi
-
-	tmux new-session -d -s "$session_name" -c "$session_directory" || return 1
-	_tmux_connect_session "$session_name"
-)
-
-_tmux_connect() (
-	if [ "$#" -gt 1 ]; then
-		printf 'Usage: tmux-connect [name]\n' >&2
-		return 1
-	fi
-
-	if [ "$#" -eq 1 ]; then
-		session_name=$1
-	else
-		session_name=$(_tmux_list | fzf --layout=reverse --prompt='tmux session> ') || return 0
-		[ -n "$session_name" ] || return 0
-	fi
-
-	_tmux_validate_session_name "$session_name" || return 1
-
-	if ! _tmux_has_session "$session_name"; then
-		session_file="$(_tmux_sessions_dir)/$session_name.sh"
-
-		if [ -f "$session_file" ]; then
-			_tmux_create_configured_session "$session_name" "$session_file" || return 1
-		else
-			tmux new-session -d -s "$session_name" -c "$PWD" || return 1
+		_tmux_run split-window -d -v -p 15 -t "$pane" -c "$directory" || return 1
+		right=$(_tmux_run split-window -d -h -p 30 -t "$pane" -c "$directory" -P -F '#{pane_id}') || return 1
+		if [ -n "$second_command" ]; then
+			second=$(_tmux_run split-window -d -v -p 50 -t "$right" -c "$directory" -P -F '#{pane_id}') || return 1
 		fi
 	fi
-
-	_tmux_connect_session "$session_name"
+	_tmux_send "$right" "$first_command" || return 1
+	if [ -n "$second_command" ]; then
+		_tmux_send "$second" "$second_command" || return 1
+	fi
+	# The reused pane may still be in tdlm's parent directory.
+	_tmux_send "$pane" "cd -- $(_tmux_quote "$directory") && ${EDITOR:-vi} ." || return 1
+	_tmux_run select-pane -t "$pane"
 )
 
-tmux() {
-	if [ "$#" -eq 0 ]; then
-		_tmux_connect home
-	else
-		command tmux "$@"
+_tmux_development() (
+	layout=$1
+	shift
+	if { [ "$layout" = tds ] && [ "$#" -ne 2 ]; } ||
+		[ "$#" -lt 1 ] || [ "$#" -gt 2 ] ||
+		[ -z "${1:-}" ] || { [ "$#" -eq 2 ] && [ -z "$2" ]; }; then
+		if [ "$layout" = tds ]; then
+			printf 'Usage: tds <diff-command> <agent-command>\n' >&2
+		else
+			printf 'Usage: %s <command> [second-command]\n' "$layout" >&2
+		fi
+		return 1
 	fi
-}
+	_tmux_layout_context || return 1
+	if [ "$layout" != tdlm ]; then
+		_tmux_dev_layout "$TMUX_PANE" "$PWD" "$layout" "$1" "${2:-}"
+		return $?
+	fi
 
-# Commands
-alias tmux-list="_tmux_list"
-alias tmux-connect="_tmux_connect"
-alias tmux-attach="_tmux_connect"
-alias tmux-new="_tmux_new"
-alias tmux-new-detached="tmux new -d -s"
-alias tmux-kill="tmux kill-session -t"
-alias tmux-kill-all="tmux kill-server"
+	# Zsh otherwise errors on a glob without matches; keep the option local.
+	if [ -n "${ZSH_VERSION:-}" ]; then
+		setopt localoptions nonomatch
+	fi
+	found=
+	for directory in "$PWD"/*/; do
+		[ -d "$directory" ] || continue
+		found=yes
+		break
+	done
+	if [ -z "$found" ]; then
+		printf 'Error: tdlm requires at least one immediate non-hidden subdirectory.\n' >&2
+		return 1
+	fi
+	session=$(_tmux_run display-message -p -t "$TMUX_PANE" '#{session_id}') || return 1
+	session_name=$(printf '%s' "${PWD##*/}" | tr '.:' '--')
+	[ -n "$session_name" ] || session_name=Work
+	_tmux_run rename-session -t "$session" -- "$session_name" || return 1
+	first=yes
+	for directory in "$PWD"/*/; do
+		[ -d "$directory" ] || continue
+		directory=${directory%/}
+		if [ "$first" = yes ]; then
+			pane=$TMUX_PANE
+			first=no
+		else
+			pane=$(_tmux_run new-window -d -t "$session:" -c "$directory" -P -F '#{pane_id}') || return 1
+		fi
+		_tmux_dev_layout "$pane" "$directory" tdl "$1" "${2:-}" || return 1
+	done
+	_tmux_run select-window -t "$TMUX_PANE"
+)
 
-# Misc
-export TERM="screen-256color"
+tdl() { _tmux_development tdl "$@"; }
+tds() { _tmux_development tds "$@"; }
+tdlm() { _tmux_development tdlm "$@"; }
+
+tsl() (
+	if [ "$#" -ne 2 ] || [ -z "${2:-}" ]; then
+		printf 'Usage: tsl <positive-pane-count> <command>\n' >&2
+		return 1
+	fi
+	case "$1" in
+		''|*[!0-9]*)
+			printf 'Error: pane count must be a positive integer.\n' >&2
+			return 1 ;;
+	esac
+	count=$1
+	while [ "${count#0}" != "$count" ]; do count=${count#0}; done
+	# Stay within portable signed shell arithmetic, not an arbitrary layout cap.
+	if [ -z "$count" ] || [ "${#count}" -gt 10 ] ||
+		{ [ "${#count}" -eq 10 ] && [ "$count" -gt 2147483647 ]; }; then
+		printf 'Error: pane count must be between 1 and 2147483647.\n' >&2
+		return 1
+	fi
+	_tmux_layout_context || return 1
+	_tmux_run rename-window -t "$TMUX_PANE" -- "${PWD##*/}" || return 1
+	panes=$TMUX_PANE
+	target=$TMUX_PANE
+	index=1
+	while [ "$index" -lt "$count" ]; do
+		target=$(_tmux_run split-window -d -h -t "$target" -c "$PWD" -P -F '#{pane_id}') || return 1
+		panes="$panes $target"
+		_tmux_run select-layout -t "$TMUX_PANE" tiled || return 1
+		index=$((index + 1))
+	done
+	# Explicit splitting also works with Zsh's default no-SH_WORD_SPLIT behavior.
+	while [ -n "$panes" ]; do
+		pane=${panes%% *}
+		_tmux_send "$pane" "$2" || return 1
+		if [ "$panes" = "$pane" ]; then break; fi
+		panes=${panes#* }
+	done
+	_tmux_run select-pane -t "$TMUX_PANE"
+)
