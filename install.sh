@@ -11,10 +11,10 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 INITIAL_DIR="$(pwd)"
 
 
-#########################
-# DOTFILES INSTALLATION #
-#########################
-cd "${SCRIPT_DIR}/dotfiles"
+#####################
+# CORE INSTALLATION #
+#####################
+cd "${SCRIPT_DIR}/core"
 ./install.sh
 
 
@@ -24,8 +24,8 @@ cd "${SCRIPT_DIR}/dotfiles"
 printf '\n\n🟢 Refreshing features...\n'
 cd "${SCRIPT_DIR}"
 for feature in "${SCRIPT_DIR}/features/"*/; do
-    cp -f "${SCRIPT_DIR}/dotfiles/configure.sh" "${feature}/"
-    cp -f "${SCRIPT_DIR}/dotfiles/install.sh" "${feature}/"
+    cp -f "${SCRIPT_DIR}/core/configure.sh" "${feature}/"
+    cp -f "${SCRIPT_DIR}/core/install.sh" "${feature}/"
 done
 
 

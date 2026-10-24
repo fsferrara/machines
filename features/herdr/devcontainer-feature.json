@@ -1,5 +1,8 @@
 {
     "id": "herdr",
     "version": "1.0.0",
-    "name": "my feature herdr"
+    "name": "my feature herdr",
+    "dependsOn": {
+        "./core": {}
+    }
 }

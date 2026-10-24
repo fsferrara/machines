@@ -1,5 +1,8 @@
 {
     "id": "terminal-notifications",
     "version": "1.0.0",
-    "name": "my terminal notifications"
+    "name": "my terminal notifications",
+    "dependsOn": {
+        "./core": {}
+    }
 }

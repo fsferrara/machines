@@ -1,5 +1,8 @@
 {
     "id": "claude-code",
     "version": "1.0.0",
-    "name": "my feature claude-code"
+    "name": "my feature claude-code",
+    "dependsOn": {
+        "./core": {}
+    }
 }

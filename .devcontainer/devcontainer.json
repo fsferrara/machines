@@ -11,7 +11,7 @@
     "GIT_USER": "user"
   },
   "features": {
-    "./dotfiles": {},
+    "./core": {},
     "./features/git": {},
     "./features/ssh": {},
     "./features/zsh": {},
@@ -27,7 +27,7 @@
     "./private": {}
   },
   "overrideFeatureInstallOrder": [
-    "./dotfiles",
+    "./core",
     "./features/git",
     "./features/ssh",
     "./features/zsh",

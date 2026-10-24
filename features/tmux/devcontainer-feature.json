@@ -1,5 +1,8 @@
 {
     "id": "tmux",
     "version": "1.0.0",
-    "name": "my feature tmux"
+    "name": "my feature tmux",
+    "dependsOn": {
+        "./core": {}
+    }
 }

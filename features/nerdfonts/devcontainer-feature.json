@@ -1,5 +1,8 @@
 {
     "id": "nerdfonts",
     "version": "1.0.0",
-    "name": "my feature nerdfonts"
+    "name": "my feature nerdfonts",
+    "dependsOn": {
+        "./core": {}
+    }
 }

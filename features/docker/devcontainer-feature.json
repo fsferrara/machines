@@ -1,5 +1,8 @@
 {
     "id": "docker",
     "version": "1.0.0",
-    "name": "my feature docker"
+    "name": "my feature docker",
+    "dependsOn": {
+        "./core": {}
+    }
 }

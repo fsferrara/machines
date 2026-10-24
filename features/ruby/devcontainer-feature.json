@@ -1,5 +1,8 @@
 {
     "id": "ruby",
     "version": "1.0.0",
-    "name": "my feature ruby"
+    "name": "my feature ruby",
+    "dependsOn": {
+        "./core": {}
+    }
 }

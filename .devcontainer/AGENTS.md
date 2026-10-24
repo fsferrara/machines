@@ -6,7 +6,22 @@ Here is a generic dev container containing my configuration.
 
 This dev container uses locally referenced Features from `devcontainer.json`.
 
-Features live under `.devcontainer/features/` and are referenced in [devcontainer.json](devcontainer.json) using relative paths like `./features/git`.
+The `.devcontainer/core` link points to `../core`, and `.devcontainer/features`
+points to `../features`. Features are referenced in
+[devcontainer.json](devcontainer.json) using `./core` and paths like `./features/git`.
+The `.devcontainer/private` link points outside this repository; do not modify
+its target as part of changes to this repository.
+
+## Core Dependency
+
+Core is the reference feature and the prerequisite for all other features.
+Every feature under `features/` declares `"dependsOn": {"./core": {}}` in its
+metadata. The dependency path is relative to `devcontainer.json`, not the
+dependent feature directory. Keep `./core` in the feature selection and first
+in `overrideFeatureInstallOrder`. Do not add a self-dependency to core.
+
+This dependency is specific to the local layout. It does not apply when running
+the shell installers directly; install core first in that workflow.
 
 ## Locally Referenced Features
 

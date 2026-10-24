@@ -1,5 +1,8 @@
 {
     "id": "vim",
     "version": "1.0.0",
-    "name": "my feature vim"
+    "name": "my feature vim",
+    "dependsOn": {
+        "./core": {}
+    }
 }

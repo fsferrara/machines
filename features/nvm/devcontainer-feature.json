@@ -1,5 +1,8 @@
 {
     "id": "nvm",
     "version": "1.0.0",
-    "name": "my feature nvm"
+    "name": "my feature nvm",
+    "dependsOn": {
+        "./core": {}
+    }
 }

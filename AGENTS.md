@@ -12,7 +12,10 @@ Repository documentation and machine setup guides live under `docs/`. The direct
 
 ## Feature Structure
 
-Each feature in `features/` and `dotfiles/` follows the devcontainer features pattern:
+Each feature in `features/` and `core/` follows the devcontainer features pattern.
+`core/` is the reference feature and the prerequisite for all other features.
+Feature-root `install.sh` and `configure.sh` must remain identical to the
+corresponding scripts in `core/`. See [Feature Structure](features/AGENTS.md).
 
 ```
 feature/
@@ -28,13 +31,15 @@ feature/
 └── post-configure.sh   # Optional: runs after configure
 ```
 
-**Install a feature**: `./features/<name>/install.sh` (installs software + applies config)
+**Install core first**: `./install.sh` (installs core, applies its configuration, and refreshes shared feature scripts)
+
+**Install a feature**: `./features/<name>/install.sh` (installs software + applies config; requires core to be installed first)
 
 **Configure only** (software already installed): `./features/<name>/configure.sh [destination]`
 
 ## Shell Configuration
 
-`dotfiles/config/.my-shell-conf/kickstart.sh` loads shell config in order:
+`core/config/.my-shell-conf/kickstart.sh` loads shell config in order:
 1. `confs/generic/` - All shells, all OS
 2. `confs/{bash,zsh}/` - Shell-specific
 3. `confs/{linux,osx}/` - OS-specific  
@@ -44,4 +49,8 @@ Source `~/.my-shell-conf/kickstart.sh` from `.bashrc` or `.zshrc`.
 
 ## Devcontainer
 
-The `.devcontainer/` provides a generic dev container with common features (dotfiles, git, ssh, zsh, tmux, gh, vim). Features are referenced as local paths in `devcontainer.json`.
+The `.devcontainer/` provides a generic dev container with common features (core, git, ssh, zsh, tmux, gh, vim). Features are referenced as local paths in `devcontainer.json`.
+All features under `features/` declare `"dependsOn": {"./core": {}}` in their
+metadata. This path is relative to `.devcontainer/devcontainer.json`, not the
+dependent feature directory. This dependency applies to devcontainer builds;
+direct shell installs still require core to be installed first.

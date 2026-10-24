@@ -1,5 +1,8 @@
 {
     "id": "opencode",
     "version": "1.0.0",
-    "name": "my feature opencode"
+    "name": "my feature opencode",
+    "dependsOn": {
+        "./core": {}
+    }
 }

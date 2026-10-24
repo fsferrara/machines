@@ -1,5 +1,8 @@
 {
     "id": "swiftly",
     "version": "1.0.0",
-    "name": "my feature swiftly"
+    "name": "my feature swiftly",
+    "dependsOn": {
+        "./core": {}
+    }
 }
