@@ -1,0 +1,5 @@
+#! /usr/bin/env sh
+set -e
+set -u
+
+git log --graph --oneline --decorate --all

@@ -1,3 +1,5 @@
+# See https://git-scm.com/docs/git-config
+
 [core]
   # You would use autocrlf=true on Windows
   autocrlf = input
@@ -26,12 +28,22 @@
   untracked = red bold
 [diff]
   tool = vimdiff
+	algorithm = histogram    # Clearer diffs on moved/edited lines
+	colorMoved = plain       # Highlight moved blocks in diffs
+	mnemonicPrefix = true    # More intuitive refs in diff output
+[commit]
+	verbose = true           # Include diff comment in commit message template
 [branch]
   autosetuprebase = always
   autoSetupMerge = simple
+  sort = -committerdate    # Sort branches by most recent commit first
+[tag]
+	sort = -version:refname  # Sort version numbers as you would expect
 [push]
   default = simple
-  autoSetupRemote = true
+  autoSetupRemote = true   # Automatically set upstream branch on push
+[pull]
+	rebase = true 			 # Rebase (instead of merge) on pull
 [merge]
   tool = vimdiff
 [credential]
@@ -46,8 +58,17 @@
   log-graph = log --graph --oneline --decorate
   log-graph-all = log --graph --oneline --decorate --all
   up = pull --rebase --autostash
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
 [init]
   defaultBranch = main
+[column]
+	ui = auto 			     # Output in columns when possible
+[rerere]
+	enabled = true           # Record and reuse conflict resolutions
+	autoupdate = true        # Apply stored conflict resolutions automatically
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
