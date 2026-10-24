@@ -1,8 +1,9 @@
 {
-    "id": "python",
+    "id": "ghostty",
     "version": "1.0.0",
-    "name": "my feature python",
+    "name": "my feature ghostty",
     "dependsOn": {
-        "./core": {}
+        "./core": {},
+        "./features/nerdfonts": {}
     }
 }

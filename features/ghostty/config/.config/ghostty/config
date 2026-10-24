@@ -1,32 +1,59 @@
-# Font Settings (ensure these fonts are installed on your system)
-font-family = "MesloLGM Nerd Font Mono"
-font-size = 14
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-style = Regular
+font-size = 12
 
-# Theme
-theme = Adwaita Dark
+# Static Omarchy dark palette
+background = #1a1b26
+foreground = #a9b1d6
+cursor-color = #c0caf5
+selection-background = #292e42
+selection-foreground = #c0caf5
 
-# Window Settings
-window-theme = dark
-window-show-tab-bar = auto
-window-new-tab-position = current
-window-subtitle = working-directory
+palette = 0=#1a1b26
+palette = 1=#f7768e
+palette = 2=#9ece6a
+palette = 3=#e0af68
+palette = 4=#7aa2f7
+palette = 5=#ad8ee6
+palette = 6=#449dab
+palette = 7=#a9b1d6
+palette = 8=#414868
+palette = 9=#ff7a93
+palette = 10=#b9f27c
+palette = 11=#ff9e64
+palette = 12=#7da6ff
+palette = 13=#bb9af7
+palette = 14=#0db9d7
+palette = 15=#c0caf5
 
-# Scrolling and Selection
+# Window and scrolling
+window-theme = ghostty
+window-padding-x = 14
+window-padding-y = 14
+confirm-close-surface = false
+resize-overlay = never
 scrollbar = never
 scrollback-limit = 10000
+mouse-scroll-multiplier = 0.95
 
-# macOS Specific Tweaks (ignored on Linux automatically)
+# Preserve the block cursor and use Ghostty's SSH environment compatibility.
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor,ssh-env
+
+# Deliver the same Alt-based workflow on macOS as on Linux.
 macos-option-as-alt = true
+keybind = alt+arrow_left=unbind
+keybind = alt+arrow_right=unbind
 
-# Linux Specific Tweaks (ignored on macOS automatically)
-gtk-single-instance = true
-
-# Custom Keybindings
 keybind = ctrl+shift+n=new_window
 keybind = ctrl+shift+t=new_tab
-
-# Mouse
-mouse-reporting = true
-# press SHIFT to use system mouse capabilities
-mouse-shift-capture = false
-
+keybind = shift+insert=paste_from_clipboard
+keybind = control+insert=copy_to_clipboard
+keybind = shift+enter=csi:13;2u
+keybind = alt+shift+enter=csi:13;4u
+keybind = super+control+shift+alt+arrow_down=resize_split:down,100
+keybind = super+control+shift+alt+arrow_up=resize_split:up,100
+keybind = super+control+shift+alt+arrow_left=resize_split:left,100
+keybind = super+control+shift+alt+arrow_right=resize_split:right,100

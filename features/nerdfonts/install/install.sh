@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
 
 ##########
 # CONFIG #
@@ -29,7 +30,7 @@ cd getnf || exit
 ./install.sh
 cd "$CURRENT_DIR" || exit
 rm -rf "$CLONE_DIR" # Cleaning up
-${HOME}/.local/bin/getnf -i JetBrainsMono # Only install JetBrainsMono Nerd Font
+"${HOME}/.local/bin/getnf" -i JetBrainsMono
 
 
 ########
