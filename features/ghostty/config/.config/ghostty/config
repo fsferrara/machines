@@ -44,8 +44,6 @@ shell-integration-features = no-cursor,ssh-env
 
 # Deliver the same Alt-based workflow on macOS as on Linux.
 macos-option-as-alt = true
-keybind = alt+arrow_left=unbind
-keybind = alt+arrow_right=unbind
 
 keybind = ctrl+shift+n=new_window
 keybind = ctrl+shift+t=new_tab
