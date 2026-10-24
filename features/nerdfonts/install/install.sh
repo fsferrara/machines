@@ -29,7 +29,7 @@ cd getnf || exit
 ./install.sh
 cd "$CURRENT_DIR" || exit
 rm -rf "$CLONE_DIR" # Cleaning up
-${HOME}/.local/bin/getnf -i Meslo # Only install MesloLGM Nerd Font
+${HOME}/.local/bin/getnf -i JetBrainsMono # Only install JetBrainsMono Nerd Font
 
 
 ########
