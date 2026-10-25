@@ -1,0 +1,49 @@
+################################################################################
+# Modern Unix
+################################################################################
+
+alias ll='eza -lh --group-directories-first --icons=auto'
+alias la='eza -lha --group-directories-first --icons=auto'
+alias lt='eza --tree --level=2 --long --icons --git'
+
+
+# Bat: A cat clone with syntax highlighting and Git integration.
+alias cat="bat"
+
+# Eza: Rich directory listings.
+alias ls="eza --group-directories-first --icons=auto"
+
+# Hunk: Review working-tree diffs.
+alias diff="hunk diff"
+
+# Dua: Summarize directory disk usage.
+alias du="dua aggregate"
+
+# Duf: A better version of df in Rust.
+alias df="duf"
+
+# Eza: Display directory trees.
+alias tree="eza --tree"
+
+# Fd: A simple, fast and user-friendly alternative to find.
+alias find="fd"
+
+# Ripgrep: A line-oriented search tool that recursively searches the current directory for a regex pattern.
+alias grep="rg"
+
+# Jq: A lightweight and flexible command-line JSON processor.
+alias json="jq"
+
+# Btop: Interactive system and process monitoring.
+alias top="btop"
+
+# Gping: A ping tool that shows a graph of the ping times.
+alias ping="gping"
+
+# Doggo: Command-line DNS client for humans. dig on steroids
+alias dig="doggo"
+
+# Neovim: A hyperextensible Vim-based text editor.
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"

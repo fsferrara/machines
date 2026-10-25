@@ -46,7 +46,7 @@ fi
 ###########
 printf '\n\n🚀 Installing...\n'
 ${CMD_INSTALL} lazygit fd-find fzf ripgrep bat eza zoxide tealdeer btop fastfetch \
-    ca-certificates curl tar coreutils
+    ca-certificates curl tar coreutils gping glow duf sd httpie 
 
 install_release() (
     name=$1
