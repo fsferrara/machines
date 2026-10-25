@@ -55,8 +55,8 @@ alias top="btop"
 # Gping: A ping tool that shows a graph of the ping times.
 alias ping="gping"
 
-# Doggo: Command-line DNS client for humans. dig on steroids
-alias dig="doggo"
+# Zoxide: A smarter cd command.
+alias cd="z"
 
 # Neovim: A hyperextensible Vim-based text editor.
 alias v="nvim"
