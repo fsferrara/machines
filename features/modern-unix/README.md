@@ -4,6 +4,15 @@ A portable terminal toolbox for macOS and Ubuntu 26.04, adapted selectively
 from Omarchy. Where workflows overlap, the feature prefers the selected
 Omarchy tool while keeping distinct utilities and standard commands available.
 
+## Source Required
+
+Differently from Omarchy, I prefer to integrate all these modern tools on-demand
+with a specific command:
+
+```sh
+source modern
+```
+
 ## Installation
 
 Install [core](../../core/README.md) first. Then, from the repository root:

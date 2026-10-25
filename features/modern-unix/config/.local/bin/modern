@@ -1,10 +1,22 @@
 ################################################################################
-# Modern Unix
+# Modern Unix - this file needs to be sourced on-demand
 ################################################################################
 
-alias ll='eza -lh --group-directories-first --icons=auto'
-alias la='eza -lha --group-directories-first --icons=auto'
-alias lt='eza --tree --level=2 --long --icons --git'
+# Source Check
+if [ -n "${BASH_VERSION-}" ]; then
+  if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    printf 'Please source this file: source %s\n' "$0" >&2
+    exit 1
+  fi
+elif [ -n "${ZSH_VERSION-}" ]; then
+  case "$ZSH_EVAL_CONTEXT" in
+    *:file) ;;
+    *)
+      printf 'Please source this file: source %s\n' "$0" >&2
+      exit 1
+      ;;
+  esac
+fi
 
 
 # Bat: A cat clone with syntax highlighting and Git integration.
@@ -12,6 +24,9 @@ alias cat="bat"
 
 # Eza: Rich directory listings.
 alias ls="eza --group-directories-first --icons=auto"
+alias ll='eza -lh --group-directories-first --icons=auto'
+alias la='eza -lha --group-directories-first --icons=auto'
+alias lt='eza --tree --level=2 --long --icons --git'
 
 # Hunk: Review working-tree diffs.
 alias diff="hunk diff"
