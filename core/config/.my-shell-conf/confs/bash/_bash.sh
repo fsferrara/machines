@@ -41,12 +41,12 @@ HISTFILESIZE=2000
 ################################################################################
 
 # Move per LINE (Beginning/End) with CTRL + Arrows
-"\e[1;5D": beginning-of-line # Ctrl + Left Arrow -> Go to Beginning of Line
-"\e[1;5C": end-of-line       # Ctrl + Right Arrow -> Go to End of Line
+bind '"\e[1;5D": beginning-of-line' # Ctrl + Left Arrow -> Go to Beginning of Line
+bind '"\e[1;5C": end-of-line'       # Ctrl + Right Arrow -> Go to End of Line
 
 # Move per WORD with ALT + Arrows (Recommended so you don't lose word navigation)
-"\e[1;3D": backward-word # Alt + Left Arrow -> Word Backward
-"\e[1;3C": forward-word  # Alt + Right Arrow -> Word Forward
+bind '"\e[1;3D": backward-word' # Alt + Left Arrow -> Word Backward
+bind '"\e[1;3C": forward-word'  # Alt + Right Arrow -> Word Forward
 
 ################################################################################
 # BEHAVIOUR.
