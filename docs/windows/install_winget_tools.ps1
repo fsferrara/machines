@@ -28,7 +28,8 @@ $collaborationPackages = @(
 
 $personalizationPackages = @(
     'Microsoft.PowerToys',
-    'Piriform.Speccy'
+    'Piriform.Speccy',
+    'DEVCOM.JetBrainsMonoNerdFont'
 )
 
 $virtualizationPackages = @(
