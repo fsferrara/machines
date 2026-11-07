@@ -24,6 +24,7 @@ ${CMD_UPDATE}
 printf '\n\n🚀 Installing...\n'
 ${CMD_INSTALL} openssh-client
 ${CMD_INSTALL} sshpass
+${CMD_INSTALL} keychain
 
 
 ########

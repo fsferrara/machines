@@ -1,0 +1,20 @@
+#! /usr/bin/env sh
+
+set -e
+set -u
+
+
+printf '\n\n🚀 Adding keys to the keychain...\n'
+for file in ~/.ssh/id*; do
+    # check the file is a not a public key
+    case "$file" in
+        *.pub) continue ;;
+        *)
+            [ -f "$file" ] || continue
+            eval "$(keychain --eval --agents ssh "$file")"
+            ;;
+    esac
+done
+
+
+exit 0

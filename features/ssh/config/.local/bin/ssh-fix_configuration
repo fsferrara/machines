@@ -12,13 +12,19 @@ chmod 0600 ~/.ssh/config
 
 # for macos use --apple-use-keychain
 ADDTL_OPTS=""
-if [[ "$(uname)" == "Darwin" ]]; then
-    ADDTL_OPTS="--apple-use-keychain"
-fi
+case "$(uname)" in
+    Darwin) ADDTL_OPTS="--apple-use-keychain" ;;
+esac
 
 # Find and add all private keys in ~/.ssh/
 for key in ~/.ssh/id_*; do
-    [[ "$key" != *.pub ]] && ssh-add $ADDTL_OPTS "$key"
+    case "$key" in
+        *.pub) continue ;;
+        *)
+            [ -f "$key" ] || continue
+            ssh-add $ADDTL_OPTS "$key"
+            ;;
+    esac
 done
 
 # Print check
