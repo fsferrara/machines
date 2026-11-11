@@ -50,12 +50,12 @@ install_casks_for_tools_and_tech() {
   # [CASK] My MacOS Personalization
   #brew install --cask appcleaner #replaced by a shell script
   #brew install --cask disk-expert #use this only if need to free up space
-  #brew install --cask jordanbaird-ice #primary function is hiding and showing menu bar items
+  brew install --cask jordanbaird-ice #primary function is hiding and showing menu bar items
   brew install --cask maccy # clipboard manager
   brew install --cask rectangle
-  #brew install --cask spaceid # build your version from the fork
+  brew install --cask whichspace
   #brew install --cask karabiner-elements #replaced by macos keyboard settings
-  #brew install --cask alt-tab
+  brew install --cask dockdoor # alt-tab replacement with cool dock functions
   # brew install --cask background-music # allow quicktime to record screen and audio
   printf '[NOT a Cask] Please install Sleep Control Center from the app store\n'
 
