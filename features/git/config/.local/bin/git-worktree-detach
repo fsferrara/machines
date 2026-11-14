@@ -1,0 +1,16 @@
+#! /usr/bin/env sh
+
+set -e
+set -u
+
+# Default branch name
+git_get_default_branch_name() {
+    git remote show origin | awk '/HEAD branch/ {print $NF}'
+}
+
+DEFAULT_BRANCH_NAME=$(git_get_default_branch_name)
+
+printf "Default branch name: %s\n" "$DEFAULT_BRANCH_NAME"
+
+git fetch origin --prune
+git switch --detach "origin/$DEFAULT_BRANCH_NAME"
