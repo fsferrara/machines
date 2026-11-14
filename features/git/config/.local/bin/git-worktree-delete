@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+source "$HOME/.my-shell-conf/confs/generic/git-worktrees.sh"
+gd

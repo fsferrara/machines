@@ -40,6 +40,7 @@ ${CMD_INSTALL} cmake
 ${CMD_INSTALL} curl
 ${CMD_INSTALL} unzip
 ${CMD_INSTALL} rsync
+${CMD_INSTALL} xsel
 
 
 ########

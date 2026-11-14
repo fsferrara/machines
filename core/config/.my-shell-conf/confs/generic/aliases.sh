@@ -5,3 +5,8 @@
 # Listing
 alias ll='ls -lh'
 alias la='ls -lha'
+
+# Directories
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
