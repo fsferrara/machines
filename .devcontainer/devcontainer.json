@@ -22,7 +22,6 @@
     "./features/vim": {},
     "./features/neovim": {},
     "./features/aws": {},
-    "./features/claude-code": {},
     "./features/opencode": {},
     "./private": {}
   },
@@ -38,7 +37,6 @@
     "./features/vim",
     "./features/neovim",
     "./features/aws",
-    "./features/claude-code",
     "./features/opencode",
     "./private"
   ],
@@ -47,9 +45,7 @@
   "mounts": [
     "source=devcontainer-home,target=/home/user,type=volume",
     "source=${localEnv:HOME}/workspace,target=/home/user/workspace,type=bind,consistency=delegated",
-    "source=${localEnv:HOME}/tools,target=/home/user/tools,type=bind,consistency=delegated",
-    "source=${localEnv:HOME}/.aws,target=/home/user/.aws,type=bind,consistency=delegated",
-    "source=${localEnv:HOME}/.claude,target=/home/user/.claude,type=bind,consistency=delegated"
+    "source=${localEnv:HOME}/tools,target=/home/user/tools,type=bind,consistency=delegated"
   ],
   "postStartCommand": "echo '[devcontainer] user/password'",
   "waitFor": "postStartCommand"
