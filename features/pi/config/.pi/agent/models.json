@@ -1,0 +1,28 @@
+{
+  "providers": {
+    "openrouter": {
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "apiKey": "OPENROUTER_API_KEY",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "openrouter/free",
+          "name": "openrouter/free",
+          "input": ["text", "image"]
+        }
+      ]
+    },
+    "lmstudio": {
+      "baseUrl": "http://localhost:1234/v1",
+      "apiKey": "lmstudio",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "qwen/qwen3.6-35b-a3b",
+          "name": "qwen3.6-35b-a3b",
+          "input": ["text", "image"]
+        }
+      ]
+    }
+  }
+}
