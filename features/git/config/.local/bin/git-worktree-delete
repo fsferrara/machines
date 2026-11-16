@@ -1,5 +1,20 @@
 #! /usr/bin/env bash
 
+# Usage: git-worktree-delete [worktree folder]
+# Without an argument, the current folder is the worktree to delete.
+
 source "$HOME/.my-shell-conf/confs/generic/git-worktrees.sh"
+
+initial_dir="$PWD"
+
+if [[ -n "$1" ]]; then
+  cd "$1" || exit 1
+fi
+
 gd
-cd ..
+status=$?
+
+# The initial folder does not exist anymore if it was the deleted worktree.
+cd "$initial_dir" 2>/dev/null
+exit "$status"
+

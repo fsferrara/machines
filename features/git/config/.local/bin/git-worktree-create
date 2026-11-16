@@ -1,0 +1,32 @@
+#! /usr/bin/env sh
+
+# Usage: git-worktree-create [destination folder]
+# Creates a worktree named as the repository in the destination folder.
+# The worktree is on a detached HEAD at the default branch of origin.
+
+set -e
+set -u
+
+if [ -z "${1:-}" ]; then
+    echo "Usage: git-worktree-create [destination folder]"
+    exit 1
+fi
+
+# Default branch name
+git_get_default_branch_name() {
+    git remote show origin | awk '/HEAD branch/ {print $NF}'
+}
+
+# Name of the main clone folder, also when the current folder is a worktree
+git_get_repository_name() {
+    basename "$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"
+}
+
+DEFAULT_BRANCH_NAME=$(git_get_default_branch_name)
+WORKTREE_PATH="${1%/}/$(git_get_repository_name)"
+
+printf "Default branch name: %s\n" "$DEFAULT_BRANCH_NAME"
+printf "Worktree path: %s\n" "$WORKTREE_PATH"
+
+git fetch origin --prune
+git worktree add --detach "$WORKTREE_PATH" "origin/$DEFAULT_BRANCH_NAME"
