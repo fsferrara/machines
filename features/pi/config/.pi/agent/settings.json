@@ -3,6 +3,8 @@
   "defaultModel": "qwen/qwen3.6-35b-a3b",
   "enabledModels": [
     "openrouter/openrouter/free",
-    "lmstudio/qwen/qwen3.6-35b-a3b"
+    "lmstudio/qwen/qwen3.6-35b-a3b",
+    "github-copilot/*"
   ]
 }
+
