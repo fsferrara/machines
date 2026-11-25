@@ -47,8 +47,8 @@ If you set `HERDR_CONFIG_PATH`, Herdr uses that alternative file instead.
 No migration hooks or cleanup of old installed files are included.
 
 Run `herdr-agent-attach` to select an agent by number. The menu shows each
-agent's terminal title, status, and working directory when available. Enter `q`
-to quit without attaching.
+agent's terminal title, agent name, status, and working directory when
+available. Enter `q` to quit without attaching.
 
 ## Workspaces and keybindings
 

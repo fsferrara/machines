@@ -36,10 +36,11 @@ if [[ "$raw_output" =~ ^[[:space:]]*(\{|\[) ]]; then
     | if . == [] then . else .result.agents end
     | if type != "array" then error("expected an agent list") else .[] end
     | ((.terminal_id | target_id) // (.pane_id | target_id) // error("agent has no attachable ID")) as $target
-    | ((.terminal_title_stripped | text) // (.terminal_title | text) // (.agent | text) // "Unknown agent") as $title
+    | ((.agent | text) // null) as $agent
+    | ((.terminal_title_stripped | text) // (.terminal_title | text) // $agent // "Unknown agent") as $title
     | ((.agent_status | text) // "unknown status") as $status
     | ((.foreground_cwd | text) // (.cwd | text) // null) as $cwd
-    | "\($title) [\($status)]\(if $cwd == null then "" else " - \($cwd)" end)"
+    | "\($title)\(if $agent != null and $agent != $title then " (\($agent))" else "" end) [\($status)]\(if $cwd == null then "" else " - \($cwd)" end)"
     | gsub("[\u0000-\u001f\u007f-\u009f]"; " ")
     | "\($target)\t\(.)"
   ' <<< "$raw_output")" || {
