@@ -1,0 +1,31 @@
+#! /usr/bin/env bash
+
+usage() {
+    cat <<EOF
+Usage: herdr-create-space [SPACE_ROOT]
+
+Create a herdr workspace labelled with the basename of the space root directory.
+
+Arguments:
+  SPACE_ROOT    Optional. Path to the workspace root.
+                Defaults to the current working directory.
+
+Options:
+  -h, --help    Show this help message and exit.
+
+Examples:
+  herdr-create-space
+  herdr-create-space ~/workspace/my-project
+EOF
+}
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    usage
+    exit 0
+fi
+
+SPACE_ROOT="${1:-$(pwd)}"
+SPACE_NAME="👾 $(basename "${SPACE_ROOT}")"
+
+herdr workspace create --cwd "${SPACE_ROOT}" --label "${SPACE_NAME}"
+
