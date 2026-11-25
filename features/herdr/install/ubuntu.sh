@@ -15,14 +15,14 @@ CMD_INSTALL="sudo apt install -y"
 # UPDATE #
 ##########
 printf '\n\n🛸 Updading...\n'
-#${CMD_UPDATE}
+${CMD_UPDATE}
 
 
 ###########
 # INSTALL #
 ###########
 printf '\n\n🚀 Installing...\n'
-#${CMD_INSTALL} herdr
+${CMD_INSTALL} jq
 
 INSTALLER=$(mktemp)
 trap 'rm -f "$INSTALLER"' 0

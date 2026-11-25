@@ -1,0 +1,118 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+# Ensure herdr is installed
+if ! command -v herdr >/dev/null 2>&1; then
+  echo "Error: 'herdr' command not found in PATH." >&2
+  exit 1
+fi
+
+# Fetch agent list
+raw_output="$(herdr agent list)" || {
+  echo "Failed to run 'herdr agent list'." >&2
+  exit 1
+}
+
+if [[ "$raw_output" =~ ^[[:space:]]*$ ]] || echo "$raw_output" | grep -qiE "^(no agents|empty)"; then
+  echo "No active Herdr agents found."
+  exit 0
+fi
+
+options=()
+targets=()
+header=""
+
+if [[ "$raw_output" =~ ^[[:space:]]*(\{|\[) ]]; then
+  if ! command -v jq >/dev/null 2>&1; then
+    echo "Error: 'jq' is required to read the Herdr agent list. Install the core feature first." >&2
+    exit 1
+  fi
+
+  rows="$(jq -rs '
+    def text: strings | select(length > 0);
+    def target_id: text | select(test("\\A[a-zA-Z0-9][a-zA-Z0-9_:-]*\\z"));
+    if length != 1 then error("expected one response") else .[0] end
+    | if . == [] then . else .result.agents end
+    | if type != "array" then error("expected an agent list") else .[] end
+    | ((.terminal_id | target_id) // (.pane_id | target_id) // error("agent has no attachable ID")) as $target
+    | ((.terminal_title_stripped | text) // (.terminal_title | text) // (.agent | text) // "Unknown agent") as $title
+    | ((.agent_status | text) // "unknown status") as $status
+    | ((.foreground_cwd | text) // (.cwd | text) // null) as $cwd
+    | "\($title) [\($status)]\(if $cwd == null then "" else " - \($cwd)" end)"
+    | gsub("[\u0000-\u001f\u007f-\u009f]"; " ")
+    | "\($target)\t\(.)"
+  ' <<< "$raw_output")" || {
+    echo "Could not read the Herdr agent list." >&2
+    exit 1
+  }
+
+  if [[ -z "$rows" ]]; then
+    echo "No active Herdr agents found."
+    exit 0
+  fi
+
+  while IFS=$'\t' read -r target label; do
+    options+=("$label")
+    targets+=("$target")
+  done <<< "$rows"
+else
+  # Keep accepting text listings from older versions.
+  while IFS= read -r line; do
+    [[ -z "${line// /}" ]] && continue
+
+    if [[ "$line" =~ ^[[:space:]]*(ID|PANE|NAME|AGENT|TERMINAL)[[:space:]]+ ]] || [[ "$line" =~ ^[-=+─]+$ ]]; then
+      header="$line"
+      continue
+    fi
+
+    if [[ "$line" =~ (term_[a-zA-Z0-9_-]+) ]]; then
+      target="${BASH_REMATCH[1]}"
+    elif [[ "$line" =~ (w[0-9]+:p[0-9]+) ]]; then
+      target="${BASH_REMATCH[1]}"
+    else
+      target="$(awk '{print $1}' <<< "$line")"
+    fi
+
+    options+=("$line")
+    targets+=("$target")
+  done <<< "$raw_output"
+fi
+
+if [[ ${#options[@]} -eq 0 ]]; then
+  echo "Could not parse any agents from 'herdr agent list':"
+  echo "$raw_output"
+  exit 1
+fi
+
+echo "=========================================="
+echo "           Active Herdr Agents            "
+echo "=========================================="
+[[ -n "$header" ]] && echo "     $header"
+
+for ((i = 0; i < ${#options[@]}; i++)); do
+  printf "  [%d] %s\n" "$((i + 1))" "${options[$i]}"
+done
+echo "  [q] Quit"
+echo "=========================================="
+
+while true; do
+  read -rp "Select an agent to attach (1-${#options[@]} or q): " choice
+
+  if [[ "$choice" == "q" || "$choice" == "Q" ]]; then
+    echo "Cancelled."
+    exit 0
+  fi
+
+  if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#options[@]} )); then
+    selected_target="${targets[$((choice - 1))]}"
+    echo ""
+    echo "Attaching to: $selected_target"
+    echo "💡 Reminder: Press Ctrl+b, release, then press q (Ctrl+b q) to detach."
+    echo ""
+    sleep 1
+    exec herdr terminal attach "$selected_target"
+  else
+    echo "Invalid selection. Please enter a number between 1 and ${#options[@]}, or 'q' to quit."
+  fi
+done

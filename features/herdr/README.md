@@ -16,7 +16,7 @@ Install [core](../../core/README.md) first, then:
 
 The existing installers use Homebrew on macOS and the
 [upstream installer](https://herdr.dev/install.sh) on Ubuntu. Core supplies
-`jq`, which the layout helpers use to validate Herdr API responses.
+`jq`, which the layout and agent attach helpers use to read Herdr API responses.
 The [feature metadata](devcontainer-feature.json) declares the core dependency;
 direct shell installs require installing core first.
 
@@ -45,6 +45,10 @@ After the new bindings are loaded, prefix `q` also reloads configuration.
 Configuration does not automatically reload or restart running servers.
 If you set `HERDR_CONFIG_PATH`, Herdr uses that alternative file instead.
 No migration hooks or cleanup of old installed files are included.
+
+Run `herdr-agent-attach` to select an agent by number. The menu shows each
+agent's terminal title, status, and working directory when available. Enter `q`
+to quit without attaching.
 
 ## Workspaces and keybindings
 

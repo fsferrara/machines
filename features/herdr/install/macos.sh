@@ -23,6 +23,7 @@ ${CMD_UPDATE}
 ###########
 printf '\n\n🚀 Installing...\n'
 ${CMD_INSTALL} herdr
+${CMD_INSTALL} jq
 
 
 ########
